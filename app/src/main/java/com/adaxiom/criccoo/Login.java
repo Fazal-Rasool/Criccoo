@@ -117,6 +117,14 @@ public class Login extends AppCompatActivity {
                     Glide.with(Login.this).load(image_url).into(ivProfile);
 
 
+                    if(!first_name.equalsIgnoreCase("")){
+                        startActivity(new Intent(Login.this, MainActivity.class));
+                    }else{
+                        Toast.makeText(Login.this, "Login failed", Toast.LENGTH_SHORT).show();
+                    }
+
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
