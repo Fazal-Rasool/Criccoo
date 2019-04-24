@@ -4,28 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Login"
-    android:gravity="center">
+    tools:context=".Login">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivProfileImage"
         android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:id="@+id/ivProfileImage"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvName"
-        android:text="Name"
-        android:textSize="18dp"/>
+        android:layout_height="250dp" />
 
     <TextView
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="18dp" />
+
+    <TextView
         android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Email"
-        android:textSize="16dp"/>
+        android:textSize="16dp" />
 
 
     <com.facebook.login.widget.LoginButton
@@ -33,5 +34,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/tvNameGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tvEmailGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="16dp" />
+
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/signInGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>
