@@ -29,13 +29,10 @@ dependencies {
     /*For Retrofit */
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
     implementation 'com.squareup.retrofit:retrofit:1.9.0'
-//    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-//    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
-
     implementation 'com.squareup.okhttp:okhttp:2.2.0'
 
     //RX
-    implementation 'io.reactivex:rxandroid:0.23.+'
+    implementation 'io.reactivex:rxandroid:1.2.1'
 
     //Fb SDK
     implementation 'com.facebook.android:facebook-login:4.42.0'
@@ -48,5 +45,8 @@ dependencies {
 
     //Google play services for google sign in
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
+
+    //Preference
+    implementation 'com.pixplicity.easyprefs:library:1.9.0'
 
 }
