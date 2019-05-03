@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Login">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/round_box">
+
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/barFirstTeam_Dashboard"
+                android:layout_alignParentBottom="true"
+                android:max="100"
+                android:progress="36"
+                android:progressDrawable="@drawable/progress_color"/>
+
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/barSecondTeam_Dashboard"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:max="100"
+                android:progress="45"
+                android:progressDrawable="@drawable/progress_color"/>
+
+
+            <!--<com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar-->
+                <!--android:id="@+id/barFirstTeam_Dashboard"-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--app:rcBackgroundColor="@color/gray"-->
+                <!--app:rcBackgroundPadding="5dp"-->
+                <!--app:rcMax="100"-->
+                <!--app:rcProgress="80"-->
+                <!--app:rcProgressColor="@color/colorPrimary"-->
+                <!--app:rcRadius="5dp"-->
+                <!--app:rcReverse="false"-->
+                <!--app:rcSecondaryProgress="90"-->
+                <!--app:rcSecondaryProgressColor="@color/colorPrimaryDark" />-->
+
+            <!--<com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar-->
+                <!--android:id="@+id/barSecondTeam_Dashboard"-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--app:rcBackgroundColor="@color/gray"-->
+                <!--app:rcBackgroundPadding="5dp"-->
+                <!--app:rcMax="100"-->
+                <!--app:rcProgress="80"-->
+                <!--app:rcProgressColor="@color/colorPrimary"-->
+                <!--app:rcRadius="5dp"-->
+                <!--app:rcReverse="false"-->
+                <!--app:rcSecondaryProgress="90"-->
+                <!--app:rcSecondaryProgressColor="@color/colorPrimaryDark" />-->
+
+
+            <TextView
+                android:id="@+id/tvFirstTeamVote_Dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/dashboard_score"
+                android:text="36  |  45"
+                android:textColor="#000"
+                android:textSize="12dp" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/tvSecondTeamVote_Dashboard"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_marginLeft="50dp"-->
+                <!--android:fontFamily="@font/dashboard_score"-->
+                <!--android:textColor="#000"-->
+                <!--android:textSize="12dp" />-->
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/ivFirstTeam_Dashboard"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/aus_team_icon_text" />
+
+        <ImageView
+            android:id="@+id/ivSecondTeam_Dashboard"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/pak_team_icon_text"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

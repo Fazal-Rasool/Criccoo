@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Signup"
+    android:background="@drawable/main_bg"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.8"
+        android:gravity="center|bottom">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
+        <EditText
+            android:id="@+id/etName_Signup"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/et_height_signup"
+            android:background="@drawable/et_bg"
+            android:hint="Name"
+            android:textColorHint="#fff"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:textColor="#fff"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
+        <EditText
+            android:id="@+id/etEmail_Signup"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/et_height_signup"
+            android:background="@drawable/et_bg"
+            android:hint="Email"
+            android:textColorHint="#fff"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:textColor="#fff"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
+        <EditText
+            android:id="@+id/etPassword_Signup"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/et_height_signup"
+            android:background="@drawable/et_bg"
+            android:hint="Password"
+            android:textColorHint="#fff"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:textColor="#fff"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
+        <EditText
+            android:id="@+id/etConfirmPassword_Signup"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/et_height_signup"
+            android:background="@drawable/et_bg"
+            android:hint="Confirm Password"
+            android:textColorHint="#fff"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:textColor="#fff"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btnLogin_Signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_btn"/>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="et_height_signup">45dp</dimen>
+    <dimen name="et_height_signin">50dp</dimen>
+
+</resources>

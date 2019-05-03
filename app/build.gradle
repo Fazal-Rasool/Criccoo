@@ -49,4 +49,11 @@ dependencies {
     //Preference
     implementation 'com.pixplicity.easyprefs:library:1.9.0'
 
+    //ButterKnif
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //Progress bar horizontal
+//    implementation 'com.akexorcist:RoundCornerProgressBar:2.0.3'
+
 }

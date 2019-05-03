@@ -1,5 +1,7 @@
 package com.adaxiom.criccoo;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -17,15 +19,20 @@ import rx.schedulers.Schedulers;
 public class MainActivity extends AppCompatActivity {
 
     private Subscription getJobsListSubscription;
-    TextView tvShowResponse;
+//    TextView tvShowResponse;
 
+
+    public static void startMainActivity(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvShowResponse = (TextView) findViewById(R.id.tvResponse);
+//        tvShowResponse = (TextView) findViewById(R.id.tvResponse);
 
         callAPI();
     }
@@ -68,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                tvShowResponse.setText(modelJobList.get(0).imgBw);
+//                tvShowResponse.setText(modelJobList.get(0).imgBw);
             }
         });
     }
