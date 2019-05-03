@@ -16,6 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adaxiom.manager.DownloaderManager;
+import com.adaxiom.model.request.SignUpBody;
+import com.adaxiom.model.response.RM_MatchActive;
+import com.adaxiom.model.response.RM_SignUp;
 import com.bumptech.glide.request.RequestOptions;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -39,10 +43,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.schedulers.Schedulers;
 
 import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
 
@@ -66,6 +74,8 @@ public class Login extends AppCompatActivity {
     @BindView(R.id.signInGoogle)
     SignInButton signInGoogle;
 
+
+    private Subscription getSignUpSubscription;
 
     private CallbackManager callbackManager;
     private static final String EMAIL = "email";
@@ -258,6 +268,7 @@ public class Login extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnLogin_login:
+                API_SignUp();
                 break;
             case R.id.btnLoginFB_login:
                 loginButton.performClick();
@@ -275,9 +286,64 @@ public class Login extends AppCompatActivity {
 
     public void callNewActivity(){
         Prefs.putInt(PREF_IS_LOGIN, 1);
-        MainActivity.startMainActivity(Login.this);
-        this.finish();
+//        MainActivity.startMainActivity(Login.this);
+//        this.finish();
     }
+
+
+
+    public void API_SignUp(){
+
+
+
+        if (getSignUpSubscription != null) {
+            return;
+        }
+
+        getSignUpSubscription = DownloaderManager.getGeneralDownloader().API_MatchActive()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<List<RM_MatchActive>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(final Throwable e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(Login.this, e.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onNext(List<RM_MatchActive> modelJobList) {
+
+                        updateUi(modelJobList.get(0));
+                    }
+                });
+
+    }
+
+
+    public void updateUi(final RM_MatchActive model){
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String msg = model.match_id;
+                Toast.makeText(Login.this, msg, Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+
+
+
 
 
 }

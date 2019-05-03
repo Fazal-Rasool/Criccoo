@@ -1,7 +1,10 @@
 package com.adaxiom.network;
 
 import com.adaxiom.criccoo.BuildConfig;
-import com.adaxiom.model.ModelJobList;
+import com.adaxiom.model.request.SignUpBody;
+import com.adaxiom.model.response.ModelJobList;
+import com.adaxiom.model.response.RM_MatchActive;
+import com.adaxiom.model.response.RM_SignUp;
 
 import java.util.List;
 
@@ -46,7 +49,7 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
 //                    .baseUrl(apiEndPoint_Live)
 //                    .addConverterFactory(GsonConverterFactory.create())
 //                    .build();
-            restAdapter = new RestAdapter.Builder().setEndpoint(apiEndPoint_Live)
+            restAdapter = new RestAdapter.Builder().setEndpoint(apiEndPoint_Staging)
                     .setRequestInterceptor(requestInterceptor).setLogLevel(RestAdapter.LogLevel.NONE)
                     .build();
         calls = restAdapter.create(ApiCalls.class);
@@ -65,4 +68,19 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
     public Observable<List<ModelJobList>> getAllJobs(int userId) {
         return calls.GetJobList(userId);
     }
+
+    @Override
+    public Observable<RM_SignUp> signUp(SignUpBody signUpBody) {
+        return calls.Sign_Up(signUpBody);
+    }
+
+    @Override
+    public Observable<List<RM_MatchActive>> matchActive() {
+        return calls.MatchActive();
+    }
+
+    //    @Override
+//    public Observable<RM_SignUp> signUp(String name, String uName, String email, String pswrd, String fcmToken, String city) {
+//        return calls.Sign_Up(name, uName, email, pswrd, fcmToken, city);
+//    }
 }

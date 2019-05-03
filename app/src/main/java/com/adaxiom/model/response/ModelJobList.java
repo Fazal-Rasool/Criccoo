@@ -1,4 +1,4 @@
-package com.adaxiom.model;
+package com.adaxiom.model.response;
 
 public class ModelJobList {
 

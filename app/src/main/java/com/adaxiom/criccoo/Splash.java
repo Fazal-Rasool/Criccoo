@@ -33,11 +33,12 @@ public class Splash extends AppCompatActivity {
 
         int isLogIn = Prefs.getInt(PREF_IS_LOGIN, 0);
 
-        if(isLogIn == 0){
+        if(isLogIn == 1){
             Login.startLoginActivity(Splash.this);
             finish();
         }else{
-            MainActivity.startMainActivity(Splash.this);
+//            MainActivity.startMainActivity(Splash.this);
+            Login.startLoginActivity(Splash.this);
             finish();
         }
 
