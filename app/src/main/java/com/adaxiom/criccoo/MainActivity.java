@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.adaxiom.manager.DownloaderManager;
-import com.adaxiom.model.response.ModelJobList;
 
 import java.util.List;
 
@@ -33,50 +32,50 @@ public class MainActivity extends AppCompatActivity {
 
 //        tvShowResponse = (TextView) findViewById(R.id.tvResponse);
 
-        callAPI();
+//        callAPI();
     }
 
-    public void callAPI(){
+//    public void callAPI(){
+//
+//        if (getJobsListSubscription != null) {
+//            return;
+//        }
+//
+//        getJobsListSubscription = DownloaderManager.getGeneralDownloader().getJobs(29)
+//                .subscribeOn(Schedulers.newThread())
+//                .observeOn(Schedulers.newThread())
+//                .subscribe(new Subscriber<List<ModelJobList>>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(final Throwable e) {
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+//                            }
+//                        });
+//                    }
+//
+//                    @Override
+//                    public void onNext(List<ModelJobList> modelJobList) {
+//
+//                        updateUi(modelJobList);
+//                    }
+//                });
+//
+//    }
 
-        if (getJobsListSubscription != null) {
-            return;
-        }
-
-        getJobsListSubscription = DownloaderManager.getGeneralDownloader().getJobs(29)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.newThread())
-                .subscribe(new Subscriber<List<ModelJobList>>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(final Throwable e) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onNext(List<ModelJobList> modelJobList) {
-
-                        updateUi(modelJobList);
-                    }
-                });
-
-    }
-
-    public void updateUi(final List<ModelJobList> modelJobList){
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-//                tvShowResponse.setText(modelJobList.get(0).imgBw);
-            }
-        });
-    }
+//    public void updateUi(final List<ModelJobList> modelJobList){
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+////                tvShowResponse.setText(modelJobList.get(0).imgBw);
+//            }
+//        });
+//    }
 
 }
