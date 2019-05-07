@@ -1,14 +1,14 @@
 package com.adaxiom.network;
 
-import com.adaxiom.model.request.LoginBody;
-import com.adaxiom.model.request.SignUpBody;
 import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
+import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit.http.Body;
 import retrofit.http.Field;
@@ -23,6 +23,7 @@ import static com.adaxiom.utils.Constants.API_CITY_LIST;
 import static com.adaxiom.utils.Constants.API_GET_ALL_JOBS;
 import static com.adaxiom.utils.Constants.API_LOGIN;
 import static com.adaxiom.utils.Constants.API_MATCH_ACTIVE;
+import static com.adaxiom.utils.Constants.API_MATCH_PREDICTION;
 import static com.adaxiom.utils.Constants.API_SIGN_UP;
 import static com.adaxiom.utils.Constants.PARA_USER_ID;
 
@@ -31,11 +32,11 @@ public interface ApiCalls {
 //    @GET(API_GET_ALL_JOBS)
 //    Observable<List<ModelJobList>> GetJobList(@Path(PARA_USER_ID) int user_id);
 
-    @POST(API_SIGN_UP)
-    Observable<RM_SignUp> Sign_Up(@Body SignUpBody signUpBody);
+//    @POST(API_SIGN_UP)
+//    Observable<RM_SignUp> Sign_Up(@Body SignUpBody signUpBody);
 
     @POST(API_LOGIN)
-    Observable<RM_Login> Login(@Body LoginBody loginBody);
+    Observable<RM_Login> Login(@Body Map<String, String> params);
 
     @FormUrlEncoded
     @POST(API_LOGIN)
@@ -44,6 +45,23 @@ public interface ApiCalls {
             ,@Field("password") String password
             ,@Field("login_from") String from
 
+    );
+
+
+    @FormUrlEncoded
+    @POST(API_MATCH_PREDICTION)
+    Observable<RM_MatchPrediction> PostMatchPrediction(
+            @Field("user_id") String userId
+            ,@Field("match_id") String matchId
+            ,@Field("block_id") String blockId
+            ,@Field("innings") String innings
+            ,@Field("match_over") String matchOver
+            ,@Field("ball_1") String ball1
+            ,@Field("ball_2") String ball2
+            ,@Field("ball_3") String ball3
+            ,@Field("'ball_4") String ball4
+            ,@Field("ball_5") String ball5
+            ,@Field("ball_6") String ball6
     );
 
 
@@ -56,17 +74,17 @@ public interface ApiCalls {
     @GET(API_CITY_LIST)
     Observable<List<RM_CityList>> CityList();
 
-//    @FormUrlEncoded
-//    @POST(API_SIGN_UP)
-//    Observable<RM_SignUp> Sign_Up(
-//            @Field("name") String name
-//            , @Field("username") String UserName
-//            , @Field("email") String email
-//            , @Field("password") String password
-//            , @Field("fcm_token") String token
-//            , @Field("city") String city
-//
-//    );
+    @FormUrlEncoded
+    @POST(API_SIGN_UP)
+    Observable<RM_SignUp> Sign_Up(
+            @Field("name") String name
+            , @Field("username") String UserName
+            , @Field("email") String email
+            , @Field("password") String password
+            , @Field("fcm_token") String token
+            , @Field("city") String city
+
+    );
 
 
 }

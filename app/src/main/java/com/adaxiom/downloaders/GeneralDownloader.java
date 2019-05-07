@@ -1,11 +1,10 @@
 package com.adaxiom.downloaders;
 
-import com.adaxiom.model.request.LoginBody;
-import com.adaxiom.model.request.SignUpBody;
 import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
+import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.network.BackendConnector;
 
@@ -21,41 +20,20 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
         super(beConnector);
     }
 
-//    public Observable<List<ModelJobList>> getJobs(final int user_id) {
-//
-//        return Observable.create(new Observable.OnSubscribe<List<ModelJobList>>() {
-//            @Override
-//            public void call(final Subscriber<? super List<ModelJobList>> subscriber) {
-//                beConnector.getAllJobs(user_id)
-//                        .subscribeOn(Schedulers.newThread())
-//                        .observeOn(Schedulers.newThread())
-//                        .subscribe(new Subscriber<List<ModelJobList>>() {
-//                            @Override
-//                            public void onCompleted() {
-//                                subscriber.onCompleted();
-//                            }
-//
-//                            @Override
-//                            public void onError(Throwable e) {
-//                                subscriber.onError(e);
-//                            }
-//
-//                            @Override
-//                            public void onNext(List<ModelJobList> authResponse) {
-//                                subscriber.onNext(authResponse);
-//                            }
-//                        });
-//            }
-//        });
-//    }
 
 
-    public Observable<RM_SignUp> API_SignUp(final SignUpBody signUpBody) {
+    public Observable<RM_SignUp> API_SignUp(final String name,
+                                            final String uName,
+                                            final String email,
+                                            final String pswrd,
+                                            final String fcmToken,
+                                            final String city
+    ) {
 
         return Observable.create(new Observable.OnSubscribe<RM_SignUp>() {
             @Override
             public void call(final Subscriber<? super RM_SignUp> subscriber) {
-                beConnector.signUp(signUpBody)
+                beConnector.signUp(name,uName,email,pswrd,fcmToken,city)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(Schedulers.newThread())
                         .subscribe(new Subscriber<RM_SignUp>() {
@@ -79,33 +57,63 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
     }
 
 
-    public Observable<RM_Login> API_Login(final LoginBody loginBody) {
 
-        return Observable.create(new Observable.OnSubscribe<RM_Login>() {
-            @Override
-            public void call(final Subscriber<? super RM_Login> subscriber) {
-                beConnector.Login(loginBody)
-                        .subscribeOn(Schedulers.newThread())
-                        .observeOn(Schedulers.newThread())
-                        .subscribe(new Subscriber<RM_Login>() {
-                            @Override
-                            public void onCompleted() {
-                                subscriber.onCompleted();
-                            }
+//    public Observable<RM_SignUp> API_SignUp(final SignUpBody signUpBody) {
+//
+//        return Observable.create(new Observable.OnSubscribe<RM_SignUp>() {
+//            @Override
+//            public void call(final Subscriber<? super RM_SignUp> subscriber) {
+//                beConnector.signUp(signUpBody)
+//                        .subscribeOn(Schedulers.newThread())
+//                        .observeOn(Schedulers.newThread())
+//                        .subscribe(new Subscriber<RM_SignUp>() {
+//                            @Override
+//                            public void onCompleted() {
+//                                subscriber.onCompleted();
+//                            }
+//
+//                            @Override
+//                            public void onError(Throwable e) {
+//                                subscriber.onError(e);
+//                            }
+//
+//                            @Override
+//                            public void onNext(RM_SignUp authResponse) {
+//                                subscriber.onNext(authResponse);
+//                            }
+//                        });
+//            }
+//        });
+//    }
 
-                            @Override
-                            public void onError(Throwable e) {
-                                subscriber.onError(e);
-                            }
 
-                            @Override
-                            public void onNext(RM_Login authResponse) {
-                                subscriber.onNext(authResponse);
-                            }
-                        });
-            }
-        });
-    }
+//    public Observable<RM_Login> API_Login(final LoginBody loginBody) {
+//
+//        return Observable.create(new Observable.OnSubscribe<RM_Login>() {
+//            @Override
+//            public void call(final Subscriber<? super RM_Login> subscriber) {
+//                beConnector.Login(loginBody)
+//                        .subscribeOn(Schedulers.newThread())
+//                        .observeOn(Schedulers.newThread())
+//                        .subscribe(new Subscriber<RM_Login>() {
+//                            @Override
+//                            public void onCompleted() {
+//                                subscriber.onCompleted();
+//                            }
+//
+//                            @Override
+//                            public void onError(Throwable e) {
+//                                subscriber.onError(e);
+//                            }
+//
+//                            @Override
+//                            public void onNext(RM_Login authResponse) {
+//                                subscriber.onNext(authResponse);
+//                            }
+//                        });
+//            }
+//        });
+//    }
 
 
 
@@ -226,6 +234,44 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
         });
     }
 
+
+    public Observable<RM_MatchPrediction> API_PostMatchPredictions(final String userId,
+                                                                   final String matchId,
+                                                                   final String blockId,
+                                                                   final String innings,
+                                                                   final String matchOver,
+                                                                   final String ball_1,
+                                                                   final String ball_2,
+                                                                   final String ball_3,
+                                                                   final String ball_4,
+                                                                   final String ball_5,
+                                                                   final String ball_6) {
+
+        return Observable.create(new Observable.OnSubscribe<RM_MatchPrediction>() {
+            @Override
+            public void call(final Subscriber<? super RM_MatchPrediction> subscriber) {
+                beConnector.PostMatchPrediction(userId, matchId,blockId, innings,matchOver,ball_1,ball_2,ball_3,ball_4,ball_5,ball_6)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(Schedulers.newThread())
+                        .subscribe(new Subscriber<RM_MatchPrediction>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(RM_MatchPrediction authResponse) {
+                                subscriber.onNext(authResponse);
+                            }
+                        });
+            }
+        });
+    }
 
 
 }

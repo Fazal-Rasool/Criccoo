@@ -1,18 +1,20 @@
 package com.adaxiom.network;
 
 import com.adaxiom.criccoo.BuildConfig;
-import com.adaxiom.model.request.LoginBody;
-import com.adaxiom.model.request.SignUpBody;
 import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
+import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
+import retrofit.http.Field;
 import rx.Observable;
 
 public class RetrofitConnector implements BackendConnector, BackendConnector.GeneralApis {
@@ -42,11 +44,11 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
 //                    setRequestInterceptor(requestInterceptor).setLogLevel(RestAdapter.LogLevel.FULL)
 //                    .build();
 
-        restAdapter = new RestAdapter
-                .Builder()
-                .setEndpoint(apiEndPoint_Live)
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .build();
+            restAdapter = new RestAdapter
+                    .Builder()
+                    .setEndpoint(apiEndPoint_Live)
+                    .setLogLevel(RestAdapter.LogLevel.FULL)
+                    .build();
 
 //            retrofit = new Retrofit.Builder()
 //                    .baseUrl(apiEndPoint_Live)
@@ -85,18 +87,26 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
 //        return calls.GetJobList(userId);
 //    }
 
-    @Override
-    public Observable<RM_SignUp> signUp(SignUpBody signUpBody) {
-        return calls.Sign_Up(signUpBody);
-    }
+//    @Override
+//    public Observable<RM_SignUp> signUp(SignUpBody signUpBody) {
+//        return calls.Sign_Up(signUpBody);
+//    }
+//
+//    @Override
+//    public Observable<RM_Login> Login(LoginBody loginBody) {
+////        return calls.Login(loginBody);
+//        return null;
+//    }
+
 
     @Override
-    public Observable<RM_Login> Login(LoginBody loginBody) {
-        return calls.Login(loginBody);
+    public Observable<RM_SignUp> signUp(String name, String uName, String email, String pswrd, String fcmToken, String city) {
+        return calls.Sign_Up(name, uName, email, pswrd, fcmToken, city);
     }
 
+
     @Override
-    public Observable<RM_Login> LoginParam(String user , String pass, String from) {
+    public Observable<RM_Login> LoginParam(String user, String pass, String from) {
         return calls.LoginParam(user, pass, from);
     }
 
@@ -111,12 +121,27 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
     }
 
 
-
     @Override
     public Observable<List<RM_CityList>> CityList() {
         return calls.CityList();
     }
 
+
+    @Override
+    public Observable<RM_MatchPrediction> PostMatchPrediction(String userId,
+                                                              String matchId,
+                                                              String blockId,
+                                                              String innings,
+                                                              String matchOver,
+                                                              String ball_1,
+                                                              String ball_2,
+                                                              String ball_3,
+                                                              String ball_4,
+                                                              String ball_5,
+                                                              String ball_6) {
+
+        return calls.PostMatchPrediction(userId, matchId, blockId, innings, matchOver, ball_1, ball_2, ball_3, ball_4, ball_5, ball_6);
+    }
 
     //    @Override
 //    public Observable<RM_SignUp> signUp(String name, String uName, String email, String pswrd, String fcmToken, String city) {

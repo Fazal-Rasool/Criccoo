@@ -17,8 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adaxiom.manager.DownloaderManager;
-import com.adaxiom.model.request.LoginBody;
 import com.adaxiom.model.response.RM_Login;
+import com.adaxiom.utils.Utils;
 import com.bumptech.glide.request.RequestOptions;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -51,7 +51,6 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
 
-import static com.adaxiom.utils.Constants.PREF_GOOGLE_PASS;
 import static com.adaxiom.utils.Constants.PREF_USER_EMAIL;
 import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
 import static com.adaxiom.utils.Constants.PREF_USER_NAME;
@@ -86,7 +85,7 @@ public class Login extends AppCompatActivity {
     private int RQ_SIGN_IN = 0;
 
 
-    public static void startLoginActivity(Context context) {
+    public static void startActivity(Context context) {
         Intent intent = new Intent(context, Login.class);
         context.startActivity(intent);
     }
@@ -265,18 +264,24 @@ public class Login extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnLogin_login:
-                String userName = etEmailLogin.getText().toString();
-                String password = etPasswordLogin.getText().toString();
-                API_Login(userName, password, "C");
+                if(Utils.isNetworkAvailable(Login.this)) {
+                    String userName = etEmailLogin.getText().toString();
+                    String password = etPasswordLogin.getText().toString();
+                    API_Login(userName, password, "C");
+                }else Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnLoginFB_login:
+                if(Utils.isNetworkAvailable(Login.this))
                 loginButton.performClick();
+                else Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnLoginGoogle_login:
+                if(Utils.isNetworkAvailable(Login.this))
                 googleSignIn();
+                else Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tvGoToSignUp:
-                Signup.startSignUpActivity(Login.this);
+                Signup.startActivity(Login.this);
                 this.finish();
                 break;
         }

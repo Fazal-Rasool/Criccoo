@@ -22,10 +22,10 @@
 
 
             <ProgressBar
+                android:id="@+id/barFirstTeam_Dashboard"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/barFirstTeam_Dashboard"
                 android:layout_alignParentBottom="true"
                 android:max="100"
                 android:progress="36"
@@ -33,10 +33,10 @@
 
 
             <ProgressBar
+                android:id="@+id/barSecondTeam_Dashboard"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/barSecondTeam_Dashboard"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:max="100"
@@ -77,7 +77,7 @@
 
 
             <TextView
-                android:id="@+id/tvFirstTeamVote_Dashboard"
+                android:id="@+id/tvTeamVote_Dashboard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"

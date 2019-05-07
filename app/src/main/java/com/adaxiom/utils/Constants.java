@@ -16,6 +16,7 @@ public interface Constants {
     String API_MATCH_ACTIVE="/match_active";
     String API_BLOCK_LIST="/block_list";
     String API_CITY_LIST="/city_list";
+    String API_MATCH_PREDICTION="/user_match_prediction";
 
 
     //Prefrence
@@ -24,4 +25,5 @@ public interface Constants {
     String PREF_USER_EMAIL ="user_email";
     String PREF_FB_PASS="fb_pass";
     String PREF_GOOGLE_PASS ="google_pass";
+    String PREF_FCM_TOKEN ="fcm_token";
 }

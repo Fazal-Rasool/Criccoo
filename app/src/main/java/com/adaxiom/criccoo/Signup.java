@@ -9,8 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.adaxiom.manager.DownloaderManager;
-import com.adaxiom.model.request.SignUpBody;
 import com.adaxiom.model.response.RM_SignUp;
+import com.adaxiom.utils.Utils;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,6 +19,8 @@ import butterknife.OnClick;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
+
+import static com.adaxiom.utils.Constants.PREF_FCM_TOKEN;
 
 public class Signup extends AppCompatActivity {
 
@@ -33,10 +36,9 @@ public class Signup extends AppCompatActivity {
     Button btnLoginSignup;
 
     private Subscription getSignUpSubscription;
-    private SignUpBody signUpBody;
 
 
-    public static void startSignUpActivity(Context context) {
+    public static void startActivity(Context context) {
         Intent intent = new Intent(context, Signup.class);
         context.startActivity(intent);
     }
@@ -52,21 +54,26 @@ public class Signup extends AppCompatActivity {
 
     @OnClick(R.id.btnLogin_Signup)
     public void onViewClicked() {
+        if(Utils.isNetworkAvailable(Signup.this))
         API_SignUp();
+        else Toast.makeText(Signup.this, "Please connect to internet first", Toast.LENGTH_SHORT).show();
     }
 
     public void API_SignUp(){
 
-        signUpBody = new SignUpBody("fazal","Fazal",
-                "fazal@gmail.com","12345","ddd","lahore");
-
+        String name = etNameSignup.getText().toString().trim();
+        String uName = etNameSignup.getText().toString().trim();
+        String email = etEmailSignup.getText().toString().trim();
+        String password = etPasswordSignup.getText().toString().trim();
+        String fcmToken = Prefs.getString(PREF_FCM_TOKEN, "");
+        String city = "";
 
 
         if (getSignUpSubscription != null) {
             return;
         }
 
-        getSignUpSubscription = DownloaderManager.getGeneralDownloader().API_SignUp(signUpBody)
+        getSignUpSubscription = DownloaderManager.getGeneralDownloader().API_SignUp(name,uName,email,password,fcmToken,city)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<RM_SignUp>() {
@@ -87,7 +94,6 @@ public class Signup extends AppCompatActivity {
 
                     @Override
                     public void onNext(RM_SignUp modelJobList) {
-
                         updateUi(modelJobList);
                     }
                 });
@@ -96,7 +102,6 @@ public class Signup extends AppCompatActivity {
 
 
     public void updateUi(final RM_SignUp model){
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -104,7 +109,6 @@ public class Signup extends AppCompatActivity {
                 Toast.makeText(Signup.this, msg, Toast.LENGTH_LONG).show();
             }
         });
-        
     }
 
 
