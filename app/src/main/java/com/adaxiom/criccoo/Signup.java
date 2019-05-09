@@ -54,26 +54,28 @@ public class Signup extends AppCompatActivity {
 
     @OnClick(R.id.btnLogin_Signup)
     public void onViewClicked() {
-        if(Utils.isNetworkAvailable(Signup.this))
-        API_SignUp();
-        else Toast.makeText(Signup.this, "Please connect to internet first", Toast.LENGTH_SHORT).show();
+        if (Utils.isNetworkAvailable(Signup.this))
+            API_SignUp();
+        else
+            Toast.makeText(Signup.this, "Please connect to internet first", Toast.LENGTH_SHORT).show();
     }
 
-    public void API_SignUp(){
+    public void API_SignUp() {
 
         String name = etNameSignup.getText().toString().trim();
         String uName = etNameSignup.getText().toString().trim();
         String email = etEmailSignup.getText().toString().trim();
         String password = etPasswordSignup.getText().toString().trim();
         String fcmToken = Prefs.getString(PREF_FCM_TOKEN, "");
-        String city = "";
+        String city = "Lahore";
 
 
         if (getSignUpSubscription != null) {
             return;
         }
 
-        getSignUpSubscription = DownloaderManager.getGeneralDownloader().API_SignUp(name,uName,email,password,fcmToken,city)
+        getSignUpSubscription = DownloaderManager.getGeneralDownloader().
+                API_SignUp(name, uName, email, password, fcmToken, city)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<RM_SignUp>() {
@@ -101,12 +103,16 @@ public class Signup extends AppCompatActivity {
     }
 
 
-    public void updateUi(final RM_SignUp model){
+    public void updateUi(final RM_SignUp model) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 String msg = model.message;
                 Toast.makeText(Signup.this, msg, Toast.LENGTH_LONG).show();
+                if (!model.error) {
+                    MainActivity.startActivity(Signup.this);
+                    Signup.this.finish();
+                }
             }
         });
     }

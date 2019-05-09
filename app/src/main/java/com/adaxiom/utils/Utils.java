@@ -3,6 +3,7 @@ package com.adaxiom.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.View;
 
 public class Utils {
 
@@ -14,4 +15,8 @@ public class Utils {
     }
 
 
+    public static void showHideLoaderView(View loaderView, boolean isShow){
+        if(isShow)loaderView.setVisibility(View.VISIBLE);
+        else loaderView.setVisibility(View.GONE);
+    }
 }

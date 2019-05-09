@@ -67,5 +67,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
     implementation 'com.google.firebase:firebase-core:16.0.6'
 
+    // Balls animation
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.daimajia.androidanimations:library:1.1.2@aar'
+
+
+    //AvLoader
+    implementation 'com.wang.avi:library:2.1.3'
+
 
 }

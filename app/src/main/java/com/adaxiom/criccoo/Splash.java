@@ -4,18 +4,32 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.adaxiom.manager.DownloaderManager;
+import com.adaxiom.model.response.RM_Login;
+import com.adaxiom.model.response.RM_MatchActive;
+import com.adaxiom.utils.Utils;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import java.util.List;
+
+import rx.Subscriber;
+import rx.Subscription;
+import rx.schedulers.Schedulers;
+
 import static com.adaxiom.utils.Constants.PREF_FCM_TOKEN;
 import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
+import static com.adaxiom.utils.Constants.PREF_MATCH_ID;
 
 public class Splash extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT = 3000;
+
+    private Subscription getSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +58,8 @@ public class Splash extends AppCompatActivity {
 //            Login.startActivity(Splash.this);
             finish();
         }else{
-            MainActivity.startActivity(Splash.this);
-//            Login.startActivity(Splash.this);
+//            MainActivity.startActivity(Splash.this);
+            Login.startActivity(Splash.this);
             finish();
         }
 
@@ -61,8 +75,52 @@ public class Splash extends AppCompatActivity {
                 String newToken = instanceIdResult.getToken();
                 Log.d("NEW_TOKEN_SPLASH", newToken);
                 Prefs.putString(PREF_FCM_TOKEN, newToken);
+                GetMatchId();
             }
         });
 
+    }
+
+
+
+    public void GetMatchId(){
+        if (getSubscription != null) {
+            return;
+        }
+
+        getSubscription = DownloaderManager.getGeneralDownloader().API_MatchActive()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<List<RM_MatchActive>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(final Throwable e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+//                                Utils.showHideLoaderView(avLoading,false);
+                                Toast.makeText(Splash.this, e.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onNext(final List<RM_MatchActive> model) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (model.get(0).error != true) {
+                                    Prefs.putString(PREF_MATCH_ID,model.get(0).match_id);
+                                } else
+                                    Toast.makeText(Splash.this, "Something went wrong while getting match Id!!!",
+                                            Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
     }
 }

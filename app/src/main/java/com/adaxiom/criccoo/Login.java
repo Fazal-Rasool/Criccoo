@@ -37,6 +37,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,8 +52,8 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
 
-import static com.adaxiom.utils.Constants.PREF_USER_EMAIL;
 import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
+import static com.adaxiom.utils.Constants.PREF_USER_EMAIL;
 import static com.adaxiom.utils.Constants.PREF_USER_NAME;
 
 public class Login extends AppCompatActivity {
@@ -74,6 +75,8 @@ public class Login extends AppCompatActivity {
     LoginButton loginButton;
     @BindView(R.id.signInGoogle)
     SignInButton signInGoogle;
+    @BindView(R.id.avLoading)
+    AVLoadingIndicatorView avLoading;
 
 
     private Subscription getLoginSubscription;
@@ -104,7 +107,6 @@ public class Login extends AppCompatActivity {
 
 
     public void initialization() {
-
 
         setTextInString();
 
@@ -264,21 +266,24 @@ public class Login extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnLogin_login:
-                if(Utils.isNetworkAvailable(Login.this)) {
+                if (Utils.isNetworkAvailable(Login.this)) {
                     String userName = etEmailLogin.getText().toString();
                     String password = etPasswordLogin.getText().toString();
                     API_Login(userName, password, "C");
-                }else Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnLoginFB_login:
-                if(Utils.isNetworkAvailable(Login.this))
-                loginButton.performClick();
-                else Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
+                if (Utils.isNetworkAvailable(Login.this))
+                    loginButton.performClick();
+                else
+                    Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnLoginGoogle_login:
-                if(Utils.isNetworkAvailable(Login.this))
-                googleSignIn();
-                else Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
+                if (Utils.isNetworkAvailable(Login.this))
+                    googleSignIn();
+                else
+                    Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tvGoToSignUp:
                 Signup.startActivity(Login.this);
@@ -295,17 +300,19 @@ public class Login extends AppCompatActivity {
             public void run() {
                 Prefs.putString(PREF_USER_NAME, userName);
                 Prefs.putString(PREF_USER_EMAIL, email);
+                Prefs.putInt(PREF_IS_LOGIN, 1);
+                MainActivity.startActivity(Login.this);
+                Login.this.finish();
             }
         });
 
-        Prefs.putInt(PREF_IS_LOGIN, 1);
-//        MainActivity.startMainActivity(Login.this);
-//        this.finish();
+
     }
 
 
     public void API_Login(String userName, String password, String from) {
 
+        Utils.showHideLoaderView(avLoading,true);
 
         if (getLoginSubscription != null) {
             return;
@@ -325,6 +332,7 @@ public class Login extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                Utils.showHideLoaderView(avLoading,false);
                                 Toast.makeText(Login.this, e.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
@@ -335,10 +343,11 @@ public class Login extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                Utils.showHideLoaderView(avLoading,false);
                                 if (model.error != false) {
-                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
+//                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
                                     callNewActivity(model.username, model.email);
-                                }else
+                                } else
                                     Toast.makeText(Login.this, "Something went wrong while login!!!",
                                             Toast.LENGTH_SHORT).show();
                             }

@@ -26,4 +26,5 @@ public interface Constants {
     String PREF_FB_PASS="fb_pass";
     String PREF_GOOGLE_PASS ="google_pass";
     String PREF_FCM_TOKEN ="fcm_token";
+    String PREF_MATCH_ID ="match_id";
 }

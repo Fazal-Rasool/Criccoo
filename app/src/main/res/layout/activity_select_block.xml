@@ -92,7 +92,7 @@
         </LinearLayout>
 
         <include
-            layout="@layout/activity_select_over"
+            layout="@layout/layout_select_over"
             />
 
     </LinearLayout>

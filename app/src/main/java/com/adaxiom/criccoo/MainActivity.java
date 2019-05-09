@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,10 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 SelectBlock.startActivity(MainActivity.this);
                 break;
             case R.id.viewEarning_Dashboard:
+                Toast.makeText(this,"Under Construction!!!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.viewLeaderBoard_Dashboard:
+                Toast.makeText(this,"Under Construction!!!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.viewChat_Dashboard:
+                Toast.makeText(this,"Under Construction!!!", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
