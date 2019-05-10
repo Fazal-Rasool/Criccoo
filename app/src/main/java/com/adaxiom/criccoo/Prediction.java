@@ -2,20 +2,17 @@ package com.adaxiom.criccoo;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TabHost;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.model.response.RM_MatchPrediction;
-import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.utils.Utils;
 import com.pixplicity.easyprefs.library.Prefs;
 
@@ -26,6 +23,8 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
 
+import static com.adaxiom.utils.Constants.PREF_BLOCK_ID;
+import static com.adaxiom.utils.Constants.PREF_INNING_ID;
 import static com.adaxiom.utils.Constants.PREF_MATCH_ID;
 
 public class Prediction extends AppCompatActivity {
@@ -47,13 +46,17 @@ public class Prediction extends AppCompatActivity {
     TextView tvBallResult6;
     @BindView(R.id.tvBallResult_Submit)
     TextView tvBallResultSubmit;
+    @BindView(R.id.avLoading)
+    LinearLayout avLoading;
 
     private AlertDialog alertDialog;
     private Subscription getSubscription;
-    public static int overId=1;
+    public static int overId = 0;
+    public static int blockId = 0;
+    String opt_1, opt_2, opt_3, opt_4, opt_5, opt_6;
 
     public static void startActivity(Context context, int over) {
-        overId=over;
+        overId = over;
         Intent intent = new Intent(context, Prediction.class);
         context.startActivity(intent);
     }
@@ -67,11 +70,11 @@ public class Prediction extends AppCompatActivity {
 
 
     @OnClick({R.id.tvBallResult_1, R.id.tvBallResult_2, R.id.tvBallResult_3,
-            R.id.tvBallResult_4, R.id.tvBallResult_5, R.id.tvBallResult_6,R.id.tvBallResult_Submit})
+            R.id.tvBallResult_4, R.id.tvBallResult_5, R.id.tvBallResult_6, R.id.tvBallResult_Submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvBallResult_1:
-                Toast.makeText(this,overId+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, overId + "", Toast.LENGTH_SHORT).show();
                 selectScoreDialog(tvBallResult1);
                 break;
             case R.id.tvBallResult_2:
@@ -90,36 +93,51 @@ public class Prediction extends AppCompatActivity {
                 selectScoreDialog(tvBallResult6);
                 break;
             case R.id.tvBallResult_Submit:
-                if(Utils.isNetworkAvailable(this))API_SubmitPrediction();
-                else Toast.makeText(this, "Please connect internet first", Toast.LENGTH_SHORT).show();
+                if (Utils.isNetworkAvailable(this)) {
+                    opt_1 = tvBallResult1.getText().toString().trim().replace("Click", "");
+                    opt_2 = tvBallResult2.getText().toString().trim().replace("Click", "");
+                    opt_3 = tvBallResult3.getText().toString().trim().replace("Click", "");
+                    opt_4 = tvBallResult4.getText().toString().trim().replace("Click", "");
+                    opt_5 = tvBallResult5.getText().toString().trim().replace("Click", "");
+                    opt_6 = tvBallResult6.getText().toString().trim().replace("Click", "");
+
+                    if (opt_1.equalsIgnoreCase("") ||
+                            opt_2.equalsIgnoreCase("") ||
+                            opt_3.equalsIgnoreCase("") ||
+                            opt_4.equalsIgnoreCase("") ||
+                            opt_5.equalsIgnoreCase("") ||
+                            opt_6.equalsIgnoreCase("")
+                    ) {
+                        Toast.makeText(this, "Predict againset all balls first", Toast.LENGTH_SHORT).show();
+                    } else API_SubmitPrediction();
+                } else
+                    Toast.makeText(this, "Please connect internet first", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
 
 
+    public void API_SubmitPrediction() {
 
+        avLoading.setVisibility(View.VISIBLE);
 
-    public void API_SubmitPrediction(){
-
-        String opt_1 = tvBallResult1.getText().toString().trim().replace("Click","");
-        String opt_2 = tvBallResult2.getText().toString().trim().replace("Click","");
-        String opt_3 = tvBallResult3.getText().toString().trim().replace("Click","");
-        String opt_4 = tvBallResult4.getText().toString().trim().replace("Click","");
-        String opt_5 = tvBallResult5.getText().toString().trim().replace("Click","");
-        String opt_6 = tvBallResult6.getText().toString().trim().replace("Click","");
-
-        String userId = "";
-        String matchId= Prefs.getString(PREF_MATCH_ID,"");
-        String blockId="";
-        String inning ="";
-        String matchOver ="";
+        int userId = 5;
+        String matchId = Prefs.getString(PREF_MATCH_ID, "");
+        String inning = Prefs.getString(PREF_INNING_ID,"");
+        blockId = Prefs.getInt(PREF_BLOCK_ID,0);
 
         if (getSubscription != null) {
             return;
         }
 
-        getSubscription = DownloaderManager.getGeneralDownloader().API_PostMatchPredictions(userId,matchId,blockId,inning,matchOver,
-                opt_1,opt_2,opt_3,opt_4,opt_5,opt_6)
+        getSubscription = DownloaderManager.getGeneralDownloader().API_PostMatchPredictions(
+                userId,
+                matchId,
+                blockId,
+                inning,
+                overId,
+                opt_1, opt_2, opt_3, opt_4, opt_5, opt_6
+        )
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<RM_MatchPrediction>() {
@@ -133,6 +151,7 @@ public class Prediction extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                avLoading.setVisibility(View.GONE);
                                 Toast.makeText(Prediction.this, e.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
@@ -143,15 +162,14 @@ public class Prediction extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(Prediction.this,model.message,Toast.LENGTH_SHORT).show();
+                                avLoading.setVisibility(View.GONE);
+                                Toast.makeText(Prediction.this, model.message, Toast.LENGTH_SHORT).show();
+                                Prediction.this.finish();
                             }
                         });
                     }
                 });
     }
-
-
-
 
 
     public void selectScoreDialog(final TextView tvResult) {
@@ -239,7 +257,6 @@ public class Prediction extends AppCompatActivity {
 //        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.transparent_white)));
         alertDialog.show();
     }
-
 
 
 }

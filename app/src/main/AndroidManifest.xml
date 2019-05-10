@@ -13,10 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Prediction"
-            android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".SelectBlock"
-            android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".LeaderBoard"
+            android:theme="@style/AppThemeNoActionBar"></activity>
+        <activity
+            android:name=".Prediction"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".SelectBlock"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".Signup"
             android:theme="@style/AppThemeNoActionBar" />

@@ -89,14 +89,15 @@ public class Signup extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                Login.startActivity(Signup.this);
                                 Toast.makeText(Signup.this, e.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
                     }
 
                     @Override
-                    public void onNext(RM_SignUp modelJobList) {
-                        updateUi(modelJobList);
+                    public void onNext(RM_SignUp model) {
+                        updateUi(model);
                     }
                 });
 
@@ -112,7 +113,7 @@ public class Signup extends AppCompatActivity {
                 if (!model.error) {
                     MainActivity.startActivity(Signup.this);
                     Signup.this.finish();
-                }
+                }else Login.startActivity(Signup.this);
             }
         });
     }

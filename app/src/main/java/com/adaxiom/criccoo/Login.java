@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,6 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.pixplicity.easyprefs.library.Prefs;
-import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity {
     @BindView(R.id.signInGoogle)
     SignInButton signInGoogle;
     @BindView(R.id.avLoading)
-    AVLoadingIndicatorView avLoading;
+    LinearLayout avLoading;
 
 
     private Subscription getLoginSubscription;
@@ -344,7 +344,7 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Utils.showHideLoaderView(avLoading,false);
-                                if (model.error != false) {
+                                if (model.error != true) {
 //                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
                                     callNewActivity(model.username, model.email);
                                 } else

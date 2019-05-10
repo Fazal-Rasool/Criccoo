@@ -11,9 +11,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pixplicity.easyprefs.library.Prefs;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.adaxiom.utils.Constants.PREF_BLOCK_ID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,16 +66,19 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivPrediction_Dashboard:
-                SelectBlock.startActivity(MainActivity.this);
+                String blockId = Prefs.getString(PREF_BLOCK_ID, "6");
+                if (!blockId.equalsIgnoreCase("") && !blockId.equalsIgnoreCase("6")) {
+                    SelectBlock.startActivity(MainActivity.this);
+                }else Toast.makeText(this, "Prediction will enable before 20 mints of match start time", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.viewEarning_Dashboard:
-                Toast.makeText(this,"Under Construction!!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Under Construction!!!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.viewLeaderBoard_Dashboard:
-                Toast.makeText(this,"Under Construction!!!", Toast.LENGTH_SHORT).show();
+                LeaderBoard.startActivity(this);
                 break;
             case R.id.viewChat_Dashboard:
-                Toast.makeText(this,"Under Construction!!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Under Construction!!!", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

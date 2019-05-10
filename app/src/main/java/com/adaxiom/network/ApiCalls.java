@@ -51,15 +51,15 @@ public interface ApiCalls {
     @FormUrlEncoded
     @POST(API_MATCH_PREDICTION)
     Observable<RM_MatchPrediction> PostMatchPrediction(
-            @Field("user_id") String userId
+            @Field("user_id") int userId
             ,@Field("match_id") String matchId
-            ,@Field("block_id") String blockId
+            ,@Field("block_id") int blockId
             ,@Field("innings") String innings
-            ,@Field("match_over") String matchOver
+            ,@Field("match_over") int matchOver
             ,@Field("ball_1") String ball1
             ,@Field("ball_2") String ball2
             ,@Field("ball_3") String ball3
-            ,@Field("'ball_4") String ball4
+            ,@Field("ball_4") String ball4
             ,@Field("ball_5") String ball5
             ,@Field("ball_6") String ball6
     );

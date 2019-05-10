@@ -11,10 +11,13 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.adaxiom.utils.Constants.PREF_BLOCK_ID;
 
 public class SelectBlock extends AppCompatActivity {
 
@@ -52,6 +55,9 @@ public class SelectBlock extends AppCompatActivity {
     @BindView(R.id.tvOver_10)
     TextView tvOver10;
 
+
+    private int blockId=1;
+
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, SelectBlock.class);
         context.startActivity(intent);
@@ -65,6 +71,7 @@ public class SelectBlock extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
+        setBlockEnableOrDisable();
         setBallsAnimation();
     }
 
@@ -146,5 +153,40 @@ public class SelectBlock extends AppCompatActivity {
 
     }
 
+
+    public void setBlockEnableOrDisable(){
+        String blockId = Prefs.getString(PREF_BLOCK_ID,"");
+        if(blockId.equalsIgnoreCase("1")){
+            ivBlockOne.setImageResource(R.drawable.block_one_enable);
+            ivBlockTwo.setImageResource(R.drawable.block_two);
+            ivBlockThree.setImageResource(R.drawable.block_three);
+            ivBlockFour.setImageResource(R.drawable.block_four);
+            ivBlockFive.setImageResource(R.drawable.block_five);
+        }else if(blockId.equalsIgnoreCase("2")){
+            ivBlockOne.setImageResource(R.drawable.block_one_disable);
+            ivBlockTwo.setImageResource(R.drawable.block_two_enable);
+            ivBlockThree.setImageResource(R.drawable.block_three);
+            ivBlockFour.setImageResource(R.drawable.block_four);
+            ivBlockFive.setImageResource(R.drawable.block_five);
+        }else if(blockId.equalsIgnoreCase("3")){
+            ivBlockOne.setImageResource(R.drawable.block_one_disable);
+            ivBlockTwo.setImageResource(R.drawable.block_two);
+            ivBlockThree.setImageResource(R.drawable.block_three_enable);
+            ivBlockFour.setImageResource(R.drawable.block_four);
+            ivBlockFive.setImageResource(R.drawable.block_five);
+        }else if(blockId.equalsIgnoreCase("4")){
+            ivBlockOne.setImageResource(R.drawable.block_one);
+            ivBlockTwo.setImageResource(R.drawable.block_two);
+            ivBlockThree.setImageResource(R.drawable.block_three);
+            ivBlockFour.setImageResource(R.drawable.block_four_enable);
+            ivBlockFive.setImageResource(R.drawable.block_five);
+        }else if(blockId.equalsIgnoreCase("5")){
+            ivBlockOne.setImageResource(R.drawable.block_one);
+            ivBlockTwo.setImageResource(R.drawable.block_two);
+            ivBlockThree.setImageResource(R.drawable.block_three);
+            ivBlockFour.setImageResource(R.drawable.block_four);
+            ivBlockFive.setImageResource(R.drawable.block_five_enable);
+        }
+    }
 
 }

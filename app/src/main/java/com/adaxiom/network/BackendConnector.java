@@ -36,11 +36,11 @@ public interface BackendConnector {
         Observable<List<RM_CityList>> CityList();
 
         Observable<RM_MatchPrediction> PostMatchPrediction(
-                String userId,
+                int userId,
                 String matchId,
-                String blockId,
+                int blockId,
                 String innings,
-                String matchOver,
+                int matchOver,
                 String ball_1,
                 String ball_2,
                 String ball_3,

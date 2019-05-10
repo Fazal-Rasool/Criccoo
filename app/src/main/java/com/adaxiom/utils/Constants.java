@@ -6,6 +6,9 @@ public interface Constants {
     String URL_LIVE = "http://cricoo.adaxiomdemo.com/cricoo_apis/device";
     String URL_STAGING = "http://cricoo.adaxiomdemo.com/cricoo_apis/device";
 
+//    String URL_LIVE = "http://192.168.0.109/cricoo/cricoo_apis/device";
+//    String URL_STAGING = "http://192.168.0.109/cricoo/cricoo_apis/device";
+
     //API Parameters
     String PARA_USER_ID= "user_id";
 
@@ -17,6 +20,7 @@ public interface Constants {
     String API_BLOCK_LIST="/block_list";
     String API_CITY_LIST="/city_list";
     String API_MATCH_PREDICTION="/user_match_prediction";
+    String API_GET_COMMENTRY="/get_commentry/{match_id}";
 
 
     //Prefrence
@@ -27,4 +31,6 @@ public interface Constants {
     String PREF_GOOGLE_PASS ="google_pass";
     String PREF_FCM_TOKEN ="fcm_token";
     String PREF_MATCH_ID ="match_id";
+    String PREF_BLOCK_ID ="block_id";
+    String PREF_INNING_ID ="block_id";
 }

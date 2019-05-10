@@ -238,11 +238,11 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
     }
 
 
-    public Observable<RM_MatchPrediction> API_PostMatchPredictions(final String userId,
+    public Observable<RM_MatchPrediction> API_PostMatchPredictions(final int userId,
                                                                    final String matchId,
-                                                                   final String blockId,
+                                                                   final int blockId,
                                                                    final String innings,
-                                                                   final String matchOver,
+                                                                   final int matchOver,
                                                                    final String ball_1,
                                                                    final String ball_2,
                                                                    final String ball_3,

@@ -47,7 +47,7 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
             restAdapter = new RestAdapter
                     .Builder()
                     .setEndpoint(apiEndPoint_Live)
-                    .setLogLevel(RestAdapter.LogLevel.FULL)
+//                    .setLogLevel(RestAdapter.LogLevel.FULL)
                     .build();
 
 //            retrofit = new Retrofit.Builder()
@@ -64,7 +64,7 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
             restAdapter = new RestAdapter
                     .Builder()
                     .setEndpoint(apiEndPoint_Staging)
-                    .setLogLevel(RestAdapter.LogLevel.NONE)
+//                    .setLogLevel(RestAdapter.LogLevel.FULL)
                     .build();
 
 //            restAdapter = new RestAdapter.Builder().setEndpoint(apiEndPoint_Staging)
@@ -128,11 +128,11 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
 
 
     @Override
-    public Observable<RM_MatchPrediction> PostMatchPrediction(String userId,
+    public Observable<RM_MatchPrediction> PostMatchPrediction(int userId,
                                                               String matchId,
-                                                              String blockId,
+                                                              int blockId,
                                                               String innings,
-                                                              String matchOver,
+                                                              int matchOver,
                                                               String ball_1,
                                                               String ball_2,
                                                               String ball_3,
