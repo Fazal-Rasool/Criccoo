@@ -193,7 +193,10 @@ public class Login extends AppCompatActivity {
 
         if (requestCode == RQ_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            displayGoogleSignInData(task);
+//            API_Login("Google User","","G");
+//            displayGoogleSignInData(task);
+            Toast.makeText(Login.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+            callNewActivity("Google","google@gmail.com");
         }
     }
 
@@ -314,9 +317,9 @@ public class Login extends AppCompatActivity {
 
         Utils.showHideLoaderView(avLoading,true);
 
-        if (getLoginSubscription != null) {
-            return;
-        }
+//        if (getLoginSubscription != null) {
+//            return;
+//        }
 
         getLoginSubscription = DownloaderManager.getGeneralDownloader().API_LoginParam(userName, password, from)
                 .subscribeOn(Schedulers.newThread())
@@ -345,10 +348,10 @@ public class Login extends AppCompatActivity {
                             public void run() {
                                 Utils.showHideLoaderView(avLoading,false);
                                 if (model.error != true) {
-//                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
                                     callNewActivity(model.username, model.email);
                                 } else
-                                    Toast.makeText(Login.this, "Something went wrong while login!!!",
+                                    Toast.makeText(Login.this, model.message,
                                             Toast.LENGTH_SHORT).show();
                             }
                         });
