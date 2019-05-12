@@ -155,7 +155,8 @@ public class SelectBlock extends AppCompatActivity {
 
 
     public void setBlockEnableOrDisable(){
-        String blockId = Prefs.getString(PREF_BLOCK_ID,"");
+        String blockId = Prefs.getInt(PREF_BLOCK_ID,0)+"";
+
         if(blockId.equalsIgnoreCase("1")){
             ivBlockOne.setImageResource(R.drawable.block_one_enable);
             ivBlockTwo.setImageResource(R.drawable.block_two);

@@ -32,5 +32,5 @@ public interface Constants {
     String PREF_FCM_TOKEN ="fcm_token";
     String PREF_MATCH_ID ="match_id";
     String PREF_BLOCK_ID ="block_id";
-    String PREF_INNING_ID ="block_id";
+    String PREF_INNING_ID ="inning_id";
 }

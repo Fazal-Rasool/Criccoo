@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivPrediction_Dashboard:
-                String blockId = Prefs.getString(PREF_BLOCK_ID, "6");
-                if (!blockId.equalsIgnoreCase("") && !blockId.equalsIgnoreCase("6")) {
+                 int blockId = Prefs.getInt(PREF_BLOCK_ID, 6);
+                if (blockId != 6) {
                     SelectBlock.startActivity(MainActivity.this);
                 }else Toast.makeText(this, "Prediction will enable before 20 mints of match start time", Toast.LENGTH_SHORT).show();
                 break;

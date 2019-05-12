@@ -195,7 +195,7 @@ public class Login extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 //            API_Login("Google User","","G");
 //            displayGoogleSignInData(task);
-            Toast.makeText(Login.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(Login.this, "Login Successfully", Toast.LENGTH_SHORT).show();
             callNewActivity("Google","google@gmail.com");
         }
     }
