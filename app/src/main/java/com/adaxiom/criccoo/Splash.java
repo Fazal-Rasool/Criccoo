@@ -59,7 +59,7 @@ public class Splash extends AppCompatActivity {
             finish();
         }else{
 //            MainActivity.startActivity(Splash.this);
-            Login.startActivity(Splash.this);
+            MainActivity.startActivity(Splash.this);
             finish();
         }
 

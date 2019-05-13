@@ -20,7 +20,7 @@ public interface Constants {
     String API_BLOCK_LIST="/block_list";
     String API_CITY_LIST="/city_list";
     String API_MATCH_PREDICTION="/user_match_prediction";
-    String API_GET_COMMENTRY="/get_commentry/{match_id}";
+    String API_GET_COMMENTRY="/get_full_commentry/{match_id}";
     String API_LEADERBOARD="/get_leaderboard";
 
 

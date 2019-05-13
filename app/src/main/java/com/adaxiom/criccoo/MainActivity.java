@@ -131,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 avLoading.setVisibility(View.GONE);
-                                Login.startActivity(MainActivity.this);
                                 Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
@@ -149,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                avLoading.setVisibility(View.GONE);
                  if(!model.error){
                      String runRate = calculateRunrate(model.total_score,model.overs);
                      tvTotalScoreDashboard.setText(model.total_score+" in "+model.overs+" Overs");
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
     public String calculateRunrate(String run, String over){
         if(run.equalsIgnoreCase("") || over.equalsIgnoreCase(""))
             return "";
-        int Over = Integer.parseInt(over);
+        Double Over = Double.parseDouble(over);
         int Run = Integer.parseInt(run);
         double runrate = Run/Over;
         return (new DecimalFormat("##.#").format(runrate));
