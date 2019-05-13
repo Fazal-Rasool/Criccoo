@@ -91,11 +91,11 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivPrediction_Dashboard:
-                int blockId = Prefs.getInt(PREF_BLOCK_ID, 6);
-                if (blockId != 6) {
+//                int blockId = Prefs.getInt(PREF_BLOCK_ID, 6);
+//                if (blockId != 6) {
                     SelectBlock.startActivity(MainActivity.this);
-                } else
-                    Toast.makeText(this, "Prediction will enable before 20 mints of match start time", Toast.LENGTH_SHORT).show();
+//                } else
+//                    Toast.makeText(this, "Prediction will enable before 20 mints of match start time", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.viewEarning_Dashboard:
                 Toast.makeText(this, "Under Construction!!!", Toast.LENGTH_SHORT).show();
@@ -151,8 +151,8 @@ public class MainActivity extends AppCompatActivity {
                 avLoading.setVisibility(View.GONE);
                  if(!model.error){
                      String runRate = calculateRunrate(model.total_score,model.overs);
-                     tvTotalScoreDashboard.setText(model.total_score+" in "+model.overs+" Overs");
-                     tvRunRateDashboard.setText("R/R : "+runRate+" Per Over");
+                     tvTotalScoreDashboard.setText("Score : "+model.total_score+" in "+model.overs+" Overs");
+                     tvRunRateDashboard.setText("R/R : "+runRate+" per over");
                      tvPlayerOneScoreDashboard.setText(model.player_1);
                      tvPlayerSecondScoreDashboard.setText(model.player_2);
                  }

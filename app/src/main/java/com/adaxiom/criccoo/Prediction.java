@@ -26,6 +26,7 @@ import rx.schedulers.Schedulers;
 import static com.adaxiom.utils.Constants.PREF_BLOCK_ID;
 import static com.adaxiom.utils.Constants.PREF_INNING_ID;
 import static com.adaxiom.utils.Constants.PREF_MATCH_ID;
+import static com.adaxiom.utils.Constants.PREF_USER_ID;
 
 public class Prediction extends AppCompatActivity {
 
@@ -74,7 +75,7 @@ public class Prediction extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvBallResult_1:
-                Toast.makeText(this, overId + "", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, overId + "", Toast.LENGTH_SHORT).show();
                 selectScoreDialog(tvBallResult1);
                 break;
             case R.id.tvBallResult_2:
@@ -121,7 +122,7 @@ public class Prediction extends AppCompatActivity {
 
         avLoading.setVisibility(View.VISIBLE);
 
-        int userId = 5;
+        int userId = Prefs.getInt(PREF_USER_ID,0);
         String matchId = Prefs.getString(PREF_MATCH_ID, "");
         String inning = Prefs.getString(PREF_INNING_ID,"");
         blockId = Prefs.getInt(PREF_BLOCK_ID,0);

@@ -54,6 +54,7 @@ import rx.schedulers.Schedulers;
 
 import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
 import static com.adaxiom.utils.Constants.PREF_USER_EMAIL;
+import static com.adaxiom.utils.Constants.PREF_USER_ID;
 import static com.adaxiom.utils.Constants.PREF_USER_NAME;
 
 public class Login extends AppCompatActivity {
@@ -194,9 +195,9 @@ public class Login extends AppCompatActivity {
         if (requestCode == RQ_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 //            API_Login("Google User","","G");
-//            displayGoogleSignInData(task);
+            displayGoogleSignInData(task);
 //            Toast.makeText(Login.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-            callNewActivity("Google","google@gmail.com");
+//            callNewActivity("Google","google@gmail.com");
         }
     }
 
@@ -301,6 +302,7 @@ public class Login extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                Prefs.putInt(PREF_USER_ID,0);
                 Prefs.putString(PREF_USER_NAME, userName);
                 Prefs.putString(PREF_USER_EMAIL, email);
                 Prefs.putInt(PREF_IS_LOGIN, 1);
@@ -360,6 +362,12 @@ public class Login extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+
+    }
 
     public String generateRandomPassword() {
         Random r = new Random();

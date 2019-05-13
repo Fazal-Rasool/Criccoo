@@ -68,7 +68,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:src="@drawable/aus_team_icon_text" />
+            android:src="@drawable/aus_team_icon_text"
+            android:layout_marginLeft="10dp"/>
 
         <ImageView
             android:id="@+id/ivSecondTeam_Dashboard"

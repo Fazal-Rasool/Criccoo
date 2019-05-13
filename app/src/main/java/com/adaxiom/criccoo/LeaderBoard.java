@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -77,7 +78,6 @@ public class LeaderBoard extends BaseActivity {
                             @Override
                             public void run() {
                                 avLoading.setVisibility(View.GONE);
-                                Login.startActivity(LeaderBoard.this);
                                 Toast.makeText(LeaderBoard.this, e.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
@@ -105,5 +105,16 @@ public class LeaderBoard extends BaseActivity {
             }
         });
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

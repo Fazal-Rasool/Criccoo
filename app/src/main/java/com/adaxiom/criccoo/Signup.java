@@ -106,7 +106,7 @@ public class Signup extends AppCompatActivity {
                             @Override
                             public void run() {
                                 avLoading.setVisibility(View.GONE);
-                                Login.startActivity(Signup.this);
+//                                Login.startActivity(Signup.this);
                                 Toast.makeText(Signup.this, e.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
