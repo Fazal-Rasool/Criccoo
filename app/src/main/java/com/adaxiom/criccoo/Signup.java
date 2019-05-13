@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.adaxiom.manager.DownloaderManager;
@@ -34,6 +36,8 @@ public class Signup extends AppCompatActivity {
     EditText etConfirmPasswordSignup;
     @BindView(R.id.btnLogin_Signup)
     Button btnLoginSignup;
+    @BindView(R.id.avLoading)
+    LinearLayout avLoading;
 
     private Subscription getSignUpSubscription;
 
@@ -62,17 +66,29 @@ public class Signup extends AppCompatActivity {
 
     public void API_SignUp() {
 
+
         String name = etNameSignup.getText().toString().trim();
         String uName = etNameSignup.getText().toString().trim();
         String email = etEmailSignup.getText().toString().trim();
         String password = etPasswordSignup.getText().toString().trim();
+        String confirmPassword = etConfirmPasswordSignup.getText().toString().trim();
         String fcmToken = Prefs.getString(PREF_FCM_TOKEN, "");
         String city = "Lahore";
 
-
-        if (getSignUpSubscription != null) {
+        if (name.equalsIgnoreCase("") ||
+                email.equalsIgnoreCase("") ||
+                password.equalsIgnoreCase("") ||
+                confirmPassword.equalsIgnoreCase("")
+        ) {
+            Toast.makeText(this, "Please fill all fields first", Toast.LENGTH_SHORT).show();
             return;
         }
+
+//        if (getSignUpSubscription != null) {
+//            return;
+//        }
+
+        avLoading.setVisibility(View.VISIBLE);
 
         getSignUpSubscription = DownloaderManager.getGeneralDownloader().
                 API_SignUp(name, uName, email, password, fcmToken, city)
@@ -89,6 +105,7 @@ public class Signup extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                avLoading.setVisibility(View.GONE);
                                 Login.startActivity(Signup.this);
                                 Toast.makeText(Signup.this, e.toString(), Toast.LENGTH_LONG).show();
                             }
@@ -108,12 +125,14 @@ public class Signup extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                avLoading.setVisibility(View.GONE);
                 String msg = model.message;
                 Toast.makeText(Signup.this, msg, Toast.LENGTH_LONG).show();
                 if (!model.error) {
                     MainActivity.startActivity(Signup.this);
                     Signup.this.finish();
-                }else Login.startActivity(Signup.this);
+                }
+//                else Login.startActivity(Signup.this);
             }
         });
     }

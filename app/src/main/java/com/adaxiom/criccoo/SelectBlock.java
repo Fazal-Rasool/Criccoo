@@ -155,37 +155,88 @@ public class SelectBlock extends AppCompatActivity {
 
 
     public void setBlockEnableOrDisable(){
-        String blockId = Prefs.getString(PREF_BLOCK_ID,"");
+        String blockId = Prefs.getInt(PREF_BLOCK_ID,0)+"";
+
         if(blockId.equalsIgnoreCase("1")){
             ivBlockOne.setImageResource(R.drawable.block_one_enable);
             ivBlockTwo.setImageResource(R.drawable.block_two);
             ivBlockThree.setImageResource(R.drawable.block_three);
             ivBlockFour.setImageResource(R.drawable.block_four);
             ivBlockFive.setImageResource(R.drawable.block_five);
+            tvOver1.setText("1");
+            tvOver1.setText("2");
+            tvOver1.setText("3");
+            tvOver1.setText("4");
+            tvOver1.setText("5");
+            tvOver1.setText("6");
+            tvOver1.setText("7");
+            tvOver1.setText("8");
+            tvOver1.setText("9");
+            tvOver1.setText("10");
         }else if(blockId.equalsIgnoreCase("2")){
             ivBlockOne.setImageResource(R.drawable.block_one_disable);
             ivBlockTwo.setImageResource(R.drawable.block_two_enable);
             ivBlockThree.setImageResource(R.drawable.block_three);
             ivBlockFour.setImageResource(R.drawable.block_four);
             ivBlockFive.setImageResource(R.drawable.block_five);
+            tvOver1.setText("11");
+            tvOver1.setText("12");
+            tvOver1.setText("13");
+            tvOver1.setText("14");
+            tvOver1.setText("15");
+            tvOver1.setText("16");
+            tvOver1.setText("17");
+            tvOver1.setText("18");
+            tvOver1.setText("19");
+            tvOver1.setText("20");
         }else if(blockId.equalsIgnoreCase("3")){
             ivBlockOne.setImageResource(R.drawable.block_one_disable);
             ivBlockTwo.setImageResource(R.drawable.block_two);
             ivBlockThree.setImageResource(R.drawable.block_three_enable);
             ivBlockFour.setImageResource(R.drawable.block_four);
             ivBlockFive.setImageResource(R.drawable.block_five);
+            tvOver1.setText("21");
+            tvOver1.setText("22");
+            tvOver1.setText("23");
+            tvOver1.setText("24");
+            tvOver1.setText("25");
+            tvOver1.setText("26");
+            tvOver1.setText("27");
+            tvOver1.setText("28");
+            tvOver1.setText("29");
+            tvOver1.setText("30");
         }else if(blockId.equalsIgnoreCase("4")){
             ivBlockOne.setImageResource(R.drawable.block_one);
             ivBlockTwo.setImageResource(R.drawable.block_two);
             ivBlockThree.setImageResource(R.drawable.block_three);
             ivBlockFour.setImageResource(R.drawable.block_four_enable);
             ivBlockFive.setImageResource(R.drawable.block_five);
+            tvOver1.setText("31");
+            tvOver1.setText("32");
+            tvOver1.setText("33");
+            tvOver1.setText("34");
+            tvOver1.setText("35");
+            tvOver1.setText("36");
+            tvOver1.setText("37");
+            tvOver1.setText("38");
+            tvOver1.setText("39");
+            tvOver1.setText("40");
         }else if(blockId.equalsIgnoreCase("5")){
             ivBlockOne.setImageResource(R.drawable.block_one);
             ivBlockTwo.setImageResource(R.drawable.block_two);
             ivBlockThree.setImageResource(R.drawable.block_three);
             ivBlockFour.setImageResource(R.drawable.block_four);
             ivBlockFive.setImageResource(R.drawable.block_five_enable);
+            tvOver1.setText("41");
+            tvOver1.setText("42");
+            tvOver1.setText("43");
+            tvOver1.setText("44");
+            tvOver1.setText("45");
+            tvOver1.setText("46");
+            tvOver1.setText("47");
+            tvOver1.setText("48");
+            tvOver1.setText("49");
+            tvOver1.setText("50");
         }
     }
 

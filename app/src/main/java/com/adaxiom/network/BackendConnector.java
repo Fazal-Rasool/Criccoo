@@ -3,6 +3,8 @@ package com.adaxiom.network;
 
 import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
+import com.adaxiom.model.response.RM_Commentry;
+import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
@@ -48,6 +50,10 @@ public interface BackendConnector {
                 String ball_5,
                 String ball_6
         );
+
+        Observable<List<RM_LeaderBoard>> LeaderBoard();
+
+        Observable<RM_Commentry> Commentary(String match_id);
 
     }
 }

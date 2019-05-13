@@ -314,9 +314,9 @@ public class Login extends AppCompatActivity {
 
         Utils.showHideLoaderView(avLoading,true);
 
-        if (getLoginSubscription != null) {
-            return;
-        }
+//        if (getLoginSubscription != null) {
+//            return;
+//        }
 
         getLoginSubscription = DownloaderManager.getGeneralDownloader().API_LoginParam(userName, password, from)
                 .subscribeOn(Schedulers.newThread())
@@ -348,7 +348,7 @@ public class Login extends AppCompatActivity {
 //                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
                                     callNewActivity(model.username, model.email);
                                 } else
-                                    Toast.makeText(Login.this, "Something went wrong while login!!!",
+                                    Toast.makeText(Login.this, model.message,
                                             Toast.LENGTH_SHORT).show();
                             }
                         });

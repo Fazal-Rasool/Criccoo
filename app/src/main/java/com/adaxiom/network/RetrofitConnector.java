@@ -3,6 +3,8 @@ package com.adaxiom.network;
 import com.adaxiom.criccoo.BuildConfig;
 import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
+import com.adaxiom.model.response.RM_Commentry;
+import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
@@ -143,6 +145,20 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
         return calls.PostMatchPrediction(userId, matchId, blockId, innings, matchOver, ball_1, ball_2, ball_3, ball_4, ball_5, ball_6);
     }
 
+
+
+
+    @Override
+    public Observable<List<RM_LeaderBoard>> LeaderBoard() {
+        return calls.LeaderBoard();
+    }
+
+
+
+    @Override
+    public Observable<RM_Commentry> Commentary(String match_id) {
+        return calls.Commentary(match_id);
+    }
     //    @Override
 //    public Observable<RM_SignUp> signUp(String name, String uName, String email, String pswrd, String fcmToken, String city) {
 //        return calls.Sign_Up(name, uName, email, pswrd, fcmToken, city);

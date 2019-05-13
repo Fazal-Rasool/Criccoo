@@ -4,8 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LeaderBoard"
-    android:background="@drawable/leaderboard_bg">
+    android:orientation="vertical"
+    tools:context=".LeaderBoard">
+
+    <include layout="@layout/toolbar"/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <include
+            layout="@layout/layout_points_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/branding_medium"
+                    android:text="Rank"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/branding_medium"
+                    android:text="Name"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/branding_medium"
+                    android:gravity="center"
+                    android:text="Points"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+
+
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvLeaderBoard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+        </LinearLayout>
+
+        <include layout="@layout/layout_loader"/>
+
+
+    </FrameLayout>
+
 
 
 

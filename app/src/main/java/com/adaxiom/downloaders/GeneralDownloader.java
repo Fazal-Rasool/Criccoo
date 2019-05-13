@@ -5,6 +5,8 @@ import android.widget.Toast;
 import com.adaxiom.criccoo.Signup;
 import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
+import com.adaxiom.model.response.RM_Commentry;
+import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
@@ -275,6 +277,67 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
             }
         });
     }
+
+
+
+    public Observable<List<RM_LeaderBoard>> API_LeaderBoard() {
+
+        return Observable.create(new Observable.OnSubscribe<List<RM_LeaderBoard>>() {
+            @Override
+            public void call(final Subscriber<? super List<RM_LeaderBoard>> subscriber) {
+                beConnector.LeaderBoard()
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(Schedulers.newThread())
+                        .subscribe(new Subscriber<List<RM_LeaderBoard>>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(List<RM_LeaderBoard> authResponse) {
+                                subscriber.onNext(authResponse);
+                            }
+                        });
+            }
+        });
+    }
+
+
+
+    public Observable<RM_Commentry> API_Commentary(final String match_id) {
+
+        return Observable.create(new Observable.OnSubscribe<RM_Commentry>() {
+            @Override
+            public void call(final Subscriber<? super RM_Commentry> subscriber) {
+                beConnector.Commentary(match_id)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(Schedulers.newThread())
+                        .subscribe(new Subscriber<RM_Commentry>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(RM_Commentry authResponse) {
+                                subscriber.onNext(authResponse);
+                            }
+                        });
+            }
+        });
+    }
+
 
 
 }

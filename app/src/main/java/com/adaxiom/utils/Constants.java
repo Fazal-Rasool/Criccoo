@@ -21,10 +21,12 @@ public interface Constants {
     String API_CITY_LIST="/city_list";
     String API_MATCH_PREDICTION="/user_match_prediction";
     String API_GET_COMMENTRY="/get_commentry/{match_id}";
+    String API_LEADERBOARD="/get_leaderboard";
 
 
     //Prefrence
     String PREF_IS_LOGIN="isLogin";
+    String PREF_USER_ID="user_id";
     String PREF_USER_NAME="user_name";
     String PREF_USER_EMAIL ="user_email";
     String PREF_FB_PASS="fb_pass";
@@ -32,5 +34,5 @@ public interface Constants {
     String PREF_FCM_TOKEN ="fcm_token";
     String PREF_MATCH_ID ="match_id";
     String PREF_BLOCK_ID ="block_id";
-    String PREF_INNING_ID ="block_id";
+    String PREF_INNING_ID ="inning_id";
 }

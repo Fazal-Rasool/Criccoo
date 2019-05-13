@@ -3,9 +3,12 @@ package com.adaxiom.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class Utils {
+public class Utils{
 
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -19,4 +22,6 @@ public class Utils {
         if(isShow)loaderView.setVisibility(View.VISIBLE);
         else loaderView.setVisibility(View.GONE);
     }
+
+
 }

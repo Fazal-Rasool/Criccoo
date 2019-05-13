@@ -2,6 +2,8 @@ package com.adaxiom.network;
 
 import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
+import com.adaxiom.model.response.RM_Commentry;
+import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
@@ -21,6 +23,8 @@ import rx.Observable;
 import static com.adaxiom.utils.Constants.API_BLOCK_LIST;
 import static com.adaxiom.utils.Constants.API_CITY_LIST;
 import static com.adaxiom.utils.Constants.API_GET_ALL_JOBS;
+import static com.adaxiom.utils.Constants.API_GET_COMMENTRY;
+import static com.adaxiom.utils.Constants.API_LEADERBOARD;
 import static com.adaxiom.utils.Constants.API_LOGIN;
 import static com.adaxiom.utils.Constants.API_MATCH_ACTIVE;
 import static com.adaxiom.utils.Constants.API_MATCH_PREDICTION;
@@ -85,6 +89,13 @@ public interface ApiCalls {
             , @Field("city") String city
 
     );
+
+    @GET(API_LEADERBOARD)
+    Observable<List<RM_LeaderBoard>> LeaderBoard();
+
+    @GET(API_GET_COMMENTRY)
+    Observable<RM_Commentry> Commentary(@Path("match_id") String match_id);
+
 
 
 }
