@@ -18,7 +18,7 @@ import java.util.List;
 public class AdapterLeaderBoard extends RecyclerView.Adapter<AdapterLeaderBoard.ViewHolder> {
 
     private Activity activity;
-    public List<RM_LeaderBoard> list;
+    public RM_LeaderBoard list;
     public List<RM_LeaderBoard> dummyList;
     private LayoutInflater mLayoutInflater;
     private RecyclerViewItemClickListener onItemClickListener;
@@ -30,12 +30,12 @@ public class AdapterLeaderBoard extends RecyclerView.Adapter<AdapterLeaderBoard.
     }
 
     public AdapterLeaderBoard(Activity activity,
-                              List<RM_LeaderBoard> list,
+                              RM_LeaderBoard list,
                               RecyclerViewItemClickListener onItemClickListener) {
 
         this.list = list;
         dummyList = new ArrayList<>();
-        this.dummyList.addAll(list);
+//        this.dummyList.addAll(list);
         this.activity = activity;
         this.onItemClickListener = onItemClickListener;
 
@@ -59,8 +59,8 @@ public class AdapterLeaderBoard extends RecyclerView.Adapter<AdapterLeaderBoard.
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
 
         viewHolder.tvRank.setText(position+"");
-        viewHolder.tvName.setText(list.get(position).u_username);
-        viewHolder.tvPoints.setText(list.get(position).total_score);
+        viewHolder.tvName.setText(list.all_users.get(position).u_username);
+        viewHolder.tvPoints.setText(list.all_users.get(position).total_score);
 
 
     }
@@ -72,7 +72,7 @@ public class AdapterLeaderBoard extends RecyclerView.Adapter<AdapterLeaderBoard.
 
     @Override
     public int getItemCount() {
-        return (null != list ? list.size() : 0);
+        return (null != list ? list.all_users.size() : 0);
     }
 
 

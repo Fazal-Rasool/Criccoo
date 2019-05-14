@@ -69,7 +69,7 @@ public class LeaderBoard extends BaseActivity {
 
 
 
-    public void setAdapter(List<RM_LeaderBoard> mList){
+    public void setAdapter(RM_LeaderBoard mList){
         rvLeaderBoard.setHasFixedSize(true);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvLeaderBoard.setLayoutManager(layoutManager);
@@ -93,10 +93,10 @@ public class LeaderBoard extends BaseActivity {
         avLoading.setVisibility(View.VISIBLE);
 
         getSubscription = DownloaderManager.getGeneralDownloader().
-                API_LeaderBoard(user_id)
+                API_LeaderBoard(1)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
-                .subscribe(new Subscriber<List<RM_LeaderBoard>>() {
+                .subscribe(new Subscriber<RM_LeaderBoard>() {
                     @Override
                     public void onCompleted() { }
 
@@ -112,14 +112,14 @@ public class LeaderBoard extends BaseActivity {
                     }
 
                     @Override
-                    public void onNext(List<RM_LeaderBoard> list) {
+                    public void onNext(RM_LeaderBoard list) {
                         updateUi(list);
                     }
                 });
 
     }
 
-    public void updateUi(final List<RM_LeaderBoard> mList) {
+    public void updateUi(final RM_LeaderBoard mList) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

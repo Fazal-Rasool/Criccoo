@@ -149,7 +149,7 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
 
 
     @Override
-    public Observable<List<RM_LeaderBoard>> LeaderBoard(int userId) {
+    public Observable<RM_LeaderBoard> LeaderBoard(int userId) {
         return calls.LeaderBoard(userId);
     }
 
