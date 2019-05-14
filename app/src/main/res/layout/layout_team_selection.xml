@@ -58,26 +58,73 @@
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/dashboard_score"
                 android:text="36  |  45"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:textSize="12dp" />
+
+
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/ivFirstTeam_Dashboard"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:src="@drawable/aus_team_icon_text"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp">
 
-        <ImageView
-            android:id="@+id/ivSecondTeam_Dashboard"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivFirstTeam_Dashboard"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/ic_ind"
+            app:civ_border_width="1dp"
+            app:civ_border_overlay="true"
+            app:civ_circle_background_color="@color/colorWhite"
+            app:civ_border_color="#000"/>
+
+            <TextView
+                android:id="@+id/tvNameTeamOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dashboard_score"
+                android:layout_centerInParent="true"
+                android:text="IND"
+                android:layout_below="@+id/ivFirstTeam_Dashboard"
+                android:textColor="#fff"
+                android:textSize="16dp"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/pak_team_icon_text"/>
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivSecondTeam_Dashboard"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/ic_pak"
+            app:civ_border_width="1dp"
+            app:civ_border_color="#000"
+            app:civ_circle_background_color="@color/colorWhite"
+            app:civ_border_overlay="false"/>
+
+            <TextView
+                android:id="@+id/tvNameTeamSecond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivSecondTeam_Dashboard"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/dashboard_score"
+                android:text="PAK"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

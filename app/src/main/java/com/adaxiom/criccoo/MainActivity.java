@@ -1,8 +1,10 @@
 package com.adaxiom.criccoo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,12 +15,10 @@ import android.widget.Toast;
 
 import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.model.response.RM_Commentry;
-import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.utils.Utils;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.DecimalFormat;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,8 +27,10 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
 
-import static com.adaxiom.utils.Constants.PREF_BLOCK_ID;
+import static com.adaxiom.utils.Constants.PREF_FIRST_TEAM;
+import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
 import static com.adaxiom.utils.Constants.PREF_MATCH_ID;
+import static com.adaxiom.utils.Constants.PREF_SECOND_TEAM;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,9 +63,17 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout viewChatDashboard;
     @BindView(R.id.avLoading)
     LinearLayout avLoading;
+    @BindView(R.id.ivLogout)
+    ImageView ivLogout;
+    @BindView(R.id.tvNameTeamOne)
+    TextView tvNameTeamOne;
+    @BindView(R.id.tvNameTeamSecond)
+    TextView tvNameTeamSecond;
 
 
     private Subscription getSubscription;
+
+    AlertDialog alert;
 
 
     public static void startActivity(Context context) {
@@ -76,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+
+        setTeamLogos();
     }
 
 
@@ -87,13 +100,14 @@ public class MainActivity extends AppCompatActivity {
         else Toast.makeText(this, "Please connect to internet first", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick({R.id.ivPrediction_Dashboard, R.id.viewEarning_Dashboard, R.id.viewLeaderBoard_Dashboard, R.id.viewChat_Dashboard})
+    @OnClick({R.id.ivPrediction_Dashboard, R.id.viewEarning_Dashboard, R.id.viewLeaderBoard_Dashboard,
+            R.id.viewChat_Dashboard, R.id.ivLogout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivPrediction_Dashboard:
 //                int blockId = Prefs.getInt(PREF_BLOCK_ID, 6);
 //                if (blockId != 6) {
-                    SelectBlock.startActivity(MainActivity.this);
+                SelectBlock.startActivity(MainActivity.this);
 //                } else
 //                    Toast.makeText(this, "Prediction will enable before 20 mints of match start time", Toast.LENGTH_SHORT).show();
                 break;
@@ -106,13 +120,16 @@ public class MainActivity extends AppCompatActivity {
             case R.id.viewChat_Dashboard:
                 Toast.makeText(this, "Under Construction!!!", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.ivLogout:
+                AlertLogout();
+                break;
         }
     }
 
 
     public void API_LiveScore() {
 
-        String matchId = Prefs.getString(PREF_MATCH_ID,"");
+        String matchId = Prefs.getString(PREF_MATCH_ID, "");
 
         avLoading.setVisibility(View.VISIBLE);
 
@@ -144,29 +161,133 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void updateUi(final RM_Commentry model){
+    public void updateUi(final RM_Commentry model) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 avLoading.setVisibility(View.GONE);
-                 if(!model.error){
-                     String runRate = calculateRunrate(model.total_score,model.overs);
-                     tvTotalScoreDashboard.setText("Score : "+model.total_score+" in "+model.overs+" Overs");
-                     tvRunRateDashboard.setText("R/R : "+runRate+" per over");
-                     tvPlayerOneScoreDashboard.setText(model.player_1);
-                     tvPlayerSecondScoreDashboard.setText(model.player_2);
-                 }
+                if (!model.error) {
+                    String runRate = calculateRunrate(model.total_score, model.overs);
+                    tvTotalScoreDashboard.setText("Score : " + model.total_score + " in " + model.overs + " Overs");
+                    tvRunRateDashboard.setText("R/R : " + runRate + " per over");
+                    tvPlayerOneScoreDashboard.setText(model.player_1);
+                    tvPlayerSecondScoreDashboard.setText(model.player_2);
+                }
             }
         });
 
     }
 
-    public String calculateRunrate(String run, String over){
-        if(run.equalsIgnoreCase("") || over.equalsIgnoreCase(""))
+    public String calculateRunrate(String run, String over) {
+        if (run.equalsIgnoreCase("") || over.equalsIgnoreCase(""))
             return "";
         Double Over = Double.parseDouble(over);
         int Run = Integer.parseInt(run);
-        double runrate = Run/Over;
+        double runrate = Run / Over;
         return (new DecimalFormat("##.#").format(runrate));
     }
+
+
+    private void setTeamLogos() {
+        String teamFirst = Prefs.getString(PREF_FIRST_TEAM, "");
+        String teamSecond = Prefs.getString(PREF_SECOND_TEAM, "");
+
+        if (!teamFirst.equalsIgnoreCase("") || !teamSecond.equalsIgnoreCase("")) {
+            if (teamFirst.equalsIgnoreCase("ENGLAND")) {
+                ivFirstTeamDashboard.setImageResource(R.drawable.ic_eng);
+                tvNameTeamOne.setText("ENG");
+            } else if (teamFirst.equalsIgnoreCase("AUSTRALIA")) {
+                ivFirstTeamDashboard.setImageResource(R.drawable.ic_aus);
+                tvNameTeamOne.setText("AUS");
+            } else if (teamFirst.equalsIgnoreCase("INDIA")) {
+                ivFirstTeamDashboard.setImageResource(R.drawable.ic_ind);
+                tvNameTeamOne.setText("IND");
+            } else if (teamFirst.equalsIgnoreCase("PAKISTAN")) {
+                ivFirstTeamDashboard.setImageResource(R.drawable.ic_pak);
+                tvNameTeamOne.setText("PAK");
+            } else if (teamFirst.equalsIgnoreCase("AFGHANISTAN")) {
+                ivFirstTeamDashboard.setImageResource(R.drawable.ic_afg);
+                tvNameTeamOne.setText("AFG");
+            } else if (teamFirst.equalsIgnoreCase("BANGLADESH")) {
+                ivFirstTeamDashboard.setImageResource(R.drawable.ic_ban);
+                tvNameTeamOne.setText("BAN");
+            } else if (teamFirst.equalsIgnoreCase("NEW ZEALAND")) {
+                ivFirstTeamDashboard.setImageResource(R.drawable.ic_nz);
+                tvNameTeamOne.setText("NZ");
+            } else if (teamFirst.equalsIgnoreCase("SOUTH AFRICA")) {
+                ivFirstTeamDashboard.setImageResource(R.drawable.ic_sa);
+                tvNameTeamOne.setText("SA");
+            } else if (teamFirst.equalsIgnoreCase("SRI LANKA")) {
+                ivFirstTeamDashboard.setImageResource(R.drawable.ic_sl);
+                tvNameTeamOne.setText("SL");
+            } else if (teamFirst.equalsIgnoreCase("WEST INDIES")) {
+                ivFirstTeamDashboard.setImageResource(R.drawable.ic_wi);
+                tvNameTeamOne.setText("WI");
+            }
+
+
+            if (teamSecond.equalsIgnoreCase("ENGLAND")) {
+                ivSecondTeamDashboard.setImageResource(R.drawable.ic_eng);
+                tvNameTeamSecond.setText("ENG");
+            } else if (teamSecond.equalsIgnoreCase("AUSTRALIA")) {
+                ivSecondTeamDashboard.setImageResource(R.drawable.ic_aus);
+                tvNameTeamSecond.setText("AUS");
+            } else if (teamSecond.equalsIgnoreCase("INDIA")) {
+                ivSecondTeamDashboard.setImageResource(R.drawable.ic_ind);
+                tvNameTeamSecond.setText("IND");
+            } else if (teamSecond.equalsIgnoreCase("PAKISTAN")) {
+                ivSecondTeamDashboard.setImageResource(R.drawable.ic_pak);
+                tvNameTeamSecond.setText("PAK");
+            } else if (teamSecond.equalsIgnoreCase("AFGHANISTAN")) {
+                ivSecondTeamDashboard.setImageResource(R.drawable.ic_afg);
+                tvNameTeamSecond.setText("AFG");
+            } else if (teamSecond.equalsIgnoreCase("BANGLADESH")) {
+                ivSecondTeamDashboard.setImageResource(R.drawable.ic_ban);
+                tvNameTeamSecond.setText("BAN");
+            } else if (teamSecond.equalsIgnoreCase("NEW ZEALAND")) {
+                ivSecondTeamDashboard.setImageResource(R.drawable.ic_nz);
+                tvNameTeamSecond.setText("NZ");
+            } else if (teamSecond.equalsIgnoreCase("SOUTH AFRICA")) {
+                ivSecondTeamDashboard.setImageResource(R.drawable.ic_sa);
+                tvNameTeamSecond.setText("SA");
+            } else if (teamSecond.equalsIgnoreCase("SRI LANKA")) {
+                ivSecondTeamDashboard.setImageResource(R.drawable.ic_sl);
+                tvNameTeamSecond.setText("SL");
+            } else if (teamSecond.equalsIgnoreCase("WEST INDIES")) {
+                ivSecondTeamDashboard.setImageResource(R.drawable.ic_wi);
+                tvNameTeamSecond.setText("WI");
+            }
+        }
+    }
+
+
+    public void AlertLogout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout!");
+        builder.setMessage("Do you want to logout criccoo?");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        alert.dismiss();
+                        Prefs.putString(PREF_IS_LOGIN, "0");
+                        Login.startActivity(MainActivity.this);
+                        finish();
+                    }
+                });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                alert.dismiss();
+            }
+        });
+
+        alert = builder.create();
+        alert.show();
+    }
+
+
 }

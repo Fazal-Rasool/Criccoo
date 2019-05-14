@@ -22,8 +22,10 @@ import rx.Subscription;
 import rx.schedulers.Schedulers;
 
 import static com.adaxiom.utils.Constants.PREF_FCM_TOKEN;
+import static com.adaxiom.utils.Constants.PREF_FIRST_TEAM;
 import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
 import static com.adaxiom.utils.Constants.PREF_MATCH_ID;
+import static com.adaxiom.utils.Constants.PREF_SECOND_TEAM;
 
 public class Splash extends AppCompatActivity {
 
@@ -58,8 +60,8 @@ public class Splash extends AppCompatActivity {
             Login.startActivity(Splash.this);
             finish();
         }else{
-//            MainActivity.startActivity(Splash.this);
-            Login.startActivity(Splash.this);
+            MainActivity.startActivity(Splash.this);
+//            Login.startActivity(Splash.this);
             finish();
         }
 
@@ -115,8 +117,10 @@ public class Splash extends AppCompatActivity {
                             public void run() {
                                 if (model.get(0).error != true) {
                                     Prefs.putString(PREF_MATCH_ID,model.get(0).match_id);
+                                    Prefs.putString(PREF_FIRST_TEAM,model.get(0).team_1);
+                                    Prefs.putString(PREF_SECOND_TEAM,model.get(0).team_2);
                                 } else
-                                    Toast.makeText(Splash.this, "Something went wrong while getting match Id!!!",
+                                    Toast.makeText(Splash.this, "Error while getting match Id!!!",
                                             Toast.LENGTH_SHORT).show();
                             }
                         });

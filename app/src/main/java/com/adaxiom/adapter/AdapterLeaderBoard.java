@@ -8,22 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import com.adaxiom.criccoo.R;
-import com.adaxiom.model.ModelLeaderBoard;
+import com.adaxiom.model.response.RM_LeaderBoard;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
 public class AdapterLeaderBoard extends RecyclerView.Adapter<AdapterLeaderBoard.ViewHolder> {
 
     private Activity activity;
-    public List<ModelLeaderBoard> list;
-    public List<ModelLeaderBoard> dummyList;
+    public List<RM_LeaderBoard> list;
+    public List<RM_LeaderBoard> dummyList;
     private LayoutInflater mLayoutInflater;
     private RecyclerViewItemClickListener onItemClickListener;
 
@@ -34,7 +30,7 @@ public class AdapterLeaderBoard extends RecyclerView.Adapter<AdapterLeaderBoard.
     }
 
     public AdapterLeaderBoard(Activity activity,
-                              List<ModelLeaderBoard> list,
+                              List<RM_LeaderBoard> list,
                               RecyclerViewItemClickListener onItemClickListener) {
 
         this.list = list;
@@ -62,10 +58,9 @@ public class AdapterLeaderBoard extends RecyclerView.Adapter<AdapterLeaderBoard.
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
 
-//        viewHolder.tvTitle.setText(list.get(position).title);
-//        viewHolder.tvPrice.setText("£" + list.get(position).price);
-//        viewHolder.tvHospitalName.setText(list.get(position).hospital_name);
-//        viewHolder.tvDep.setText(list.get(position).department);
+        viewHolder.tvRank.setText(position+"");
+        viewHolder.tvName.setText(list.get(position).u_username);
+        viewHolder.tvPoints.setText(list.get(position).total_score);
 
 
     }
@@ -83,26 +78,16 @@ public class AdapterLeaderBoard extends RecyclerView.Adapter<AdapterLeaderBoard.
 
     protected class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView tvTitle, tvPrice, tvHospitalName, tvDep, tvDate, tvDay, tvTime;
+        TextView tvRank, tvName, tvPoints;
 
 
         public ViewHolder(View view) {
             super(view);
 
-//            tvTitle = (TextView) view.findViewById(R.id.tvRowJobsTitle);
-//            tvPrice = (TextView) view.findViewById(R.id.tvRowJobsPrice);
-//            tvHospitalName = (TextView) view.findViewById(R.id.tvRowJobsHospitalName);
-//            tvDep = (TextView) view.findViewById(R.id.tvRowJobsDep);
-//            tvDate = (TextView) view.findViewById(R.id.tvRowJobsDate);
-//            tvDay = (TextView) view.findViewById(R.id.tvRowJobsDay);
-//            tvTime = (TextView) view.findViewById(R.id.tvRowJobsTime);
-//
-//            view.setOnClickListener(this);
-
-//            rating =(RatingBar) view.findViewById(R.id.chefRating);
-//            tvTitle = (TextView) view.findViewById(R.id.tv_chef_name);
-//            ivCheff = (ImageView) view.findViewById(R.id.chefImageView);
-
+            tvRank = (TextView) view.findViewById(R.id.tvRank);
+            tvName = (TextView) view.findViewById(R.id.tvName);
+            tvPoints = (TextView) view.findViewById(R.id.tvTotalPoints);
+            view.setOnClickListener(this);
 
         }
 
@@ -129,9 +114,6 @@ public class AdapterLeaderBoard extends RecyclerView.Adapter<AdapterLeaderBoard.
 //        }
 //        notifyDataSetChanged();
 //    }
-
-
-
 
 
 }

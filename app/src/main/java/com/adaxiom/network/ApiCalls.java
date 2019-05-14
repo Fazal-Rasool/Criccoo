@@ -91,7 +91,7 @@ public interface ApiCalls {
     );
 
     @GET(API_LEADERBOARD)
-    Observable<List<RM_LeaderBoard>> LeaderBoard();
+    Observable<List<RM_LeaderBoard>> LeaderBoard(@Path("user_id") int userId);
 
     @GET(API_GET_COMMENTRY)
     Observable<RM_Commentry> Commentary(@Path("match_id") String match_id);

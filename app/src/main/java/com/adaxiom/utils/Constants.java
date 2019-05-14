@@ -21,7 +21,7 @@ public interface Constants {
     String API_CITY_LIST="/city_list";
     String API_MATCH_PREDICTION="/user_match_prediction";
     String API_GET_COMMENTRY="/get_full_commentry/{match_id}";
-    String API_LEADERBOARD="/get_leaderboard";
+    String API_LEADERBOARD="/leaderboards/{user_id}";
 
 
     //Prefrence
@@ -35,4 +35,8 @@ public interface Constants {
     String PREF_MATCH_ID ="match_id";
     String PREF_BLOCK_ID ="block_id";
     String PREF_INNING_ID ="inning_id";
+    String PREF_FIRST_TEAM ="team_one_id";
+    String PREF_SECOND_TEAM="team_two_id";
+
+
 }

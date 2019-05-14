@@ -84,13 +84,19 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:weightSum="5"
             android:gravity="center">
 
             <Button
                 android:id="@+id/btnLogin_login"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/login_btn" />
+                android:layout_weight="3.5"
+                android:background="@drawable/login_bg"
+                android:text="Login"
+                android:textColor="#fff"
+                android:textSize="16dp"
+                android:textAllCaps="false"/>
 
 
         </LinearLayout>
@@ -108,7 +114,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/fb_login_btn" />
+                android:background="@drawable/fb_bg"
+                android:text="Facebook login"
+                android:textAllCaps="false"
+                android:textColor="#fff"/>
 
 
             <Button
@@ -117,7 +126,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/google_login_btn" />
+                android:background="@drawable/google_bg"
+                android:text="G+ login"
+                android:textAllCaps="false"
+                android:textColor="#fff"/>
 
 
         </LinearLayout>

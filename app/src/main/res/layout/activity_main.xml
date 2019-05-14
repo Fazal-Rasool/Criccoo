@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_bg"
     tools:context=".MainActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/main_bg"
         android:orientation="vertical"
         android:weightSum="10">
 
@@ -37,6 +37,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             >
+
             <include
                 layout="@layout/layout_team_selection"
                 />
@@ -142,13 +143,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5">
+            android:layout_weight="1.5"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/ivPrediction_Dashboard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:src="@drawable/predict_now" />
 
 
@@ -247,7 +248,17 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/ivLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_logout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"/>
+
 
     <include layout="@layout/layout_loader"/>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

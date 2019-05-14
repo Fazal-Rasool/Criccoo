@@ -3,6 +3,7 @@ package com.adaxiom.criccoo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -10,11 +11,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.adaxiom.adapter.AdapterLeaderBoard;
 import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.utils.BaseActivity;
 import com.adaxiom.utils.Utils;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.List;
 
@@ -23,6 +26,8 @@ import butterknife.ButterKnife;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
+
+import static com.adaxiom.utils.Constants.PREF_USER_ID;
 
 public class LeaderBoard extends BaseActivity {
 
@@ -33,6 +38,8 @@ public class LeaderBoard extends BaseActivity {
     RecyclerView rvLeaderBoard;
     @BindView(R.id.avLoading)
     LinearLayout avLoading;
+
+    public static AdapterLeaderBoard reAdapter;
 
 
     private Subscription getSubscription;
@@ -60,12 +67,33 @@ public class LeaderBoard extends BaseActivity {
     }
 
 
+
+
+    public void setAdapter(List<RM_LeaderBoard> mList){
+        rvLeaderBoard.setHasFixedSize(true);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        rvLeaderBoard.setLayoutManager(layoutManager);
+
+
+        reAdapter = new AdapterLeaderBoard(this, mList,
+                new AdapterLeaderBoard.RecyclerViewItemClickListener() {
+                    @Override
+                    public void recyclerViewListClicked(View v, int position) {
+
+                    }
+                });
+
+        rvLeaderBoard.setAdapter(reAdapter);
+    }
+
     public void API_GetLeaderBoardData(){
+
+        int user_id = Prefs.getInt(PREF_USER_ID,0);
 
         avLoading.setVisibility(View.VISIBLE);
 
         getSubscription = DownloaderManager.getGeneralDownloader().
-                API_LeaderBoard()
+                API_LeaderBoard(user_id)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<List<RM_LeaderBoard>>() {
@@ -84,24 +112,19 @@ public class LeaderBoard extends BaseActivity {
                     }
 
                     @Override
-                    public void onNext(List<RM_LeaderBoard> model) {
-                        updateUi(model);
+                    public void onNext(List<RM_LeaderBoard> list) {
+                        updateUi(list);
                     }
                 });
 
     }
 
-    public void updateUi(final List<RM_LeaderBoard> model) {
+    public void updateUi(final List<RM_LeaderBoard> mList) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-//                avLoading.setVisibility(View.GONE);
-//                String msg = model.message;
-//                Toast.makeText(Signup.this, msg, Toast.LENGTH_LONG).show();
-//                if (!model.error) {
-//                    MainActivity.startActivity(LeaderBoard.this);
-//                    LeaderBoard.this.finish();
-//                }
+                avLoading.setVisibility(View.GONE);
+                setAdapter(mList);
             }
         });
     }

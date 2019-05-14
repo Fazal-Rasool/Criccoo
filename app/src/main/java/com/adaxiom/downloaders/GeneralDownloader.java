@@ -280,12 +280,12 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
 
 
 
-    public Observable<List<RM_LeaderBoard>> API_LeaderBoard() {
+    public Observable<List<RM_LeaderBoard>> API_LeaderBoard(final int user_id) {
 
         return Observable.create(new Observable.OnSubscribe<List<RM_LeaderBoard>>() {
             @Override
             public void call(final Subscriber<? super List<RM_LeaderBoard>> subscriber) {
-                beConnector.LeaderBoard()
+                beConnector.LeaderBoard(user_id)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(Schedulers.newThread())
                         .subscribe(new Subscriber<List<RM_LeaderBoard>>() {

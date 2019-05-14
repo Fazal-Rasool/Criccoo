@@ -51,7 +51,7 @@ public interface BackendConnector {
                 String ball_6
         );
 
-        Observable<List<RM_LeaderBoard>> LeaderBoard();
+        Observable<List<RM_LeaderBoard>> LeaderBoard(int userId);
 
         Observable<RM_Commentry> Commentary(String match_id);
 
