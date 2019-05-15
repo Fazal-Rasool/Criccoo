@@ -9,17 +9,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adaxiom.adapter.AdapterLeaderBoard;
 import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.model.response.RM_LeaderBoard;
-import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.utils.BaseActivity;
 import com.adaxiom.utils.Utils;
 import com.pixplicity.easyprefs.library.Prefs;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +38,12 @@ public class LeaderBoard extends BaseActivity {
     LinearLayout avLoading;
 
     public static AdapterLeaderBoard reAdapter;
+    @BindView(R.id.tvMyRank)
+    TextView tvMyRank;
+    @BindView(R.id.tvTotalpoints)
+    TextView tvTotalpoints;
+    @BindView(R.id.tvHighestPoints)
+    TextView tvHighestPoints;
 
 
     private Subscription getSubscription;
@@ -59,17 +63,30 @@ public class LeaderBoard extends BaseActivity {
 
         setToolbar(toolbar, "Leader Board");
 
-        if(Utils.isNetworkAvailable(this))
+        if (Utils.isNetworkAvailable(this))
             API_GetLeaderBoardData();
-        else Toast.makeText(this,"Please connect to internet first", Toast.LENGTH_SHORT).show();
+        else Toast.makeText(this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
 
 
     }
 
 
+    public void setAdapter(RM_LeaderBoard mList) {
+
+        if (mList.user.size() != 0) {
+            String myRank = mList.user.get(0).rank;
+            String total = mList.user.get(0).total_score;
+            tvMyRank.setText(myRank);
+            if(total != null)
+            tvTotalpoints.setText(total);
+            else tvTotalpoints.setText("0.0");
+        }
+        if (mList.all_users.size() != 0) {
+            String highestScore = mList.all_users.get(0).total_score;
+            tvHighestPoints.setText(highestScore);
+        }
 
 
-    public void setAdapter(RM_LeaderBoard mList){
         rvLeaderBoard.setHasFixedSize(true);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvLeaderBoard.setLayoutManager(layoutManager);
@@ -86,19 +103,20 @@ public class LeaderBoard extends BaseActivity {
         rvLeaderBoard.setAdapter(reAdapter);
     }
 
-    public void API_GetLeaderBoardData(){
+    public void API_GetLeaderBoardData() {
 
-        int user_id = Prefs.getInt(PREF_USER_ID,0);
+        int user_id = Prefs.getInt(PREF_USER_ID, 0);
 
         avLoading.setVisibility(View.VISIBLE);
 
         getSubscription = DownloaderManager.getGeneralDownloader().
-                API_LeaderBoard(1)
+                API_LeaderBoard(user_id)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<RM_LeaderBoard>() {
                     @Override
-                    public void onCompleted() { }
+                    public void onCompleted() {
+                    }
 
                     @Override
                     public void onError(final Throwable e) {

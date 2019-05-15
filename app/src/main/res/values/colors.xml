@@ -9,6 +9,7 @@
     <color name="transparent_gray">#55B6B8B8</color>
     <color name="colorDivider">#e5eaf1</color>
     <color name="colorDarkBlue">#11141e</color>
+    <color name="colorDarkBlueTransparent">#CC11141e</color>
     <color name="colorWhite">#FFFFFF</color>
 
     <color name="login">#f33d54</color>

@@ -112,7 +112,7 @@ public class Prediction extends AppCompatActivity {
                         Toast.makeText(this, "Predict againset all balls first", Toast.LENGTH_SHORT).show();
                     } else API_SubmitPrediction();
                 } else
-                    Toast.makeText(this, "Please connect internet first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
                 break;
         }
     }

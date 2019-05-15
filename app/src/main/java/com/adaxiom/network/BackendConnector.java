@@ -29,7 +29,7 @@ public interface BackendConnector {
 
         //        Observable<RM_SignUp> signUp(SignUpBody signUpBody);
 //        Observable<RM_Login> Login(LoginBody loginBody);
-        Observable<RM_Login> LoginParam(String user, String pass, String from);
+        Observable<RM_Login> LoginParam(String user, String pass, String from, String fcm);
 
         Observable<List<RM_MatchActive>> matchActive();
 

@@ -30,13 +30,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center">
+        android:gravity="center"
+        android:weightSum="5">
 
         <EditText
             android:id="@+id/etName_Signup"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="@dimen/et_height_signup"
-            android:background="@drawable/et_bg"
+            android:layout_weight="3.5"
+            android:background="@drawable/box_et"
             android:hint="Name"
             android:inputType="text"
             android:paddingLeft="10dp"
@@ -51,13 +53,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center">
+        android:gravity="center"
+        android:weightSum="5">
 
         <EditText
             android:id="@+id/etEmail_Signup"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="@dimen/et_height_signup"
-            android:background="@drawable/et_bg"
+            android:layout_weight="3.5"
+            android:background="@drawable/box_et"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:imeOptions="actionNext"
@@ -72,13 +76,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center">
+        android:gravity="center"
+        android:weightSum="5">
 
         <EditText
             android:id="@+id/etPassword_Signup"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="@dimen/et_height_signup"
-            android:background="@drawable/et_bg"
+            android:layout_weight="3.5"
+            android:background="@drawable/box_et"
             android:imeOptions="actionNext"
             android:hint="Password"
             android:inputType="textPassword"
@@ -93,13 +99,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center">
+        android:gravity="center"
+        android:weightSum="5">
 
         <EditText
             android:id="@+id/etConfirmPassword_Signup"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="@dimen/et_height_signup"
-            android:background="@drawable/et_bg"
+            android:layout_weight="3.5"
+            android:background="@drawable/box_et"
             android:imeOptions="actionDone"
             android:hint="Confirm Password"
             android:inputType="textPassword"

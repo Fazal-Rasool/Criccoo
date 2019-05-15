@@ -61,7 +61,7 @@ public class Signup extends AppCompatActivity {
         if (Utils.isNetworkAvailable(Signup.this))
             API_SignUp();
         else
-            Toast.makeText(Signup.this, "Please connect to internet first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Signup.this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
     }
 
     public void API_SignUp() {
@@ -81,6 +81,11 @@ public class Signup extends AppCompatActivity {
                 confirmPassword.equalsIgnoreCase("")
         ) {
             Toast.makeText(this, "Please fill all fields first", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(!Utils.isEmailValid(email)){
+            Toast.makeText(this, "Please enter correct email adress", Toast.LENGTH_SHORT).show();
             return;
         }
 

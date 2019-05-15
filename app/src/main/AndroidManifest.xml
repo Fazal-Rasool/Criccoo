@@ -13,9 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LeaderBoard"
-            android:theme="@style/AppThemeNoActionBar">
-        </activity>
+        <activity android:name=".TotalEarning"
+            android:theme="@style/AppThemeNoActionBar"></activity>
+        <activity
+            android:name=".LeaderBoard"
+            android:theme="@style/AppThemeNoActionBar"></activity>
         <activity
             android:name=".Prediction"
             android:theme="@style/AppThemeNoActionBar" />
@@ -42,9 +44,9 @@
             android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
 
         <meta-data

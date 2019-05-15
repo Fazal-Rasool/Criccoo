@@ -23,7 +23,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2" />
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/tvSelectOver_SelectBlock"
@@ -36,40 +36,44 @@
             android:textSize="26dp"
             android:textStyle="bold" />
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:background="@drawable/select_over_bg"
             android:orientation="vertical"
-            android:weightSum="4">
+            android:weightSum="4"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:orientation="horizontal"
-                android:gravity="center|bottom"
-                android:paddingRight="10dp">
+                android:gravity="center|bottom">
 
                 <ImageView
                     android:id="@+id/ivBlockOne"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/block_one" />
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/one_enable"
+                    />
 
                 <ImageView
                     android:id="@+id/ivBlockTwo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/block_two" />
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/two_disable"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
 
 
                 <ImageView
                     android:id="@+id/ivBlockThree"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/block_three" />
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/three_disable"
+                    />
 
 
             </LinearLayout>
@@ -82,15 +86,16 @@
                 android:gravity="center">
                 <ImageView
                     android:id="@+id/ivBlockFour"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/block_four" />
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/four_disable" />
 
                 <ImageView
                     android:id="@+id/ivBlockFive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/block_five" />
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/five_disable"
+                    android:layout_marginLeft="5dp"/>
 
             </LinearLayout>
 

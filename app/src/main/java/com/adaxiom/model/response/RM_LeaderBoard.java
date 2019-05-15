@@ -11,6 +11,7 @@ public class RM_LeaderBoard {
     public class user{
         public String user_id = "";
         public String total_score = "";
+        public String rank="";
     }
 
 

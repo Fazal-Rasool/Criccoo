@@ -179,7 +179,6 @@ public class Login extends AppCompatActivity {
                     API_Login(name, "321", "G");
                 else
                     Toast.makeText(Login.this, "Error while login with Google!!!", Toast.LENGTH_SHORT).show();
-
             }
 
         } catch (ApiException e) {

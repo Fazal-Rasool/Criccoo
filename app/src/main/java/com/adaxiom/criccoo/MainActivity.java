@@ -3,15 +3,18 @@ package com.adaxiom.criccoo;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.model.response.RM_Commentry;
@@ -69,10 +72,13 @@ public class MainActivity extends AppCompatActivity {
     TextView tvNameTeamOne;
     @BindView(R.id.tvNameTeamSecond)
     TextView tvNameTeamSecond;
+    @BindView(R.id.videoViewDashboard)
+    VideoView videoViewDashboard;
 
 
     private Subscription getSubscription;
-
+    //    String path = "https://www.youtube.com/watch?v=J9wCvyxqAxU";
+    String path = "https://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4";
     AlertDialog alert;
 
 
@@ -88,7 +94,28 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
+        startVideo();
         setTeamLogos();
+    }
+
+    private void startVideo() {
+
+
+        Uri uri = Uri.parse(path);
+        videoViewDashboard.setVideoURI(uri);
+        videoViewDashboard.start();
+//        MediaController ctlr = new MediaController(this);
+//        ctlr.setMediaPlayer(videoViewDashboard);
+//        videoViewDashboard.setMediaController(ctlr);
+//        videoViewDashboard.requestFocus();
+
+//        Uri uri=Uri.parse(path);
+//        videoViewDashboard.setVideoPath(path);
+//
+//        MediaController ctlr = new MediaController(this);
+//        ctlr.setMediaPlayer(videoViewDashboard);
+//        videoViewDashboard.setMediaController(ctlr);
+//        videoViewDashboard.requestFocus();
     }
 
 
@@ -97,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (Utils.isNetworkAvailable(this))
             API_LiveScore();
-        else Toast.makeText(this, "Please connect to internet first", Toast.LENGTH_SHORT).show();
+        else Toast.makeText(this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
     }
 
     @OnClick({R.id.ivPrediction_Dashboard, R.id.viewEarning_Dashboard, R.id.viewLeaderBoard_Dashboard,
@@ -112,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 //                    Toast.makeText(this, "Prediction will enable before 20 mints of match start time", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.viewEarning_Dashboard:
-                Toast.makeText(this, "Under Construction!!!", Toast.LENGTH_SHORT).show();
+                TotalEarning.startActivity(this);
                 break;
             case R.id.viewLeaderBoard_Dashboard:
                 LeaderBoard.startActivity(this);
@@ -272,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         alert.dismiss();
-                        Prefs.putString(PREF_IS_LOGIN, "0");
+                        Prefs.putInt(PREF_IS_LOGIN, 0);
                         Login.startActivity(MainActivity.this);
                         finish();
                     }

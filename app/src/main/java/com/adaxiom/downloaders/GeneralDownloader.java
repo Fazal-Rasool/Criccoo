@@ -122,12 +122,12 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
 
 
 
-    public Observable<RM_Login> API_LoginParam(final String user, final String pass, final String from) {
+    public Observable<RM_Login> API_LoginParam(final String user, final String pass, final String from, final String fcm) {
 
         return Observable.create(new Observable.OnSubscribe<RM_Login>() {
             @Override
             public void call(final Subscriber<? super RM_Login> subscriber) {
-                beConnector.LoginParam(user, pass, from)
+                beConnector.LoginParam(user, pass, from, fcm)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(Schedulers.newThread())
                         .subscribe(new Subscriber<RM_Login>() {

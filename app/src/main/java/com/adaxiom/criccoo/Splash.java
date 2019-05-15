@@ -40,12 +40,12 @@ public class Splash extends AppCompatActivity {
 
         getFcmToken();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                callNewActivity();
-            }
-        }, SPLASH_TIME_OUT);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                callNewActivity();
+//            }
+//        }, SPLASH_TIME_OUT);
 
 
     }
@@ -56,12 +56,12 @@ public class Splash extends AppCompatActivity {
         int isLogIn = Prefs.getInt(PREF_IS_LOGIN, 0);
 
         if(isLogIn == 1){
-//            MainActivity.startActivity(Splash.this);
-            Login.startActivity(Splash.this);
-            finish();
-        }else{
             MainActivity.startActivity(Splash.this);
 //            Login.startActivity(Splash.this);
+            finish();
+        }else{
+//            MainActivity.startActivity(Splash.this);
+            Login.startActivity(Splash.this);
             finish();
         }
 
@@ -119,9 +119,11 @@ public class Splash extends AppCompatActivity {
                                     Prefs.putString(PREF_MATCH_ID,model.get(0).match_id);
                                     Prefs.putString(PREF_FIRST_TEAM,model.get(0).team_1);
                                     Prefs.putString(PREF_SECOND_TEAM,model.get(0).team_2);
+                                    callNewActivity();
                                 } else
                                     Toast.makeText(Splash.this, "Error while getting match Id!!!",
                                             Toast.LENGTH_SHORT).show();
+
                             }
                         });
                     }
