@@ -52,6 +52,7 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
 
+import static com.adaxiom.utils.Constants.PREF_FCM_TOKEN;
 import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
 import static com.adaxiom.utils.Constants.PREF_USER_EMAIL;
 import static com.adaxiom.utils.Constants.PREF_USER_ID;
@@ -275,19 +276,19 @@ public class Login extends AppCompatActivity {
                     String password = etPasswordLogin.getText().toString();
                     API_Login(userName, password, "C");
                 } else
-                    Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnLoginFB_login:
                 if (Utils.isNetworkAvailable(Login.this))
                     loginButton.performClick();
                 else
-                    Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnLoginGoogle_login:
                 if (Utils.isNetworkAvailable(Login.this))
                     googleSignIn();
                 else
-                    Toast.makeText(Login.this, "Please connect internet first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tvGoToSignUp:
                 Signup.startActivity(Login.this);
@@ -297,12 +298,12 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public void callNewActivity(final String userName, final String email) {
+    public void callNewActivity(final int userid, final String userName, final String email) {
 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Prefs.putInt(PREF_USER_ID,0);
+                Prefs.putInt(PREF_USER_ID,userid);
                 Prefs.putString(PREF_USER_NAME, userName);
                 Prefs.putString(PREF_USER_EMAIL, email);
                 Prefs.putInt(PREF_IS_LOGIN, 1);
@@ -317,13 +318,15 @@ public class Login extends AppCompatActivity {
 
     public void API_Login(String userName, String password, String from) {
 
+        String fcmToken = Prefs.getString(PREF_FCM_TOKEN,"");
+
         Utils.showHideLoaderView(avLoading,true);
 
 //        if (getLoginSubscription != null) {
 //            return;
 //        }
 
-        getLoginSubscription = DownloaderManager.getGeneralDownloader().API_LoginParam(userName, password, from)
+        getLoginSubscription = DownloaderManager.getGeneralDownloader().API_LoginParam(userName, password, from,fcmToken)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<RM_Login>() {
@@ -351,7 +354,7 @@ public class Login extends AppCompatActivity {
                                 Utils.showHideLoaderView(avLoading,false);
                                 if (model.error != true) {
                                     Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
-                                    callNewActivity(model.username, model.email);
+                                    callNewActivity(model.userid,model.username, model.email);
                                 } else
                                     Toast.makeText(Login.this, model.message,
                                             Toast.LENGTH_SHORT).show();
