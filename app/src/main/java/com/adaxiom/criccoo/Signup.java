@@ -89,6 +89,9 @@ public class Signup extends AppCompatActivity {
             return;
         }
 
+        if(!password.equalsIgnoreCase(confirmPassword))
+            Toast.makeText(this,"Password not match",Toast.LENGTH_SHORT).show();
+
 //        if (getSignUpSubscription != null) {
 //            return;
 //        }

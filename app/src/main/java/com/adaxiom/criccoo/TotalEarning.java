@@ -28,7 +28,7 @@ public class TotalEarning extends AppCompatActivity {
     @BindView(R.id.tvTotalCash)
     TextView tvTotalCash;
     @BindView(R.id.ivGetYourCash)
-    ImageView ivGetYourCash;
+    View ivGetYourCash;
     @BindView(R.id.avLoading)
     LinearLayout avLoading;
 

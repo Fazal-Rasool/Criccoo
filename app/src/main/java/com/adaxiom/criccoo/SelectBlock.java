@@ -135,18 +135,18 @@ public class SelectBlock extends AppCompatActivity {
             public void run() {
 
                 YoYo.with(Techniques.Shake).playOn(tvOver1);
-                YoYo.with(Techniques.Pulse).playOn(tvOver2);
+                YoYo.with(Techniques.FadeIn).playOn(tvOver2);
                 YoYo.with(Techniques.Shake).playOn(tvOver3);
-                YoYo.with(Techniques.Pulse).playOn(tvOver4);
+                YoYo.with(Techniques.FadeIn).playOn(tvOver4);
                 YoYo.with(Techniques.Shake).playOn(tvOver5);
 
-                YoYo.with(Techniques.Pulse).playOn(tvOver6);
+                YoYo.with(Techniques.FadeIn).playOn(tvOver6);
                 YoYo.with(Techniques.Shake).playOn(tvOver7);
-                YoYo.with(Techniques.Pulse).playOn(tvOver8);
+                YoYo.with(Techniques.FadeIn).playOn(tvOver8);
                 YoYo.with(Techniques.Shake).playOn(tvOver9);
-                YoYo.with(Techniques.Pulse).playOn(tvOver10);
+                YoYo.with(Techniques.FadeIn).playOn(tvOver10);
 
-                mHandler.postDelayed(this, 1000);
+                mHandler.postDelayed(this, 2500);
             }
         };
         runnable.run();
@@ -164,15 +164,15 @@ public class SelectBlock extends AppCompatActivity {
             ivBlockFour.setImageResource(R.drawable.four_disable);
             ivBlockFive.setImageResource(R.drawable.five_disable);
             tvOver1.setText("1");
-            tvOver1.setText("2");
-            tvOver1.setText("3");
-            tvOver1.setText("4");
-            tvOver1.setText("5");
-            tvOver1.setText("6");
-            tvOver1.setText("7");
-            tvOver1.setText("8");
-            tvOver1.setText("9");
-            tvOver1.setText("10");
+            tvOver2.setText("2");
+            tvOver3.setText("3");
+            tvOver4.setText("4");
+            tvOver5.setText("5");
+            tvOver6.setText("6");
+            tvOver7.setText("7");
+            tvOver8.setText("8");
+            tvOver9.setText("9");
+            tvOver10.setText("10");
         }else if(blockId.equalsIgnoreCase("2")){
             ivBlockOne.setImageResource(R.drawable.one_disable);
             ivBlockTwo.setImageResource(R.drawable.two_enable);
@@ -180,15 +180,15 @@ public class SelectBlock extends AppCompatActivity {
             ivBlockFour.setImageResource(R.drawable.four_disable);
             ivBlockFive.setImageResource(R.drawable.five_disable);
             tvOver1.setText("11");
-            tvOver1.setText("12");
-            tvOver1.setText("13");
-            tvOver1.setText("14");
-            tvOver1.setText("15");
-            tvOver1.setText("16");
-            tvOver1.setText("17");
-            tvOver1.setText("18");
-            tvOver1.setText("19");
-            tvOver1.setText("20");
+            tvOver2.setText("12");
+            tvOver3.setText("13");
+            tvOver4.setText("14");
+            tvOver5.setText("15");
+            tvOver6.setText("16");
+            tvOver7.setText("17");
+            tvOver8.setText("18");
+            tvOver9.setText("19");
+            tvOver10.setText("20");
         }else if(blockId.equalsIgnoreCase("3")){
             ivBlockOne.setImageResource(R.drawable.one_disable);
             ivBlockTwo.setImageResource(R.drawable.two_disable);
@@ -196,15 +196,15 @@ public class SelectBlock extends AppCompatActivity {
             ivBlockFour.setImageResource(R.drawable.four_disable);
             ivBlockFive.setImageResource(R.drawable.five_disable);
             tvOver1.setText("21");
-            tvOver1.setText("22");
-            tvOver1.setText("23");
-            tvOver1.setText("24");
-            tvOver1.setText("25");
-            tvOver1.setText("26");
-            tvOver1.setText("27");
-            tvOver1.setText("28");
-            tvOver1.setText("29");
-            tvOver1.setText("30");
+            tvOver2.setText("22");
+            tvOver3.setText("23");
+            tvOver4.setText("24");
+            tvOver5.setText("25");
+            tvOver6.setText("26");
+            tvOver7.setText("27");
+            tvOver8.setText("28");
+            tvOver9.setText("29");
+            tvOver10.setText("30");
         }else if(blockId.equalsIgnoreCase("4")){
             ivBlockOne.setImageResource(R.drawable.one_disable);
             ivBlockTwo.setImageResource(R.drawable.two_disable);
@@ -212,15 +212,15 @@ public class SelectBlock extends AppCompatActivity {
             ivBlockFour.setImageResource(R.drawable.four_enable);
             ivBlockFive.setImageResource(R.drawable.five_disable);
             tvOver1.setText("31");
-            tvOver1.setText("32");
-            tvOver1.setText("33");
-            tvOver1.setText("34");
-            tvOver1.setText("35");
-            tvOver1.setText("36");
-            tvOver1.setText("37");
-            tvOver1.setText("38");
-            tvOver1.setText("39");
-            tvOver1.setText("40");
+            tvOver2.setText("32");
+            tvOver3.setText("33");
+            tvOver4.setText("34");
+            tvOver5.setText("35");
+            tvOver6.setText("36");
+            tvOver7.setText("37");
+            tvOver8.setText("38");
+            tvOver9.setText("39");
+            tvOver10.setText("40");
         }else if(blockId.equalsIgnoreCase("5")){
             ivBlockOne.setImageResource(R.drawable.one_disable);
             ivBlockTwo.setImageResource(R.drawable.two_disable);
@@ -228,15 +228,15 @@ public class SelectBlock extends AppCompatActivity {
             ivBlockFour.setImageResource(R.drawable.four_disable);
             ivBlockFive.setImageResource(R.drawable.five_enable);
             tvOver1.setText("41");
-            tvOver1.setText("42");
-            tvOver1.setText("43");
-            tvOver1.setText("44");
-            tvOver1.setText("45");
-            tvOver1.setText("46");
-            tvOver1.setText("47");
-            tvOver1.setText("48");
-            tvOver1.setText("49");
-            tvOver1.setText("50");
+            tvOver2.setText("42");
+            tvOver3.setText("43");
+            tvOver4.setText("44");
+            tvOver5.setText("45");
+            tvOver6.setText("46");
+            tvOver7.setText("47");
+            tvOver8.setText("48");
+            tvOver9.setText("49");
+            tvOver10.setText("50");
         }
     }
 
