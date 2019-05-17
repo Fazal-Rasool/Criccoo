@@ -8,6 +8,7 @@ import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
+import com.adaxiom.model.response.RM_WinnerPrediction;
 
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,7 @@ import static com.adaxiom.utils.Constants.API_LOGIN;
 import static com.adaxiom.utils.Constants.API_MATCH_ACTIVE;
 import static com.adaxiom.utils.Constants.API_MATCH_PREDICTION;
 import static com.adaxiom.utils.Constants.API_SIGN_UP;
+import static com.adaxiom.utils.Constants.API_WINNER_PREDICTION;
 import static com.adaxiom.utils.Constants.PARA_USER_ID;
 
 public interface ApiCalls {
@@ -96,6 +98,14 @@ public interface ApiCalls {
     @GET(API_GET_COMMENTRY)
     Observable<RM_Commentry> Commentary(@Path("match_id") String match_id);
 
+
+    @FormUrlEncoded
+    @POST(API_WINNER_PREDICTION)
+    Observable<RM_WinnerPrediction> WinnerPrediction(
+            @Field("user_id") int userId
+            ,@Field("match_id") String matchId
+            ,@Field("prediction") String prediction
+    );
 
 
 }

@@ -9,6 +9,7 @@ import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
+import com.adaxiom.model.response.RM_WinnerPrediction;
 
 import java.util.List;
 
@@ -54,6 +55,8 @@ public interface BackendConnector {
         Observable<RM_LeaderBoard> LeaderBoard(int userId);
 
         Observable<RM_Commentry> Commentary(String match_id);
+
+        Observable<RM_WinnerPrediction> WinnerPrediction(int userid, String matchid, String prediction);
 
     }
 }

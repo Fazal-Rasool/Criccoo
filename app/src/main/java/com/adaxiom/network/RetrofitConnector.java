@@ -9,6 +9,7 @@ import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
+import com.adaxiom.model.response.RM_WinnerPrediction;
 
 import java.util.HashMap;
 import java.util.List;
@@ -159,6 +160,14 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
     public Observable<RM_Commentry> Commentary(String match_id) {
         return calls.Commentary(match_id);
     }
+
+
+    @Override
+    public Observable<RM_WinnerPrediction> WinnerPrediction(int userid, String match_id, String prediction) {
+        return calls.WinnerPrediction(userid, match_id, prediction);
+    }
+
+
     //    @Override
 //    public Observable<RM_SignUp> signUp(String name, String uName, String email, String pswrd, String fcmToken, String city) {
 //        return calls.Sign_Up(name, uName, email, pswrd, fcmToken, city);

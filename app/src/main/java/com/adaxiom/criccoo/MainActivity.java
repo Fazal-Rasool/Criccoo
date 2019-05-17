@@ -7,7 +7,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -18,10 +20,12 @@ import android.widget.VideoView;
 
 import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.model.response.RM_Commentry;
+import com.adaxiom.model.response.RM_WinnerPrediction;
 import com.adaxiom.utils.Utils;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.DecimalFormat;
+import java.util.zip.Inflater;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,8 +36,10 @@ import rx.schedulers.Schedulers;
 
 import static com.adaxiom.utils.Constants.PREF_FIRST_TEAM;
 import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
+import static com.adaxiom.utils.Constants.PREF_IS_VOTE;
 import static com.adaxiom.utils.Constants.PREF_MATCH_ID;
 import static com.adaxiom.utils.Constants.PREF_SECOND_TEAM;
+import static com.adaxiom.utils.Constants.PREF_USER_ID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
     private Subscription getSubscription;
     //    String path = "https://www.youtube.com/watch?v=J9wCvyxqAxU";
     String path = "https://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4";
-    AlertDialog alert;
+    AlertDialog alertLogout, alertVoteTeam;
+
+    String teamOne, teamTwo, yourSelectedTeam;
 
 
     public static void startActivity(Context context) {
@@ -93,9 +101,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        teamOne = Prefs.getString(PREF_FIRST_TEAM, "");
+        teamTwo = Prefs.getString(PREF_SECOND_TEAM, "");
 
         startVideo();
-        setTeamLogos();
+        setTeamLogos(teamOne, teamTwo,
+                tvNameTeamOne, tvNameTeamSecond,
+                ivFirstTeamDashboard, ivSecondTeamDashboard);
+
+        if (!checkIsVote())
+            AlertSelectTeam();
     }
 
     private void startVideo() {
@@ -215,74 +230,74 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setTeamLogos() {
-        String teamFirst = Prefs.getString(PREF_FIRST_TEAM, "");
-        String teamSecond = Prefs.getString(PREF_SECOND_TEAM, "");
+    private void setTeamLogos(String teamFirst, String teamSecond,
+                              TextView tvOne, TextView tvSecond,
+                              ImageView ivOne, ImageView ivTwo) {
 
         if (!teamFirst.equalsIgnoreCase("") || !teamSecond.equalsIgnoreCase("")) {
             if (teamFirst.equalsIgnoreCase("ENGLAND")) {
-                ivFirstTeamDashboard.setImageResource(R.drawable.ic_eng);
-                tvNameTeamOne.setText("ENG");
+                ivOne.setImageResource(R.drawable.ic_eng);
+                tvOne.setText("ENG");
             } else if (teamFirst.equalsIgnoreCase("AUSTRALIA")) {
-                ivFirstTeamDashboard.setImageResource(R.drawable.ic_aus);
-                tvNameTeamOne.setText("AUS");
+                ivOne.setImageResource(R.drawable.ic_aus);
+                tvOne.setText("AUS");
             } else if (teamFirst.equalsIgnoreCase("INDIA")) {
-                ivFirstTeamDashboard.setImageResource(R.drawable.ic_ind);
-                tvNameTeamOne.setText("IND");
+                ivOne.setImageResource(R.drawable.ic_ind);
+                tvOne.setText("IND");
             } else if (teamFirst.equalsIgnoreCase("PAKISTAN")) {
-                ivFirstTeamDashboard.setImageResource(R.drawable.ic_pak);
-                tvNameTeamOne.setText("PAK");
+                ivOne.setImageResource(R.drawable.ic_pak);
+                tvOne.setText("PAK");
             } else if (teamFirst.equalsIgnoreCase("AFGHANISTAN")) {
-                ivFirstTeamDashboard.setImageResource(R.drawable.ic_afg);
-                tvNameTeamOne.setText("AFG");
+                ivOne.setImageResource(R.drawable.ic_afg);
+                tvOne.setText("AFG");
             } else if (teamFirst.equalsIgnoreCase("BANGLADESH")) {
-                ivFirstTeamDashboard.setImageResource(R.drawable.ic_ban);
-                tvNameTeamOne.setText("BAN");
+                ivOne.setImageResource(R.drawable.ic_ban);
+                tvOne.setText("BAN");
             } else if (teamFirst.equalsIgnoreCase("NEW ZEALAND")) {
-                ivFirstTeamDashboard.setImageResource(R.drawable.ic_nz);
-                tvNameTeamOne.setText("NZ");
+                ivOne.setImageResource(R.drawable.ic_nz);
+                tvOne.setText("NZ");
             } else if (teamFirst.equalsIgnoreCase("SOUTH AFRICA")) {
-                ivFirstTeamDashboard.setImageResource(R.drawable.ic_sa);
-                tvNameTeamOne.setText("SA");
+                ivOne.setImageResource(R.drawable.ic_sa);
+                tvOne.setText("SA");
             } else if (teamFirst.equalsIgnoreCase("SRI LANKA")) {
-                ivFirstTeamDashboard.setImageResource(R.drawable.ic_sl);
-                tvNameTeamOne.setText("SL");
+                ivOne.setImageResource(R.drawable.ic_sl);
+                tvOne.setText("SL");
             } else if (teamFirst.equalsIgnoreCase("WEST INDIES")) {
-                ivFirstTeamDashboard.setImageResource(R.drawable.ic_wi);
-                tvNameTeamOne.setText("WI");
+                ivOne.setImageResource(R.drawable.ic_wi);
+                tvOne.setText("WI");
             }
 
 
             if (teamSecond.equalsIgnoreCase("ENGLAND")) {
-                ivSecondTeamDashboard.setImageResource(R.drawable.ic_eng);
-                tvNameTeamSecond.setText("ENG");
+                ivTwo.setImageResource(R.drawable.ic_eng);
+                tvSecond.setText("ENG");
             } else if (teamSecond.equalsIgnoreCase("AUSTRALIA")) {
-                ivSecondTeamDashboard.setImageResource(R.drawable.ic_aus);
-                tvNameTeamSecond.setText("AUS");
+                ivTwo.setImageResource(R.drawable.ic_aus);
+                tvSecond.setText("AUS");
             } else if (teamSecond.equalsIgnoreCase("INDIA")) {
-                ivSecondTeamDashboard.setImageResource(R.drawable.ic_ind);
-                tvNameTeamSecond.setText("IND");
+                ivTwo.setImageResource(R.drawable.ic_ind);
+                tvSecond.setText("IND");
             } else if (teamSecond.equalsIgnoreCase("PAKISTAN")) {
-                ivSecondTeamDashboard.setImageResource(R.drawable.ic_pak);
-                tvNameTeamSecond.setText("PAK");
+                ivTwo.setImageResource(R.drawable.ic_pak);
+                tvSecond.setText("PAK");
             } else if (teamSecond.equalsIgnoreCase("AFGHANISTAN")) {
-                ivSecondTeamDashboard.setImageResource(R.drawable.ic_afg);
-                tvNameTeamSecond.setText("AFG");
+                ivTwo.setImageResource(R.drawable.ic_afg);
+                tvSecond.setText("AFG");
             } else if (teamSecond.equalsIgnoreCase("BANGLADESH")) {
-                ivSecondTeamDashboard.setImageResource(R.drawable.ic_ban);
-                tvNameTeamSecond.setText("BAN");
+                ivTwo.setImageResource(R.drawable.ic_ban);
+                tvSecond.setText("BAN");
             } else if (teamSecond.equalsIgnoreCase("NEW ZEALAND")) {
-                ivSecondTeamDashboard.setImageResource(R.drawable.ic_nz);
-                tvNameTeamSecond.setText("NZ");
+                ivTwo.setImageResource(R.drawable.ic_nz);
+                tvSecond.setText("NZ");
             } else if (teamSecond.equalsIgnoreCase("SOUTH AFRICA")) {
-                ivSecondTeamDashboard.setImageResource(R.drawable.ic_sa);
-                tvNameTeamSecond.setText("SA");
+                ivTwo.setImageResource(R.drawable.ic_sa);
+                tvSecond.setText("SA");
             } else if (teamSecond.equalsIgnoreCase("SRI LANKA")) {
-                ivSecondTeamDashboard.setImageResource(R.drawable.ic_sl);
-                tvNameTeamSecond.setText("SL");
+                ivTwo.setImageResource(R.drawable.ic_sl);
+                tvSecond.setText("SL");
             } else if (teamSecond.equalsIgnoreCase("WEST INDIES")) {
-                ivSecondTeamDashboard.setImageResource(R.drawable.ic_wi);
-                tvNameTeamSecond.setText("WI");
+                ivTwo.setImageResource(R.drawable.ic_wi);
+                tvSecond.setText("WI");
             }
         }
     }
@@ -298,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
                 "Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        alert.dismiss();
+                        alertLogout.dismiss();
                         Prefs.putInt(PREF_IS_LOGIN, 0);
                         Login.startActivity(MainActivity.this);
                         finish();
@@ -308,13 +323,154 @@ public class MainActivity extends AppCompatActivity {
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                alert.dismiss();
+                alertLogout.dismiss();
             }
         });
 
-        alert = builder.create();
-        alert.show();
+        alertLogout = builder.create();
+        alertLogout.show();
     }
 
+
+    public void AlertSelectTeam() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setTitle("Which team will win this match?");
+// ...Irrelevant code for customizing the buttons and title
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.layout_alert_team_selection, null);
+        dialogBuilder.setView(dialogView);
+
+        View viewTeamOne = dialogView.findViewById(R.id.viewAlertTeamOne);
+        View viewTeamTwo = dialogView.findViewById(R.id.viewAlertTeamTwo);
+
+        ImageView ivTeamOne = dialogView.findViewById(R.id.ivAlertTeamOne);
+        ImageView ivTeamTwo = dialogView.findViewById(R.id.ivAlertTeamTwo);
+
+        final TextView tvTeamOne = dialogView.findViewById(R.id.tvNameAlertTeamOne);
+        final TextView tvTeamTwo = dialogView.findViewById(R.id.tvAlertTeamTwo);
+
+        setTeamLogos(teamOne, teamTwo,
+                tvTeamOne, tvTeamTwo,
+                ivTeamOne, ivTeamTwo);
+
+
+        viewTeamOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String shortName = tvTeamOne.getText().toString();
+                yourSelectedTeam = getCompleteName(shortName);
+                API_WinnerPrediction();
+            }
+        });
+
+        viewTeamTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String shortName = tvTeamTwo.getText().toString();
+                yourSelectedTeam = getCompleteName(shortName);
+                API_WinnerPrediction();
+            }
+        });
+
+
+        alertVoteTeam = dialogBuilder.create();
+        alertVoteTeam.show();
+    }
+
+
+    public void API_WinnerPrediction() {
+        String matchId = Prefs.getString(PREF_MATCH_ID, "");
+        int userid = Prefs.getInt(PREF_USER_ID, 0);
+
+        avLoading.setVisibility(View.VISIBLE);
+
+        getSubscription = DownloaderManager.getGeneralDownloader().
+                API_WinnerPrediction(userid, matchId, yourSelectedTeam)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<RM_WinnerPrediction>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(final Throwable e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                avLoading.setVisibility(View.GONE);
+                                Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onNext(final RM_WinnerPrediction model) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                avLoading.setVisibility(View.GONE);
+                                if (!model.error) {
+                                    alertVoteTeam.dismiss();
+                                    setIsVoteFlag();
+                                    Toast.makeText(MainActivity.this, model.message, Toast.LENGTH_SHORT).show();
+                                } else
+                                    Toast.makeText(MainActivity.this, model.message, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+    }
+
+
+    public boolean checkIsVote() {
+        String str = Prefs.getString(PREF_IS_VOTE, "");
+        String matchId = Prefs.getString(PREF_MATCH_ID, "");
+        if (!str.equalsIgnoreCase("")) {
+            String[] array = str.split(",");
+            String mId = array[0];
+            String flag = array[1];
+            if (mId.equalsIgnoreCase(matchId)) return true;
+            else return false;
+
+        } else {
+            return false;
+        }
+    }
+
+    public void setIsVoteFlag() {
+        String matchId = Prefs.getString(PREF_MATCH_ID, "");
+        String isVote = matchId + ",1";
+        Prefs.putString(PREF_IS_VOTE, isVote);
+    }
+
+
+
+    public String getCompleteName(String shortName){
+        String fullName="";
+        if(shortName.equalsIgnoreCase("ENG"))
+            fullName = "ENGLAND";
+        else if(shortName.equalsIgnoreCase("AUS"))
+            fullName = "AUSTRALIA";
+        else if(shortName.equalsIgnoreCase("IND"))
+            fullName = "INDIA";
+        else if(shortName.equalsIgnoreCase("PAK"))
+            fullName = "PAKISTAN";
+        else if(shortName.equalsIgnoreCase("AFG"))
+            fullName = "AFGHANISTAN";
+        else if(shortName.equalsIgnoreCase("BAN"))
+            fullName = "BANGLADESH";
+        else if(shortName.equalsIgnoreCase("NZ"))
+            fullName = "NEW ZEALAND";
+        else if(shortName.equalsIgnoreCase("SA"))
+            fullName = "SOUTH AFRICA";
+        else if(shortName.equalsIgnoreCase("SL"))
+            fullName = "SRI LANKA";
+        else if(shortName.equalsIgnoreCase("WI"))
+            fullName = "WEST INDIES";
+
+        return fullName;
+
+    }
 
 }

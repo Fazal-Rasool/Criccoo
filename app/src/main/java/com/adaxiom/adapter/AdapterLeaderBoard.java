@@ -58,7 +58,7 @@ public class AdapterLeaderBoard extends RecyclerView.Adapter<AdapterLeaderBoard.
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
 
-        viewHolder.tvRank.setText(position+"");
+        viewHolder.tvRank.setText((position+1)+"");
         viewHolder.tvName.setText(list.all_users.get(position).u_username);
         viewHolder.tvPoints.setText(list.all_users.get(position).total_score);
 

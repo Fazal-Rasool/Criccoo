@@ -11,6 +11,7 @@ import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
+import com.adaxiom.model.response.RM_WinnerPrediction;
 import com.adaxiom.network.BackendConnector;
 
 import java.util.List;
@@ -331,6 +332,36 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
 
                             @Override
                             public void onNext(RM_Commentry authResponse) {
+                                subscriber.onNext(authResponse);
+                            }
+                        });
+            }
+        });
+    }
+
+
+
+    public Observable<RM_WinnerPrediction> API_WinnerPrediction(final int userid, final String matchid, final String prediction) {
+
+        return Observable.create(new Observable.OnSubscribe<RM_WinnerPrediction>() {
+            @Override
+            public void call(final Subscriber<? super RM_WinnerPrediction> subscriber) {
+                beConnector.WinnerPrediction(userid,matchid,prediction)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(Schedulers.newThread())
+                        .subscribe(new Subscriber<RM_WinnerPrediction>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(RM_WinnerPrediction authResponse) {
                                 subscriber.onNext(authResponse);
                             }
                         });

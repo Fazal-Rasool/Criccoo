@@ -22,6 +22,7 @@ public interface Constants {
     String API_MATCH_PREDICTION="/user_match_prediction";
     String API_GET_COMMENTRY="/get_full_commentry/{match_id}";
     String API_LEADERBOARD="/leaderboards/{user_id}";
+    String API_WINNER_PREDICTION="/winner_prediction";
 
 
     //Prefrence
@@ -37,6 +38,6 @@ public interface Constants {
     String PREF_INNING_ID ="inning_id";
     String PREF_FIRST_TEAM ="team_one_id";
     String PREF_SECOND_TEAM="team_two_id";
-
+    String PREF_IS_VOTE="is_vote";
 
 }
