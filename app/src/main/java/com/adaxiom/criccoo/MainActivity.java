@@ -25,6 +25,7 @@ import com.adaxiom.utils.Utils;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.zip.Inflater;
 
 import butterknife.BindView;
@@ -34,11 +35,14 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
 
+import static com.adaxiom.utils.Constants.PREF_BLOCK_ID;
 import static com.adaxiom.utils.Constants.PREF_FIRST_TEAM;
 import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
 import static com.adaxiom.utils.Constants.PREF_IS_VOTE;
 import static com.adaxiom.utils.Constants.PREF_MATCH_ID;
 import static com.adaxiom.utils.Constants.PREF_SECOND_TEAM;
+import static com.adaxiom.utils.Constants.PREF_TEAM_ONE_VOTE;
+import static com.adaxiom.utils.Constants.PREF_TEAM_TWO_VOTE;
 import static com.adaxiom.utils.Constants.PREF_USER_ID;
 
 public class MainActivity extends AppCompatActivity {
@@ -104,13 +108,27 @@ public class MainActivity extends AppCompatActivity {
         teamOne = Prefs.getString(PREF_FIRST_TEAM, "");
         teamTwo = Prefs.getString(PREF_SECOND_TEAM, "");
 
-        startVideo();
+//        startVideo();
         setTeamLogos(teamOne, teamTwo,
                 tvNameTeamOne, tvNameTeamSecond,
                 ivFirstTeamDashboard, ivSecondTeamDashboard);
 
         if (!checkIsVote())
             AlertSelectTeam();
+
+        setValues();
+    }
+
+    private void setValues() {
+
+        String teamOneVote = Prefs.getString(PREF_TEAM_ONE_VOTE,"0");
+        String teamTwoVote = Prefs.getString(PREF_TEAM_TWO_VOTE,"0");
+
+        tvTeamVoteDashboard.setText(teamOneVote+" | "+teamTwoVote);
+
+        setProgress(teamOneVote, teamTwoVote);
+
+
     }
 
     private void startVideo() {
@@ -147,11 +165,11 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivPrediction_Dashboard:
-//                int blockId = Prefs.getInt(PREF_BLOCK_ID, 6);
-//                if (blockId != 6) {
+                int blockId = Prefs.getInt(PREF_BLOCK_ID, 6);
+                if (blockId != 6) {
                 SelectBlock.startActivity(MainActivity.this);
-//                } else
-//                    Toast.makeText(this, "Prediction will enable before 20 mints of match start time", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(this, "Please wait until prediction will be enable", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.viewEarning_Dashboard:
                 TotalEarning.startActivity(this);
@@ -315,6 +333,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         alertLogout.dismiss();
                         Prefs.putInt(PREF_IS_LOGIN, 0);
+//                        Prefs.putInt(PREF_USER_ID, 0);
                         Login.startActivity(MainActivity.this);
                         finish();
                     }
@@ -410,12 +429,17 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 avLoading.setVisibility(View.GONE);
-                                if (!model.error) {
-                                    alertVoteTeam.dismiss();
-                                    setIsVoteFlag();
-                                    Toast.makeText(MainActivity.this, model.message, Toast.LENGTH_SHORT).show();
-                                } else
-                                    Toast.makeText(MainActivity.this, model.message, Toast.LENGTH_SHORT).show();
+                                alertVoteTeam.dismiss();
+                                setIsVoteFlag();
+                                if(!model.error){
+                                    Prefs.putString(PREF_TEAM_ONE_VOTE, model.team_1.total_count);
+                                    Prefs.putString(PREF_TEAM_TWO_VOTE, model.team_2.total_count);
+                                    setValues();
+                                }
+//                                if (!model.get(0).prediction) {
+//                                    Toast.makeText(MainActivity.this, model.message, Toast.LENGTH_SHORT).show();
+//                                } else
+//                                    Toast.makeText(MainActivity.this, model.message, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -425,13 +449,25 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean checkIsVote() {
         String str = Prefs.getString(PREF_IS_VOTE, "");
+        int id = Prefs.getInt(PREF_USER_ID, 0);
         String matchId = Prefs.getString(PREF_MATCH_ID, "");
         if (!str.equalsIgnoreCase("")) {
             String[] array = str.split(",");
             String mId = array[0];
             String flag = array[1];
-            if (mId.equalsIgnoreCase(matchId)) return true;
-            else return false;
+            String uId = array[2];
+            if (mId.equalsIgnoreCase(matchId) &&
+                    uId.equalsIgnoreCase(id+"")&&
+                    flag.equalsIgnoreCase("1")) {
+                return true;
+//                if(uId.equalsIgnoreCase(id+"")){
+//                    return true;
+//                }else{
+//                    return false;
+//                }
+            }
+            else
+                return false;
 
         } else {
             return false;
@@ -440,37 +476,56 @@ public class MainActivity extends AppCompatActivity {
 
     public void setIsVoteFlag() {
         String matchId = Prefs.getString(PREF_MATCH_ID, "");
-        String isVote = matchId + ",1";
+        int userId = Prefs.getInt(PREF_USER_ID, 0);
+        String isVote = matchId + ",1," + userId;
         Prefs.putString(PREF_IS_VOTE, isVote);
     }
 
 
-
-    public String getCompleteName(String shortName){
-        String fullName="";
-        if(shortName.equalsIgnoreCase("ENG"))
+    public String getCompleteName(String shortName) {
+        String fullName = "";
+        if (shortName.equalsIgnoreCase("ENG"))
             fullName = "ENGLAND";
-        else if(shortName.equalsIgnoreCase("AUS"))
+        else if (shortName.equalsIgnoreCase("AUS"))
             fullName = "AUSTRALIA";
-        else if(shortName.equalsIgnoreCase("IND"))
+        else if (shortName.equalsIgnoreCase("IND"))
             fullName = "INDIA";
-        else if(shortName.equalsIgnoreCase("PAK"))
+        else if (shortName.equalsIgnoreCase("PAK"))
             fullName = "PAKISTAN";
-        else if(shortName.equalsIgnoreCase("AFG"))
+        else if (shortName.equalsIgnoreCase("AFG"))
             fullName = "AFGHANISTAN";
-        else if(shortName.equalsIgnoreCase("BAN"))
+        else if (shortName.equalsIgnoreCase("BAN"))
             fullName = "BANGLADESH";
-        else if(shortName.equalsIgnoreCase("NZ"))
+        else if (shortName.equalsIgnoreCase("NZ"))
             fullName = "NEW ZEALAND";
-        else if(shortName.equalsIgnoreCase("SA"))
+        else if (shortName.equalsIgnoreCase("SA"))
             fullName = "SOUTH AFRICA";
-        else if(shortName.equalsIgnoreCase("SL"))
+        else if (shortName.equalsIgnoreCase("SL"))
             fullName = "SRI LANKA";
-        else if(shortName.equalsIgnoreCase("WI"))
+        else if (shortName.equalsIgnoreCase("WI"))
             fullName = "WEST INDIES";
 
         return fullName;
 
     }
+
+
+    public void setProgress(String total1, String total2){
+        if(total1.equalsIgnoreCase("") || total2.equalsIgnoreCase(""))
+            return;
+
+        int totalOne = Integer.parseInt(total1);
+        int totalTwo = Integer.parseInt(total2);
+
+        int meanTotal = totalOne + totalTwo;
+
+        barFirstTeamDashboard.setMax(meanTotal);
+        barFirstTeamDashboard.setProgress(totalOne);
+
+        barSecondTeamDashboard.setMax(meanTotal);
+        barSecondTeamDashboard.setProgress(totalTwo);
+
+    }
+
 
 }

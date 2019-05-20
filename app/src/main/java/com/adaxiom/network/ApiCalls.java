@@ -92,6 +92,20 @@ public interface ApiCalls {
 
     );
 
+    @FormUrlEncoded
+    @POST(API_SIGN_UP)
+    Observable<RM_SignUp> SignUpOther(
+            @Field("name") String name
+            , @Field("username") String UserName
+            , @Field("email") String email
+            , @Field("password") String password
+            , @Field("fcm_token") String token
+            , @Field("city") String city
+
+    );
+
+
+
     @GET(API_LEADERBOARD)
     Observable<RM_LeaderBoard> LeaderBoard(@Path("user_id") int userId);
 

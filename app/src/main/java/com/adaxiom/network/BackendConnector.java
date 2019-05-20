@@ -28,6 +28,8 @@ public interface BackendConnector {
 
         Observable<RM_SignUp> signUp(String name, String uName, String email, String pswrd, String fcmToken, String city);
 
+        Observable<RM_SignUp> signUpOther(String name, String uName, String email, String pswrd, String fcmToken, String city);
+
         //        Observable<RM_SignUp> signUp(SignUpBody signUpBody);
 //        Observable<RM_Login> Login(LoginBody loginBody);
         Observable<RM_Login> LoginParam(String user, String pass, String from, String fcm);

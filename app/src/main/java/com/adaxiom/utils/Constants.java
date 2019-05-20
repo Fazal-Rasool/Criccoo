@@ -15,6 +15,7 @@ public interface Constants {
     //API Method Name
     String API_GET_ALL_JOBS="/warranty/{user_id}";
     String API_SIGN_UP="/signup";
+    String API_SIGNUP_OTHER="/signup_other";
     String API_LOGIN="/login";
     String API_MATCH_ACTIVE="/match_active";
     String API_BLOCK_LIST="/block_list";
@@ -39,5 +40,7 @@ public interface Constants {
     String PREF_FIRST_TEAM ="team_one_id";
     String PREF_SECOND_TEAM="team_two_id";
     String PREF_IS_VOTE="is_vote";
+    String PREF_TEAM_ONE_VOTE="team_one_vote";
+    String PREF_TEAM_TWO_VOTE="team_two_vote";
 
 }

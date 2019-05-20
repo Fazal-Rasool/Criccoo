@@ -109,6 +109,13 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
 
 
     @Override
+    public Observable<RM_SignUp> signUpOther(String name, String uName, String email, String pswrd, String fcmToken, String city) {
+        return calls.SignUpOther(name, uName, email, pswrd, fcmToken, city);
+    }
+
+
+
+    @Override
     public Observable<RM_Login> LoginParam(String user, String pass, String from, String fcmToken) {
         return calls.LoginParam(user, pass, from, fcmToken);
     }

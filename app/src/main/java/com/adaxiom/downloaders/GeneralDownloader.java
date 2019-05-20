@@ -64,6 +64,45 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
 
 
 
+
+    public Observable<RM_SignUp> API_SignUpOther(final String name,
+                                            final String uName,
+                                            final String email,
+                                            final String pswrd,
+                                            final String fcmToken,
+                                            final String city
+    ) {
+
+        return Observable.create(new Observable.OnSubscribe<RM_SignUp>() {
+            @Override
+            public void call(final Subscriber<? super RM_SignUp> subscriber) {
+                beConnector.signUp(name,uName,email,pswrd,fcmToken,city)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(Schedulers.newThread())
+                        .subscribe(new Subscriber<RM_SignUp>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(RM_SignUp authResponse) {
+                                subscriber.onNext(authResponse);
+                            }
+                        });
+            }
+        });
+    }
+
+
+
+
+
 //    public Observable<RM_SignUp> API_SignUp(final SignUpBody signUpBody) {
 //
 //        return Observable.create(new Observable.OnSubscribe<RM_SignUp>() {

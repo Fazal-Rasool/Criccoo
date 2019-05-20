@@ -102,8 +102,9 @@
             android:id="@+id/ivGetYourCash"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.9"
+            android:layout_weight="0.7"
             android:gravity="center"
+            android:orientation="vertical"
             android:background="@drawable/get_your_cash">
         <!--<ImageView-->
             <!--android:id="@+id/ivGetYourCash"-->

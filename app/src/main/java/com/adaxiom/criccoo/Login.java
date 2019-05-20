@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.model.response.RM_Login;
+import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.utils.Utils;
 import com.bumptech.glide.request.RequestOptions;
 import com.facebook.AccessToken;
@@ -28,6 +29,7 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -176,7 +178,7 @@ public class Login extends AppCompatActivity {
                 Uri photoUrl = account.getPhotoUrl();
 
                 if (!name.equalsIgnoreCase(""))
-                    API_Login(name, "321", "G");
+                    API_Login(id, "321", "G");
                 else
                     Toast.makeText(Login.this, "Error while login with Google!!!", Toast.LENGTH_SHORT).show();
             }
@@ -220,6 +222,10 @@ public class Login extends AppCompatActivity {
             @Override
             public void onCompleted(JSONObject object, GraphResponse response) {
                 try {
+                    Profile profile = Profile.getCurrentProfile();
+                    if(profile != null){
+
+                    }
                     String first_name = object.getString("first_name");
                     String last_name = object.getString("last_name");
 //                    String email = object.getString("email");
@@ -236,7 +242,7 @@ public class Login extends AppCompatActivity {
 
                     if (object != null) {
                         String userName = first_name + " " + last_name;
-                        API_Login(userName, "123", "F");
+                        API_Login(id, "123", "F");
                     } else {
                         Toast.makeText(Login.this, "Could not fetch data from Facebook!!!", Toast.LENGTH_SHORT).show();
                     }
@@ -273,7 +279,9 @@ public class Login extends AppCompatActivity {
                 if (Utils.isNetworkAvailable(Login.this)) {
                     String userName = etEmailLogin.getText().toString();
                     String password = etPasswordLogin.getText().toString();
+                    if(Utils.isEmailValid(userName))
                     API_Login(userName, password, "C");
+                    else Toast.makeText(this,"Please enter valid email address", Toast.LENGTH_SHORT).show();
                 } else
                     Toast.makeText(Login.this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
                 break;
@@ -313,6 +321,70 @@ public class Login extends AppCompatActivity {
 
 
     }
+
+
+
+    public void API_LoginWithOther(String name, String userName, String email ) {
+
+        String fcmToken = Prefs.getString(PREF_FCM_TOKEN,"");
+        String password = "123";
+        String city = "Lahore";
+
+
+        Utils.showHideLoaderView(avLoading,true);
+
+//        if (getLoginSubscription != null) {
+//            return;
+//        }
+
+        getLoginSubscription = DownloaderManager.getGeneralDownloader().API_SignUpOther(
+                name,
+                userName,
+                email,
+                password,
+                fcmToken,
+                city
+        )
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<RM_SignUp>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(final Throwable e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Utils.showHideLoaderView(avLoading,false);
+                                Toast.makeText(Login.this, e.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onNext(final RM_SignUp model) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+//                                Utils.showHideLoaderView(avLoading,false);
+//                                if (model.error != true) {
+//                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
+//                                    callNewActivity(model.userid,model.username, model.email);
+//                                } else
+//                                    Toast.makeText(Login.this, model.message,
+//                                            Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
+    }
+
+
+
 
 
     public void API_Login(String userName, String password, String from) {
