@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_SignUp;
+import com.adaxiom.model.response.RM_SignUpOther;
 import com.adaxiom.utils.Utils;
 import com.bumptech.glide.request.RequestOptions;
 import com.facebook.AccessToken;
@@ -30,6 +33,7 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -38,6 +42,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.pixplicity.easyprefs.library.Prefs;
 
@@ -70,9 +75,9 @@ public class Login extends AppCompatActivity {
     @BindView(R.id.btnLogin_login)
     Button btnLoginLogin;
     @BindView(R.id.btnLoginFB_login)
-    Button btnLoginFBLogin;
+    ImageView btnLoginFBLogin;
     @BindView(R.id.btnLoginGoogle_login)
-    Button btnLoginGoogleLogin;
+    ImageView btnLoginGoogleLogin;
     @BindView(R.id.tvGoToSignUp)
     TextView tvGoToSignUp;
     @BindView(R.id.login_button)
@@ -88,8 +93,11 @@ public class Login extends AppCompatActivity {
     private CallbackManager callbackManager;
     private static final String EMAIL = "email";
 
-    private GoogleSignInClient mGoogleSigninClient;
+    private static GoogleSignInClient mGoogleSigninClient;
     private int RQ_SIGN_IN = 0;
+    private int RQ_GOOGLE_SIGN_IN = 1;
+
+    private static Context context;
 
 
     public static void startActivity(Context context) {
@@ -103,6 +111,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        context = this;
 
 
         initialization();
@@ -143,64 +153,72 @@ public class Login extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onResume() {
-
-        //For Google already login or not
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if (account != null) {
-//            Toast.makeText(Login.this, "Google Already sign in", Toast.LENGTH_SHORT).show();
-//            displayGoogleSignInData(account);
-        }
-
-        //For Facebook if already login or not
-        if (AccessToken.getCurrentAccessToken() != null) {
-//            loadFBUserProfile(AccessToken.getCurrentAccessToken());
-        }
-
-        super.onResume();
-    }
+//    @Override
+//    protected void onResume() {
+//
+//        //For Google already login or not
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+//        if (account != null) {
+////            Toast.makeText(Login.this, "Google Already sign in", Toast.LENGTH_SHORT).show();
+////            displayGoogleSignInData(account);
+//        }
+//
+//        //For Facebook if already login or not
+//        if (AccessToken.getCurrentAccessToken() != null) {
+////            loadFBUserProfile(AccessToken.getCurrentAccessToken());
+//        }
+//
+//        super.onResume();
+//    }
 
     private void googleSignIn() {
         Intent signInIntent = mGoogleSigninClient.getSignInIntent();
         startActivityForResult(signInIntent, RQ_SIGN_IN);
     }
 
-    private void displayGoogleSignInData(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            if (account != null) {
-                String name = account.getDisplayName();
-                String givenName = account.getGivenName();
-                String familyName = account.getFamilyName();
-                String email = account.getEmail();
-                String id = account.getId();
-                Uri photoUrl = account.getPhotoUrl();
-
-                if (!name.equalsIgnoreCase(""))
-                    API_Login(id, "321", "G");
-                else
-                    Toast.makeText(Login.this, "Error while login with Google!!!", Toast.LENGTH_SHORT).show();
-            }
-
-        } catch (ApiException e) {
-            Log.e("Google Exception ", e.getStatusMessage());
-        }
-    }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+
 
         if (requestCode == RQ_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 //            API_Login("Google User","","G");
-            displayGoogleSignInData(task);
-//            Toast.makeText(Login.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-//            callNewActivity("Google","google@gmail.com");
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                if (account != null) {
+                    String name = account.getDisplayName();
+                    String id = account.getId();
+//                String givenName = account.getGivenName();
+//                String familyName = account.getFamilyName();
+//                String email = account.getEmail();
+
+//                Uri photoUrl = account.getPhotoUrl();
+
+                    if (!name.equalsIgnoreCase(""))
+                        API_LoginWithOther(name, id, "G");
+                    else
+                        Toast.makeText(Login.this, "Error while login with Google!!!", Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (ApiException e) {
+                Log.e("Google Exception ", e.getMessage());
+            }
         }
+
+//        if(RQ_GOOGLE_SIGN_IN == 1) {
+
+//        }
+
+
+
+
+
+
     }
 
 
@@ -223,7 +241,7 @@ public class Login extends AppCompatActivity {
             public void onCompleted(JSONObject object, GraphResponse response) {
                 try {
                     Profile profile = Profile.getCurrentProfile();
-                    if(profile != null){
+                    if (profile != null) {
 
                     }
                     String first_name = object.getString("first_name");
@@ -242,7 +260,8 @@ public class Login extends AppCompatActivity {
 
                     if (object != null) {
                         String userName = first_name + " " + last_name;
-                        API_Login(id, "123", "F");
+                        Log.e("FB", "Login with fb");
+                        API_LoginWithOther(userName, id, "F");
                     } else {
                         Toast.makeText(Login.this, "Could not fetch data from Facebook!!!", Toast.LENGTH_SHORT).show();
                     }
@@ -264,10 +283,10 @@ public class Login extends AppCompatActivity {
 
 
     public void setTextInString() {
-        String text = "New to Criccoo? SignUp Now";
+        String text = "New to Criccoo? Sign up Now";
         SpannableString spannableString = new SpannableString(text);
-        StyleSpan boldItalicSpan = new StyleSpan(Typeface.BOLD_ITALIC);
-        spannableString.setSpan(boldItalicSpan, 16, 26, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        StyleSpan boldItalicSpan = new StyleSpan(Typeface.BOLD);
+        spannableString.setSpan(boldItalicSpan, 16, 27, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         tvGoToSignUp.setText(spannableString);
     }
 
@@ -279,27 +298,32 @@ public class Login extends AppCompatActivity {
                 if (Utils.isNetworkAvailable(Login.this)) {
                     String userName = etEmailLogin.getText().toString();
                     String password = etPasswordLogin.getText().toString();
-                    if(Utils.isEmailValid(userName))
-                    API_Login(userName, password, "C");
-                    else Toast.makeText(this,"Please enter valid email address", Toast.LENGTH_SHORT).show();
+                    if (Utils.isEmailValid(userName))
+                        API_Login(userName, password, "C");
+                    else
+                        Toast.makeText(this, "Please enter valid email address", Toast.LENGTH_SHORT).show();
                 } else
                     Toast.makeText(Login.this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnLoginFB_login:
-                if (Utils.isNetworkAvailable(Login.this))
+                if (Utils.isNetworkAvailable(Login.this)) {
+                    RQ_GOOGLE_SIGN_IN=1;
                     loginButton.performClick();
+                }
                 else
                     Toast.makeText(Login.this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnLoginGoogle_login:
-                if (Utils.isNetworkAvailable(Login.this))
+                if (Utils.isNetworkAvailable(Login.this)) {
+                    RQ_GOOGLE_SIGN_IN=0;
                     googleSignIn();
+                }
                 else
                     Toast.makeText(Login.this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tvGoToSignUp:
                 Signup.startActivity(Login.this);
-                this.finish();
+//                this.finish();
                 break;
         }
     }
@@ -310,7 +334,7 @@ public class Login extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Prefs.putInt(PREF_USER_ID,userid);
+                Prefs.putInt(PREF_USER_ID, userid);
                 Prefs.putString(PREF_USER_NAME, userName);
                 Prefs.putString(PREF_USER_EMAIL, email);
                 Prefs.putInt(PREF_IS_LOGIN, 1);
@@ -323,15 +347,14 @@ public class Login extends AppCompatActivity {
     }
 
 
+    public void API_LoginWithOther(String name, String userName, String from) {
 
-    public void API_LoginWithOther(String name, String userName, String email ) {
-
-        String fcmToken = Prefs.getString(PREF_FCM_TOKEN,"");
+        String fcmToken = Prefs.getString(PREF_FCM_TOKEN, "");
         String password = "123";
         String city = "Lahore";
 
 
-        Utils.showHideLoaderView(avLoading,true);
+        Utils.showHideLoaderView(avLoading, true);
 
 //        if (getLoginSubscription != null) {
 //            return;
@@ -340,14 +363,14 @@ public class Login extends AppCompatActivity {
         getLoginSubscription = DownloaderManager.getGeneralDownloader().API_SignUpOther(
                 name,
                 userName,
-                email,
                 password,
                 fcmToken,
-                city
+                city,
+                from
         )
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
-                .subscribe(new Subscriber<RM_SignUp>() {
+                .subscribe(new Subscriber<RM_SignUpOther>() {
                     @Override
                     public void onCompleted() {
 
@@ -358,24 +381,24 @@ public class Login extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Utils.showHideLoaderView(avLoading,false);
+                                Utils.showHideLoaderView(avLoading, false);
                                 Toast.makeText(Login.this, e.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
                     }
 
                     @Override
-                    public void onNext(final RM_SignUp model) {
+                    public void onNext(final RM_SignUpOther model) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-//                                Utils.showHideLoaderView(avLoading,false);
-//                                if (model.error != true) {
-//                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
-//                                    callNewActivity(model.userid,model.username, model.email);
-//                                } else
-//                                    Toast.makeText(Login.this, model.message,
-//                                            Toast.LENGTH_SHORT).show();
+                                Utils.showHideLoaderView(avLoading, false);
+                                if (model.error != true) {
+                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
+                                    callNewActivity(model.userid, model.username, "");
+                                } else
+                                    Toast.makeText(Login.this, model.message,
+                                            Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -384,20 +407,17 @@ public class Login extends AppCompatActivity {
     }
 
 
-
-
-
     public void API_Login(String userName, String password, String from) {
 
-        String fcmToken = Prefs.getString(PREF_FCM_TOKEN,"");
+        String fcmToken = Prefs.getString(PREF_FCM_TOKEN, "");
 
-        Utils.showHideLoaderView(avLoading,true);
+        Utils.showHideLoaderView(avLoading, true);
 
 //        if (getLoginSubscription != null) {
 //            return;
 //        }
 
-        getLoginSubscription = DownloaderManager.getGeneralDownloader().API_LoginParam(userName, password, from,fcmToken)
+        getLoginSubscription = DownloaderManager.getGeneralDownloader().API_LoginParam(userName, password, from, fcmToken)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<RM_Login>() {
@@ -411,7 +431,7 @@ public class Login extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Utils.showHideLoaderView(avLoading,false);
+                                Utils.showHideLoaderView(avLoading, false);
                                 Toast.makeText(Login.this, e.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
@@ -422,10 +442,10 @@ public class Login extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Utils.showHideLoaderView(avLoading,false);
+                                Utils.showHideLoaderView(avLoading, false);
                                 if (model.error != true) {
                                     Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
-                                    callNewActivity(model.userid,model.username, model.email);
+                                    callNewActivity(model.userid, model.username, model.email);
                                 } else
                                     Toast.makeText(Login.this, model.message,
                                             Toast.LENGTH_SHORT).show();
@@ -437,15 +457,17 @@ public class Login extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-//        super.onBackPressed();
-
-    }
 
     public String generateRandomPassword() {
         Random r = new Random();
         return r.nextInt(999999 - 100000) + 100000 + "";
+    }
+
+
+    public static void logoutFacebook() {
+        LoginManager.getInstance().logOut();
+//        mGoogleSigninClient.signOut();
+
     }
 
 

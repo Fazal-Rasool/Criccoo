@@ -9,6 +9,7 @@ import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
+import com.adaxiom.model.response.RM_SignUpOther;
 import com.adaxiom.model.response.RM_WinnerPrediction;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public interface BackendConnector {
 
         Observable<RM_SignUp> signUp(String name, String uName, String email, String pswrd, String fcmToken, String city);
 
-        Observable<RM_SignUp> signUpOther(String name, String uName, String email, String pswrd, String fcmToken, String city);
+        Observable<RM_SignUpOther> signUpOther(String name, String uName, String pswrd, String fcmToken, String city, String from);
 
         //        Observable<RM_SignUp> signUp(SignUpBody signUpBody);
 //        Observable<RM_Login> Login(LoginBody loginBody);

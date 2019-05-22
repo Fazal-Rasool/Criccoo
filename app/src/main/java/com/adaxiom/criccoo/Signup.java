@@ -139,7 +139,7 @@ public class Signup extends AppCompatActivity {
                 String msg = model.message;
                 Toast.makeText(Signup.this, msg, Toast.LENGTH_LONG).show();
                 if (!model.error) {
-                    MainActivity.startActivity(Signup.this);
+//                    Login.startActivity(Signup.this);
                     Signup.this.finish();
                 }
 //                else Login.startActivity(Signup.this);

@@ -5,7 +5,7 @@
     <string name="facebook_app_id">584250195406295</string>
     <string name="fb_login_protocol_scheme">fb584250195406295</string>
 
-    <string name="lable_signIn_to_signUp">New to Criccoo? <font style='bold'><u>SignUp Now</u></font></string>
+    <string name="lable_signIn_to_signUp">New to Crico? <font style='bold'><u>SignUp Now</u></font></string>
 
 
     <string name="internet_connectivity_msg">Please connect to internet first</string>

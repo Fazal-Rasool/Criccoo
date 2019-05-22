@@ -9,6 +9,7 @@ import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
+import com.adaxiom.model.response.RM_SignUpOther;
 import com.adaxiom.model.response.RM_WinnerPrediction;
 
 import java.util.HashMap;
@@ -109,8 +110,8 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
 
 
     @Override
-    public Observable<RM_SignUp> signUpOther(String name, String uName, String email, String pswrd, String fcmToken, String city) {
-        return calls.SignUpOther(name, uName, email, pswrd, fcmToken, city);
+    public Observable<RM_SignUpOther> signUpOther(String name, String uName, String pswrd, String fcmToken, String city, String from) {
+        return calls.SignUpOther(name, uName, pswrd, fcmToken, city, from);
     }
 
 

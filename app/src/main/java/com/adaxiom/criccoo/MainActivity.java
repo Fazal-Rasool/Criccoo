@@ -333,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         alertLogout.dismiss();
                         Prefs.putInt(PREF_IS_LOGIN, 0);
-//                        Prefs.putInt(PREF_USER_ID, 0);
+                        Login.logoutFacebook();
                         Login.startActivity(MainActivity.this);
                         finish();
                     }

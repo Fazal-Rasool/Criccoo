@@ -32,7 +32,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/logo_text" />
+                android:src="@drawable/logo_white" />
         </LinearLayout>
 
 
@@ -113,41 +113,43 @@
             android:gravity="center"
             android:weightSum="5">
 
-            <!--<ImageView-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1.75"-->
-                <!--android:src="@drawable/fb_login_btn"-->
-                <!--android:scaleType="fitXY"/>-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1.75"-->
-                <!--android:src="@drawable/google_login_btn"-->
-                <!--android:scaleType="fitXY"/>-->
-
-            <Button
+            <ImageView
                 android:id="@+id/btnLoginFB_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.75"
-                android:background="@drawable/fb_bg"
-                android:text="Facebook login"
-                android:textAllCaps="false"
-                android:textColor="#fff"/>
+                android:src="@drawable/fb_login_btn"
+                android:scaleType="fitXY"/>
 
-
-            <Button
+            <ImageView
                 android:id="@+id/btnLoginGoogle_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:layout_weight="1.75"
-                android:background="@drawable/google_bg"
-                android:text="Google login"
-                android:textAllCaps="false"
-                android:textColor="#fff"/>
+                android:src="@drawable/google_login_btn"
+                android:scaleType="fitXY"/>
+
+            <!--<Button-->
+                <!--android:id="@+id/btnLoginFB_login"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1.75"-->
+                <!--android:background="@drawable/fb_bg"-->
+                <!--android:text="Facebook login"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textColor="#fff"/>-->
+
+
+            <!--<Button-->
+                <!--android:id="@+id/btnLoginGoogle_login"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:layout_weight="1.75"-->
+                <!--android:background="@drawable/google_bg"-->
+                <!--android:text="Google login"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textColor="#fff"/>-->
 
 
         </LinearLayout>

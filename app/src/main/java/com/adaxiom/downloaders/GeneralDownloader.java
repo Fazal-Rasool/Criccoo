@@ -11,6 +11,7 @@ import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
+import com.adaxiom.model.response.RM_SignUpOther;
 import com.adaxiom.model.response.RM_WinnerPrediction;
 import com.adaxiom.network.BackendConnector;
 
@@ -65,21 +66,21 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
 
 
 
-    public Observable<RM_SignUp> API_SignUpOther(final String name,
-                                            final String uName,
-                                            final String email,
-                                            final String pswrd,
-                                            final String fcmToken,
-                                            final String city
+    public Observable<RM_SignUpOther> API_SignUpOther(final String name,
+                                                      final String uName,
+                                                      final String pswrd,
+                                                      final String fcmToken,
+                                                      final String city,
+                                                      final String from
     ) {
 
-        return Observable.create(new Observable.OnSubscribe<RM_SignUp>() {
+        return Observable.create(new Observable.OnSubscribe<RM_SignUpOther>() {
             @Override
-            public void call(final Subscriber<? super RM_SignUp> subscriber) {
-                beConnector.signUp(name,uName,email,pswrd,fcmToken,city)
+            public void call(final Subscriber<? super RM_SignUpOther> subscriber) {
+                beConnector.signUpOther(name,uName,pswrd,fcmToken,city,from)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(Schedulers.newThread())
-                        .subscribe(new Subscriber<RM_SignUp>() {
+                        .subscribe(new Subscriber<RM_SignUpOther>() {
                             @Override
                             public void onCompleted() {
                                 subscriber.onCompleted();
@@ -91,7 +92,7 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
                             }
 
                             @Override
-                            public void onNext(RM_SignUp authResponse) {
+                            public void onNext(RM_SignUpOther authResponse) {
                                 subscriber.onNext(authResponse);
                             }
                         });

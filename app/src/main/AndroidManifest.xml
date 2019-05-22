@@ -8,16 +8,17 @@
     <application
         android:name="com.adaxiom.utils.Criccoo"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TotalEarning"
-            android:theme="@style/AppThemeNoActionBar"></activity>
+        <activity android:name=".MyProfile"></activity>
+        <activity
+            android:name=".TotalEarning"
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".LeaderBoard"
-            android:theme="@style/AppThemeNoActionBar"></activity>
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".Prediction"
             android:theme="@style/AppThemeNoActionBar" />
@@ -74,7 +75,13 @@
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
+        </service> <!-- <meta-data -->
+        <!-- android:name="io.fabric.ApiKey" -->
+        <!-- android:value="e57097e498c7f17a31525f9904c515763c736a91" -->
+        <!-- /> -->
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="e57097e498c7f17a31525f9904c515763c736a91" />
     </application>
 
 </manifest>

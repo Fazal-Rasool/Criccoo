@@ -10,13 +10,16 @@ import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.utils.Utils;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.List;
 
+import io.fabric.sdk.android.services.common.Crash;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
@@ -38,7 +41,14 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        getFcmToken();
+
+        if(Utils.isNetworkAvailable(this)) {
+            getFcmToken();
+        }
+        else {
+            Toast.makeText(this,R.string.internet_connectivity_msg,Toast.LENGTH_SHORT).show();
+            this.finish();
+        }
 
 //        new Handler().postDelayed(new Runnable() {
 //            @Override

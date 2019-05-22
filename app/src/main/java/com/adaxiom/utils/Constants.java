@@ -12,6 +12,7 @@ public interface Constants {
     //API Parameters
     String PARA_USER_ID= "user_id";
 
+
     //API Method Name
     String API_GET_ALL_JOBS="/warranty/{user_id}";
     String API_SIGN_UP="/signup";

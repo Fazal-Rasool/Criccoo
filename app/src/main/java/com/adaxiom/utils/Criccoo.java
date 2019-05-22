@@ -6,7 +6,11 @@ import android.content.ContextWrapper;
 import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.network.BackendConnector;
 import com.adaxiom.network.RetrofitConnector;
+import com.crashlytics.android.Crashlytics;
 import com.pixplicity.easyprefs.library.Prefs;
+
+
+import io.fabric.sdk.android.Fabric;
 
 import static com.adaxiom.utils.Constants.URL_LIVE;
 import static com.adaxiom.utils.Constants.URL_STAGING;
@@ -19,6 +23,9 @@ public class Criccoo extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Fabric.with(this, new Crashlytics());
+//        Crashlytics.getInstance().crash();
 
         //EasyPreferences Library
         new Prefs.Builder()

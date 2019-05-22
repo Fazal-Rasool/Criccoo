@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
@@ -36,16 +38,17 @@ public class LeaderBoard extends BaseActivity {
     RecyclerView rvLeaderBoard;
     @BindView(R.id.avLoading)
     LinearLayout avLoading;
-
-    public static AdapterLeaderBoard reAdapter;
     @BindView(R.id.tvMyRank)
     TextView tvMyRank;
     @BindView(R.id.tvTotalpoints)
     TextView tvTotalpoints;
     @BindView(R.id.tvHighestPoints)
     TextView tvHighestPoints;
+    @BindView(R.id.ivMyProfile)
+    ImageView ivMyProfile;
 
 
+    public static AdapterLeaderBoard reAdapter;
     private Subscription getSubscription;
 
     public static void startActivity(Context context) {
@@ -77,8 +80,8 @@ public class LeaderBoard extends BaseActivity {
             String myRank = mList.user.get(0).rank;
             String total = mList.user.get(0).total_score;
             tvMyRank.setText(myRank);
-            if(total != null)
-            tvTotalpoints.setText(total);
+            if (total != null)
+                tvTotalpoints.setText(total);
             else tvTotalpoints.setText("0.0");
         }
         if (mList.all_users.size() != 0) {
@@ -158,4 +161,9 @@ public class LeaderBoard extends BaseActivity {
     }
 
 
+    @OnClick(R.id.ivMyProfile)
+    public void onViewClicked() {
+        String points = tvTotalpoints.getText().toString();
+        MyProfile.startActivity(this, points);
+    }
 }

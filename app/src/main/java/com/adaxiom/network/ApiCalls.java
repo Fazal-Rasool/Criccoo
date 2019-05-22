@@ -8,6 +8,7 @@ import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
+import com.adaxiom.model.response.RM_SignUpOther;
 import com.adaxiom.model.response.RM_WinnerPrediction;
 
 import java.util.List;
@@ -29,6 +30,7 @@ import static com.adaxiom.utils.Constants.API_LEADERBOARD;
 import static com.adaxiom.utils.Constants.API_LOGIN;
 import static com.adaxiom.utils.Constants.API_MATCH_ACTIVE;
 import static com.adaxiom.utils.Constants.API_MATCH_PREDICTION;
+import static com.adaxiom.utils.Constants.API_SIGNUP_OTHER;
 import static com.adaxiom.utils.Constants.API_SIGN_UP;
 import static com.adaxiom.utils.Constants.API_WINNER_PREDICTION;
 import static com.adaxiom.utils.Constants.PARA_USER_ID;
@@ -93,14 +95,14 @@ public interface ApiCalls {
     );
 
     @FormUrlEncoded
-    @POST(API_SIGN_UP)
-    Observable<RM_SignUp> SignUpOther(
+    @POST(API_SIGNUP_OTHER)
+    Observable<RM_SignUpOther> SignUpOther(
             @Field("name") String name
             , @Field("username") String UserName
-            , @Field("email") String email
             , @Field("password") String password
             , @Field("fcm_token") String token
             , @Field("city") String city
+            , @Field("login_from") String from
 
     );
 
