@@ -12,6 +12,7 @@ import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.model.response.RM_SignUpOther;
+import com.adaxiom.model.response.RM_UserResult;
 import com.adaxiom.model.response.RM_WinnerPrediction;
 import com.adaxiom.network.BackendConnector;
 
@@ -34,13 +35,14 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
                                             final String email,
                                             final String pswrd,
                                             final String fcmToken,
-                                            final String city
+                                            final String city,
+                                            final String from
     ) {
 
         return Observable.create(new Observable.OnSubscribe<RM_SignUp>() {
             @Override
             public void call(final Subscriber<? super RM_SignUp> subscriber) {
-                beConnector.signUp(name,uName,email,pswrd,fcmToken,city)
+                beConnector.signUp(name,uName,email,pswrd,fcmToken,city,from)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(Schedulers.newThread())
                         .subscribe(new Subscriber<RM_SignUp>() {
@@ -408,6 +410,39 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
             }
         });
     }
+
+
+
+
+    public Observable<List<RM_UserResult>> API_UserResult(final int userid) {
+
+        return Observable.create(new Observable.OnSubscribe<List<RM_UserResult>>() {
+            @Override
+            public void call(final Subscriber<? super List<RM_UserResult>> subscriber) {
+                beConnector.UserResult(userid)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(Schedulers.newThread())
+                        .subscribe(new Subscriber<List<RM_UserResult>>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(List<RM_UserResult> authResponse) {
+                                subscriber.onNext(authResponse);
+                            }
+                        });
+            }
+        });
+    }
+
+
 
 
 

@@ -44,6 +44,7 @@ public class Splash extends AppCompatActivity {
 
         if(Utils.isNetworkAvailable(this)) {
             getFcmToken();
+            GetMatchId();
         }
         else {
             Toast.makeText(this,R.string.internet_connectivity_msg,Toast.LENGTH_SHORT).show();
@@ -87,7 +88,7 @@ public class Splash extends AppCompatActivity {
                 String newToken = instanceIdResult.getToken();
                 Log.d("NEW_TOKEN_SPLASH", newToken);
                 Prefs.putString(PREF_FCM_TOKEN, newToken);
-                GetMatchId();
+
             }
         });
 

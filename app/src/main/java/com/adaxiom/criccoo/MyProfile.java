@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,14 +16,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adaxiom.adapter.AdapterLeaderBoard;
+import com.adaxiom.adapter.AdapterMyProfile;
+import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.model.response.RM_LeaderBoard;
+import com.adaxiom.model.response.RM_UserResult;
 import com.adaxiom.utils.BaseActivity;
 import com.adaxiom.utils.Utils;
+import com.bumptech.glide.Glide;
 import com.pixplicity.easyprefs.library.Prefs;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
 
+import static com.adaxiom.utils.Constants.PREF_PROFILE_IMAGE;
+import static com.adaxiom.utils.Constants.PREF_USER_ID;
 import static com.adaxiom.utils.Constants.PREF_USER_NAME;
 
 public class MyProfile extends BaseActivity {
@@ -41,6 +53,9 @@ public class MyProfile extends BaseActivity {
     LinearLayout avLoading;
 
     private static String myTotalPoints = "";
+    public AdapterMyProfile reAdapter;
+
+
 
     public static void startActivity(Context context, String Points) {
         myTotalPoints=Points;
@@ -54,7 +69,7 @@ public class MyProfile extends BaseActivity {
         setContentView(R.layout.activity_my_profile);
         ButterKnife.bind(this);
 
-        setToolbar(toolbar, "Leader Board");
+        setToolbar(toolbar, "My Profile");
         setValues();
 
 
@@ -72,43 +87,90 @@ public class MyProfile extends BaseActivity {
 
         tvMyProfileName.setText(name);
         tvMyProfileTotalPoints.setText(myTotalPoints);
+
+        String imageUrl=Prefs.getString(PREF_PROFILE_IMAGE, "https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png");
+        Log.e("Image:",imageUrl);
+        if(imageUrl.equalsIgnoreCase("null"))
+            imageUrl="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png";
+        Glide.with(MyProfile.this).load(imageUrl).into(ivMyProfilePhoto);
+
     }
 
 
-//        public void setAdapter(RM_LeaderBoard mList) {
-//
-//            if (mList.user.size() != 0) {
-//                String myRank = mList.user.get(0).rank;
-//                String total = mList.user.get(0).total_score;
-//                tvMyRank.setText(myRank);
-//                if (total != null)
-//                    tvTotalpoints.setText(total);
-//                else tvTotalpoints.setText("0.0");
-//            }
-//            if (mList.all_users.size() != 0) {
-//                String highestScore = mList.all_users.get(0).total_score;
-//                tvHighestPoints.setText(highestScore);
-//            }
-//
-//
-//            rvLeaderBoard.setHasFixedSize(true);
-//            final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-//            rvLeaderBoard.setLayoutManager(layoutManager);
-//
-//
-//            reAdapter = new AdapterLeaderBoard(this, mList,
-//                    new AdapterLeaderBoard.RecyclerViewItemClickListener() {
-//                        @Override
-//                        public void recyclerViewListClicked(View v, int position) {
-//
-//                        }
-//                    });
-//
-//            rvLeaderBoard.setAdapter(reAdapter);
-//        }
+        public void setAdapter(List<RM_UserResult> mList) {
+
+
+
+            rvMyProfilePoints.setHasFixedSize(true);
+            final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            rvMyProfilePoints.setLayoutManager(layoutManager);
+
+
+            reAdapter = new AdapterMyProfile(this, mList,
+                    new AdapterMyProfile.RecyclerViewItemClickListener() {
+                        @Override
+                        public void recyclerViewListClicked(View v, int position) {
+
+                        }
+                    });
+
+            rvMyProfilePoints.setAdapter(reAdapter);
+        }
 
     private void API_GetProfileData() {
 
+        int user_id = Prefs.getInt(PREF_USER_ID, 0);
+
+        avLoading.setVisibility(View.VISIBLE);
+
+         DownloaderManager.getGeneralDownloader().
+                API_UserResult(user_id)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<List<RM_UserResult>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(final Throwable e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                avLoading.setVisibility(View.GONE);
+                                Toast.makeText(MyProfile.this, e.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onNext(final List<RM_UserResult> list) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                avLoading.setVisibility(View.GONE);
+                                setAdapter(list);
+                            }
+                        });
+                    }
+                });
+
 
     }
+
+
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 }

@@ -1,124 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="150dp"
     android:background="@color/colorPrimary"
-    android:orientation="vertical"
-    android:paddingBottom="20dp">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="10dp">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="10">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:gravity="center_horizontal">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center">
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="120dp">
 
-                <ImageView
-                    android:id="@+id/ivMyProfilePhoto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_rank" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMyProfilePhoto"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/ic_rank"
+                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_overlay="true"
+                app:civ_border_width="1dp"
+                app:civ_circle_background_color="@color/colorWhite" />
 
-                <!--<TextView-->
-                    <!--android:id="@+id/tvMyRank"-->
-                    <!--android:layout_width="100dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="bottom|center"-->
-                    <!--android:background="@drawable/bg_round_corner_darkblue"-->
-                    <!--android:fontFamily="@font/branding_bold"-->
-                    <!--android:gravity="center"-->
-                    <!--android:text="0"-->
-                    <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"-->
-                    <!--android:textColor="@color/colorWhite"-->
-                    <!--android:visibility="gone"/>-->
-            </FrameLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                android:orientation="vertical">
-
-                <!--<LinearLayout-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:gravity="center"-->
-                    <!--android:orientation="horizontal">-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:fontFamily="@font/branding_bold"-->
-                        <!--android:gravity="center"-->
-                        <!--android:text="Total"-->
-                        <!--android:textAllCaps="true"-->
-                        <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"-->
-                        <!--android:textColor="@color/colorWhite" />-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:fontFamily="@font/branding_bold"-->
-                        <!--android:text=": "-->
-                        <!--android:textAllCaps="true"-->
-                        <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"-->
-                        <!--android:textColor="@color/colorWhite" -->
-                        <!--android:visibility="gone"/>-->
-
-                    <TextView
-                        android:id="@+id/tvMyProfileName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/branding_bold"
-                        android:gravity="center"
-                        android:text="User"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                        android:textColor="@color/colorWhite" />
-                <!--</LinearLayout>-->
-
-                <!--<LinearLayout-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:gravity="center"-->
-                    <!--android:orientation="horizontal">-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:fontFamily="@font/branding_semilight"-->
-                        <!--android:text="Highest Points"-->
-                        <!--android:textAllCaps="true"-->
-                        <!--android:textColor="@color/colorWhite" />-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:fontFamily="@font/branding_semilight"-->
-                        <!--android:text=": "-->
-                        <!--android:textAllCaps="true"-->
-                        <!--android:textColor="@color/colorWhite" />-->
-
-                    <TextView
-                        android:id="@+id/tvMyProfileTotalPoints"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/branding_semilight"
-                        android:text="Total Points"
-                        android:textColor="@color/colorWhite" />
-                <!--</LinearLayout>-->
-            </LinearLayout>
         </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="7"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tvMyProfileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/branding_bold"
+                android:text="User"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorWhite" />
+
+
+            <TextView
+                android:id="@+id/tvMyProfileTotalPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/branding_semilight"
+                android:text="Total Points"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -101,7 +101,7 @@ public class Signup extends AppCompatActivity {
         avLoading.setVisibility(View.VISIBLE);
 
         getSignUpSubscription = DownloaderManager.getGeneralDownloader().
-                API_SignUp(name, uName, email, password, fcmToken, city)
+                API_SignUp(name, uName, email, password, fcmToken, city,"C")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<RM_SignUp>() {

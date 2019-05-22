@@ -9,10 +9,12 @@
         android:name="com.adaxiom.utils.Criccoo"
         android:allowBackup="true"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_neww"
+        android:icon="@mipmap/ic_launcher_neww"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyProfile"></activity>
+        <activity android:name=".MyProfile"
+            android:theme="@style/AppThemeNoActionBar"></activity>
         <activity
             android:name=".TotalEarning"
             android:theme="@style/AppThemeNoActionBar" />

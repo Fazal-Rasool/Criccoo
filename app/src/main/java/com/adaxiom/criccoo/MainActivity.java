@@ -40,6 +40,7 @@ import static com.adaxiom.utils.Constants.PREF_FIRST_TEAM;
 import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
 import static com.adaxiom.utils.Constants.PREF_IS_VOTE;
 import static com.adaxiom.utils.Constants.PREF_MATCH_ID;
+import static com.adaxiom.utils.Constants.PREF_PROFILE_IMAGE;
 import static com.adaxiom.utils.Constants.PREF_SECOND_TEAM;
 import static com.adaxiom.utils.Constants.PREF_TEAM_ONE_VOTE;
 import static com.adaxiom.utils.Constants.PREF_TEAM_TWO_VOTE;
@@ -333,6 +334,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         alertLogout.dismiss();
                         Prefs.putInt(PREF_IS_LOGIN, 0);
+                        Prefs.putString(PREF_PROFILE_IMAGE,"");
                         Login.logoutFacebook();
                         Login.startActivity(MainActivity.this);
                         finish();

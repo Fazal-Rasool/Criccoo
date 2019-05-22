@@ -23,7 +23,7 @@
             <include
                 layout="@layout/layout_my_profile"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="150dp" />
 
 
             <LinearLayout
@@ -40,7 +40,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0.9"
                         android:fontFamily="@font/branding_medium"
                         android:text="Match"
                         android:textColor="#000"
@@ -49,7 +49,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.6"
                         android:fontFamily="@font/branding_medium"
                         android:text="Over"
                         android:textColor="#000"

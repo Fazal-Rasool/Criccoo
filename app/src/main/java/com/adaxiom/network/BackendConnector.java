@@ -10,6 +10,7 @@ import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.model.response.RM_SignUpOther;
+import com.adaxiom.model.response.RM_UserResult;
 import com.adaxiom.model.response.RM_WinnerPrediction;
 
 import java.util.List;
@@ -27,7 +28,8 @@ public interface BackendConnector {
     interface GeneralApis {
 //        Observable<List<ModelJobList>> getAllJobs(int userId);
 
-        Observable<RM_SignUp> signUp(String name, String uName, String email, String pswrd, String fcmToken, String city);
+        Observable<RM_SignUp> signUp(String name, String uName, String email,
+                                     String pswrd, String fcmToken, String city, String from);
 
         Observable<RM_SignUpOther> signUpOther(String name, String uName, String pswrd, String fcmToken, String city, String from);
 
@@ -60,6 +62,8 @@ public interface BackendConnector {
         Observable<RM_Commentry> Commentary(String match_id);
 
         Observable<RM_WinnerPrediction> WinnerPrediction(int userid, String matchid, String prediction);
+
+        Observable<List<RM_UserResult>> UserResult(int match_id);
 
     }
 }

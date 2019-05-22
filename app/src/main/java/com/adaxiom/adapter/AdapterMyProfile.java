@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.adaxiom.criccoo.R;
 import com.adaxiom.model.response.RM_LeaderBoard;
+import com.adaxiom.model.response.RM_UserResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
 public class AdapterMyProfile extends RecyclerView.Adapter<AdapterMyProfile.ViewHolder> {
 
     private Activity activity;
-    public RM_LeaderBoard list;
+    public List<RM_UserResult> list;
     private LayoutInflater mLayoutInflater;
     private RecyclerViewItemClickListener onItemClickListener;
 
@@ -29,7 +30,7 @@ public class AdapterMyProfile extends RecyclerView.Adapter<AdapterMyProfile.View
     }
 
     public AdapterMyProfile(Activity activity,
-                            RM_LeaderBoard list,
+                            List<RM_UserResult> list,
                             RecyclerViewItemClickListener onItemClickListener) {
 
         this.list = list;
@@ -55,9 +56,9 @@ public class AdapterMyProfile extends RecyclerView.Adapter<AdapterMyProfile.View
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
 
-        viewHolder.tvMatch.setText((position+1)+"");
-        viewHolder.tvOver.setText(list.all_users.get(position).u_username);
-        viewHolder.tvScore.setText(list.all_users.get(position).total_score);
+        viewHolder.tvMatch.setText(list.get(position).match_id);
+        viewHolder.tvOver.setText(list.get(position).match_over);
+        viewHolder.tvScore.setText(list.get(position).score);
 
 
     }
@@ -69,7 +70,7 @@ public class AdapterMyProfile extends RecyclerView.Adapter<AdapterMyProfile.View
 
     @Override
     public int getItemCount() {
-        return (null != list ? list.all_users.size() : 0);
+        return (null != list ? list.size() : 0);
     }
 
 

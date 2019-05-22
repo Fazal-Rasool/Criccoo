@@ -25,12 +25,14 @@ public interface Constants {
     String API_GET_COMMENTRY="/get_full_commentry/{match_id}";
     String API_LEADERBOARD="/leaderboards/{user_id}";
     String API_WINNER_PREDICTION="/winner_prediction";
+    String API_USER_RESULTS="/user_result/{user_id}";
 
 
     //Prefrence
     String PREF_IS_LOGIN="isLogin";
     String PREF_USER_ID="user_id";
     String PREF_USER_NAME="user_name";
+    String PREF_PROFILE_IMAGE="user_profile_image";
     String PREF_USER_EMAIL ="user_email";
     String PREF_FB_PASS="fb_pass";
     String PREF_GOOGLE_PASS ="google_pass";

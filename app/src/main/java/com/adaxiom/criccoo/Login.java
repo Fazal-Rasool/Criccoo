@@ -61,6 +61,7 @@ import rx.schedulers.Schedulers;
 
 import static com.adaxiom.utils.Constants.PREF_FCM_TOKEN;
 import static com.adaxiom.utils.Constants.PREF_IS_LOGIN;
+import static com.adaxiom.utils.Constants.PREF_PROFILE_IMAGE;
 import static com.adaxiom.utils.Constants.PREF_USER_EMAIL;
 import static com.adaxiom.utils.Constants.PREF_USER_ID;
 import static com.adaxiom.utils.Constants.PREF_USER_NAME;
@@ -197,7 +198,8 @@ public class Login extends AppCompatActivity {
 //                String familyName = account.getFamilyName();
 //                String email = account.getEmail();
 
-//                Uri photoUrl = account.getPhotoUrl();
+                Uri photoUrl = account.getPhotoUrl();
+                Prefs.putString(PREF_PROFILE_IMAGE, photoUrl+"");
 
                     if (!name.equalsIgnoreCase(""))
                         API_LoginWithOther(name, id, "G");
@@ -249,6 +251,7 @@ public class Login extends AppCompatActivity {
 //                    String email = object.getString("email");
                     String id = object.getString("id");
                     String image_url = "https://graph.facebook.com/" + id + "/picture?type=normal";
+                    Prefs.putString(PREF_PROFILE_IMAGE, image_url);
 
 //                    tvEmail.setText("");
 //                    tvName.setText(first_name + " " + last_name);
@@ -347,7 +350,7 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public void API_LoginWithOther(String name, String userName, String from) {
+    public void API_LoginWithOther(final String name, String userName, String from) {
 
         String fcmToken = Prefs.getString(PREF_FCM_TOKEN, "");
         String password = "123";
@@ -395,7 +398,7 @@ public class Login extends AppCompatActivity {
                                 Utils.showHideLoaderView(avLoading, false);
                                 if (model.error != true) {
                                     Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
-                                    callNewActivity(model.userid, model.username, "");
+                                    callNewActivity(model.userid, name, "");
                                 } else
                                     Toast.makeText(Login.this, model.message,
                                             Toast.LENGTH_SHORT).show();

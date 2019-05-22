@@ -10,6 +10,7 @@ import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.model.response.RM_MatchPrediction;
 import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.model.response.RM_SignUpOther;
+import com.adaxiom.model.response.RM_UserResult;
 import com.adaxiom.model.response.RM_WinnerPrediction;
 
 import java.util.HashMap;
@@ -104,8 +105,9 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
 
 
     @Override
-    public Observable<RM_SignUp> signUp(String name, String uName, String email, String pswrd, String fcmToken, String city) {
-        return calls.Sign_Up(name, uName, email, pswrd, fcmToken, city);
+    public Observable<RM_SignUp> signUp(String name, String uName, String email,
+                                        String pswrd, String fcmToken, String city, String from) {
+        return calls.Sign_Up(name, uName, email, pswrd, fcmToken, city, from);
     }
 
 
@@ -174,6 +176,13 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
     public Observable<RM_WinnerPrediction> WinnerPrediction(int userid, String match_id, String prediction) {
         return calls.WinnerPrediction(userid, match_id, prediction);
     }
+
+
+    @Override
+    public Observable<List<RM_UserResult>> UserResult(int userId) {
+        return calls.UserResult(userId);
+    }
+
 
 
     //    @Override
