@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg"
+    android:background="@drawable/login_background"
     android:orientation="vertical"
     tools:context=".Signup">
 
@@ -40,6 +40,7 @@
             android:layout_weight="3.5"
             android:background="@drawable/box_et"
             android:hint="Name"
+            android:fontFamily="@font/branding_medium"
             android:inputType="text"
             android:paddingLeft="10dp"
             android:paddingRight="5dp"
@@ -63,6 +64,7 @@
             android:layout_weight="3.5"
             android:background="@drawable/box_et"
             android:hint="Email"
+            android:fontFamily="@font/branding_medium"
             android:inputType="textEmailAddress"
             android:imeOptions="actionNext"
             android:paddingLeft="10dp"
@@ -87,6 +89,7 @@
             android:background="@drawable/box_et"
             android:imeOptions="actionNext"
             android:hint="Password"
+            android:fontFamily="@font/branding_medium"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
             android:paddingRight="5dp"
@@ -112,6 +115,7 @@
             android:hint="Confirm Password"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
+            android:fontFamily="@font/branding_medium"
             android:paddingRight="5dp"
             android:textColor="#fff"
             android:textColorHint="#fff" />
@@ -131,6 +135,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/login_bg"
             android:text="Signup"
+            android:fontFamily="@font/branding_bold"
             android:textColor="#fff"
             android:textAllCaps="false"
             android:textSize="16dp"/>

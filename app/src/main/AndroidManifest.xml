@@ -14,28 +14,36 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MyProfile"
-            android:theme="@style/AppThemeNoActionBar"></activity>
+            android:theme="@style/AppThemeNoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".TotalEarning"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:theme="@style/AppThemeNoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".LeaderBoard"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:theme="@style/AppThemeNoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Prediction"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:theme="@style/AppThemeNoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SelectBlock"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:theme="@style/AppThemeNoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Signup"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:theme="@style/AppThemeNoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Login"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:theme="@style/AppThemeNoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Splash"
-            android:theme="@style/AppThemeNoActionBar">
+            android:theme="@style/AppThemeNoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,13 +52,9 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppThemeNoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppThemeNoActionBar"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

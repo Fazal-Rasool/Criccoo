@@ -1,25 +1,23 @@
 package com.adaxiom.criccoo;
 
-import android.os.Handler;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.adaxiom.manager.DownloaderManager;
-import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
 import com.adaxiom.utils.Utils;
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import io.fabric.sdk.android.Fabric;
 import java.util.List;
 
-import io.fabric.sdk.android.services.common.Crash;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
@@ -36,9 +34,14 @@ public class Splash extends AppCompatActivity {
 
     private Subscription getSubscription;
 
+    AlertDialog alertLogout;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
 
 
@@ -47,8 +50,7 @@ public class Splash extends AppCompatActivity {
             GetMatchId();
         }
         else {
-            Toast.makeText(this,R.string.internet_connectivity_msg,Toast.LENGTH_SHORT).show();
-            this.finish();
+            AlertInternet();
         }
 
 //        new Handler().postDelayed(new Runnable() {
@@ -97,9 +99,9 @@ public class Splash extends AppCompatActivity {
 
 
     public void GetMatchId(){
-        if (getSubscription != null) {
-            return;
-        }
+//        if (getSubscription != null) {
+//            return;
+//        }
 
         getSubscription = DownloaderManager.getGeneralDownloader().API_MatchActive()
                 .subscribeOn(Schedulers.newThread())
@@ -140,4 +142,35 @@ public class Splash extends AppCompatActivity {
                     }
                 });
     }
+
+
+
+    public void AlertInternet() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Alert!");
+        builder.setMessage("Please connect to internet");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        alertLogout.dismiss();
+                        finish();
+                    }
+                });
+
+//        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                alertLogout.dismiss();
+//            }
+//        });
+
+        alertLogout = builder.create();
+        alertLogout.show();
+    }
+
+
+
 }

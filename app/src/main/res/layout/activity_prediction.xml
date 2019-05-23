@@ -60,7 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:src="@drawable/correct_ans"/>
+                    android:src="@drawable/correct_ans"
+                    android:visibility="invisible"/>
 
                 <TextView
                     android:id="@+id/tvBallResult_1"
@@ -103,7 +104,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:src="@drawable/correct_ans"/>
+                    android:src="@drawable/correct_ans"
+                    android:visibility="invisible"/>
 
                 <TextView
                     android:id="@+id/tvBallResult_2"
@@ -146,7 +148,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:src="@drawable/correct_ans"/>
+                    android:src="@drawable/correct_ans"
+                    android:visibility="invisible"/>
 
                 <TextView
                     android:id="@+id/tvBallResult_3"
@@ -189,7 +192,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:src="@drawable/correct_ans"/>
+                    android:src="@drawable/correct_ans"
+                    android:visibility="invisible"/>
 
                 <TextView
                     android:id="@+id/tvBallResult_4"
@@ -232,7 +236,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:src="@drawable/correct_ans"/>
+                    android:src="@drawable/correct_ans"
+                    android:visibility="invisible"/>
 
                 <TextView
                     android:id="@+id/tvBallResult_5"
@@ -276,7 +281,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:src="@drawable/correct_ans"/>
+                    android:src="@drawable/correct_ans"
+                    android:visibility="invisible"/>
 
                 <TextView
                     android:id="@+id/tvBallResult_6"

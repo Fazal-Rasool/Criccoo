@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@drawable/login_background"
     android:orientation="vertical"
     tools:context=".Login">
 
@@ -14,10 +15,15 @@
     <!--layout="@layout/layout_loader"-->
     <!--android:layout_alignParentTop="true"/>-->
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/main_bg"
         android:orientation="vertical"
         android:visibility="visible"
         android:weightSum="10">
@@ -50,6 +56,7 @@
                 android:layout_height="@dimen/et_height_signup"
                 android:background="@drawable/box_et"
                 android:gravity="center"
+                android:fontFamily="@font/branding_medium"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="10dp"
@@ -75,6 +82,7 @@
                 android:background="@drawable/box_et"
                 android:gravity="center"
                 android:hint="Password"
+                android:fontFamily="@font/branding_medium"
                 android:inputType="textPassword"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -98,6 +106,7 @@
                 android:layout_weight="3.5"
                 android:background="@drawable/login_bg"
                 android:text="Login"
+                android:fontFamily="@font/branding_bold"
                 android:textColor="#fff"
                 android:textSize="16dp"
                 android:textAllCaps="false"/>
@@ -117,17 +126,18 @@
                 android:id="@+id/btnLoginFB_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.75"
-                android:src="@drawable/fb_login_btn"
+                android:layout_weight="1.70"
+                android:src="@drawable/fb_login_btn_new"
                 android:scaleType="fitXY"/>
 
             <ImageView
                 android:id="@+id/btnLoginGoogle_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.75"
-                android:src="@drawable/google_login_btn"
-                android:scaleType="fitXY"/>
+                android:layout_weight="1.70"
+                android:src="@drawable/google_login_btn_new"
+                android:scaleType="fitXY"
+                android:layout_marginLeft="5dp"/>
 
             <!--<Button-->
                 <!--android:id="@+id/btnLoginFB_login"-->
@@ -172,7 +182,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="@string/lable_signIn_to_signUp"
+                android:text="Sign up now"
+                android:fontFamily="@font/branding_bold"
                 android:textColor="#fff"
                 android:textSize="18dp" />
 
@@ -180,6 +191,9 @@
 
 
     </LinearLayout>
+
+
+    </ScrollView>
 
 
     <com.facebook.login.widget.LoginButton
