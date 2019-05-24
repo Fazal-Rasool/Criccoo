@@ -15,4 +15,5 @@
     <color name="login">#f33d54</color>
     <color name="fb_btn">#5f7eb1</color>
     <color name="google_btn">#d52f18</color>
+    <color name="ball_color">#e6baba</color>
 </resources>

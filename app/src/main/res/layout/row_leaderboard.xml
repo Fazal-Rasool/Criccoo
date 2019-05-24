@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:fontFamily="@font/branding_semilight"
-            android:paddingLeft="20sp"
+            android:paddingLeft="@dimen/row_leaderboard"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/branding_semilight"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="@dimen/row_leaderboard_normal" />
 
         <TextView
             android:id="@+id/tvTotalPoints"
@@ -38,7 +38,7 @@
             android:fontFamily="@font/branding_semilight"
             android:gravity="center"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="@dimen/row_leaderboard_normal" />
 
 
     </LinearLayout>

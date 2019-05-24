@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Login"
+    android:padding="20dp">
+
+
+    <RelativeLayout
+        android:id="@+id/viewAlertTeamOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivAlertTeamOne"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/ic_ind"
+            app:civ_border_color="#000"
+            app:civ_border_overlay="true"
+            app:civ_border_width="1dp"
+            app:civ_circle_background_color="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/tvNameAlertTeamOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivAlertTeamOne"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/dashboard_score"
+            android:text="IND"
+            android:textColor="#000"
+            android:textSize="16dp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewAlertTeamTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivAlertTeamTwo"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/ic_pak"
+            app:civ_border_color="#000"
+            app:civ_border_overlay="false"
+            app:civ_border_width="1dp"
+            app:civ_circle_background_color="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/tvAlertTeamTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivAlertTeamTwo"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/dashboard_score"
+            android:text="PAK"
+            android:textColor="#000"
+            android:textSize="16dp" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

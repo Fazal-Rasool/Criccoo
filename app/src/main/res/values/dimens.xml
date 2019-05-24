@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="et_height_signup">45dp</dimen>
+    <dimen name="et_height">45dp</dimen>
     <dimen name="et_height_signin">50dp</dimen>
+
+    <dimen name="fb_google_btn_height">40dp</dimen>
+
+    <dimen name="et_text_size">16sp</dimen>
+    <dimen name="btn_text_size">16sp</dimen>
+
+    <dimen name="txt_signup_size">18sp</dimen>
+    <dimen name="txt_leaderboard_header">20sp</dimen>
+
+    <dimen name="row_leaderboard">20sp</dimen>
+    <dimen name="row_leaderboard_normal">18sp</dimen>
+
+    <dimen name="txt_dashboard_large">20sp</dimen>
+    <dimen name="txt_dashboard_normal">16sp</dimen>
+    <dimen name="txt_dashboard_small">12sp</dimen>
+
+    <dimen name="predict_row_height">60dp</dimen>
+    <dimen name="predict_ball_height">45dp</dimen>
+    <dimen name="predict_click_height">60dp</dimen>
+    <dimen name="predict_click_width">100dp</dimen>
+    <dimen name="predict_submit_height">60dp</dimen>
+    <dimen name="predict_ball_text">22sp</dimen>
 
 </resources>

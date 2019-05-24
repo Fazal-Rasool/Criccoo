@@ -44,16 +44,17 @@
                 android:weightSum="10"
                 android:gravity="center">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/predict_ball_height"
+                    android:layout_height="@dimen/predict_ball_height"
                     android:background="@drawable/ball_bg"
                     android:text="1"
                     android:fontFamily="@font/comic"
                     android:textStyle="bold"
-                    android:textSize="22dp"
-                    android:textColor="#fff"
+                    android:textSize="23dp"
                     android:gravity="center"
-                    android:layout_marginLeft="1dp"
+                    android:textColor="@color/ball_color"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp"
                     />
 
                 <ImageView
@@ -88,16 +89,17 @@
                 android:gravity="center"
                 android:layout_marginTop="10dp">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/predict_ball_height"
+                    android:layout_height="@dimen/predict_ball_height"
                     android:background="@drawable/ball_bg"
                     android:text="2"
                     android:fontFamily="@font/comic"
                     android:textStyle="bold"
                     android:textSize="22dp"
-                    android:textColor="#fff"
                     android:gravity="center"
-                    android:layout_marginLeft="1dp"
+                    android:textColor="@color/ball_color"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp"
                     />
 
                 <ImageView
@@ -132,16 +134,17 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/predict_ball_height"
+                    android:layout_height="@dimen/predict_ball_height"
                     android:background="@drawable/ball_bg"
                     android:text="3"
                     android:fontFamily="@font/comic"
                     android:textStyle="bold"
                     android:textSize="22dp"
-                    android:textColor="#fff"
                     android:gravity="center"
-                    android:layout_marginLeft="1dp"
+                    android:textColor="@color/ball_color"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp"
                     />
 
                 <ImageView
@@ -176,16 +179,17 @@
                 android:gravity="center"
                 android:layout_marginTop="10dp">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/predict_ball_height"
+                    android:layout_height="@dimen/predict_ball_height"
                     android:background="@drawable/ball_bg"
                     android:text="4"
                     android:fontFamily="@font/comic"
                     android:textStyle="bold"
                     android:textSize="22dp"
-                    android:textColor="#fff"
                     android:gravity="center"
-                    android:layout_marginLeft="1dp"
+                    android:textColor="@color/ball_color"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp"
                     />
 
                 <ImageView
@@ -220,16 +224,17 @@
                 android:gravity="center"
                 android:layout_marginTop="10dp">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/predict_ball_height"
+                    android:layout_height="@dimen/predict_ball_height"
                     android:background="@drawable/ball_bg"
                     android:text="5"
                     android:fontFamily="@font/comic"
                     android:textStyle="bold"
-                    android:textSize="22dp"
-                    android:textColor="#fff"
+                    android:textSize="18dp"
                     android:gravity="center"
-                    android:layout_marginLeft="1dp"
+                    android:textColor="@color/ball_color"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp"
                     />
 
                 <ImageView
@@ -263,18 +268,18 @@
                 android:gravity="center"
                 android:layout_marginTop="10dp">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/predict_ball_height"
+                    android:layout_height="@dimen/predict_ball_height"
                     android:background="@drawable/ball_bg"
                     android:text="6"
                     android:fontFamily="@font/comic"
                     android:textStyle="bold"
-                    android:textSize="22dp"
-                    android:paddingBottom="5dp"
+                    android:textSize="18dp"
                     android:paddingLeft="5dp"
-                    android:textColor="#fff"
                     android:gravity="center"
-                    android:layout_marginLeft="1dp"
+                    android:textColor="@color/ball_color"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp"
                     />
 
                 <ImageView

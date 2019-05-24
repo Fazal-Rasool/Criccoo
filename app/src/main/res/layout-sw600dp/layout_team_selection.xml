@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Login">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/view"
+            android:background="@drawable/round_box">
+
+
+            <ProgressBar
+                android:id="@+id/barFirstTeam_Dashboard"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:max="100"
+                android:progress="36"
+                android:progressDrawable="@drawable/progress_color"/>
+
+
+            <ProgressBar
+                android:id="@+id/barSecondTeam_Dashboard"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:max="100"
+                android:progress="45"
+                android:progressDrawable="@drawable/progress_color"/>
+
+
+            <TextView
+                android:id="@+id/tvTeamVote_Dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/dashboard_score"
+                android:text="36  |  45"
+                android:textColor="#fff"
+                android:textSize="@dimen/txt_dashboard_small" />
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivFirstTeam_Dashboard"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_ind"
+                app:civ_border_width="1dp"
+                app:civ_border_overlay="true"
+                app:civ_circle_background_color="@color/colorWhite"
+                app:civ_border_color="#000"/>
+
+            <TextView
+                android:id="@+id/tvNameTeamOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dashboard_score"
+                android:layout_centerInParent="true"
+                android:text="IND"
+                android:layout_below="@+id/ivFirstTeam_Dashboard"
+                android:textColor="#fff"
+                android:textSize="@dimen/txt_dashboard_normal"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivSecondTeam_Dashboard"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_pak"
+                app:civ_border_width="1dp"
+                app:civ_border_color="#000"
+                app:civ_circle_background_color="@color/colorWhite"
+                app:civ_border_overlay="false"/>
+
+            <TextView
+                android:id="@+id/tvNameTeamSecond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivSecondTeam_Dashboard"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/dashboard_score"
+                android:text="PAK"
+                android:textColor="#fff"
+                android:textSize="@dimen/txt_dashboard_normal" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

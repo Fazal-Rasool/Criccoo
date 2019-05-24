@@ -53,11 +53,12 @@
                 android:id="@+id/etEmail_Login"
                 android:layout_width="0dp"
                 android:layout_weight="3.5"
-                android:layout_height="@dimen/et_height_signup"
+                android:layout_height="@dimen/et_height"
                 android:background="@drawable/box_et"
                 android:gravity="center"
                 android:fontFamily="@font/branding_medium"
                 android:hint="Email"
+                android:textSize="@dimen/et_text_size"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -78,9 +79,10 @@
                 android:id="@+id/etPassword_Login"
                 android:layout_width="0dp"
                 android:layout_weight="3.5"
-                android:layout_height="@dimen/et_height_signup"
+                android:layout_height="@dimen/et_height"
                 android:background="@drawable/box_et"
                 android:gravity="center"
+                android:textSize="@dimen/et_text_size"
                 android:hint="Password"
                 android:fontFamily="@font/branding_medium"
                 android:inputType="textPassword"
@@ -102,13 +104,13 @@
             <Button
                 android:id="@+id/btnLogin_login"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/et_height"
                 android:layout_weight="3.5"
                 android:background="@drawable/login_bg"
                 android:text="Login"
                 android:fontFamily="@font/branding_bold"
                 android:textColor="#fff"
-                android:textSize="16dp"
+                android:textSize="@dimen/btn_text_size"
                 android:textAllCaps="false"/>
 
 
@@ -125,7 +127,7 @@
             <ImageView
                 android:id="@+id/btnLoginFB_login"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/fb_google_btn_height"
                 android:layout_weight="1.70"
                 android:src="@drawable/fb_login_btn_new"
                 android:scaleType="fitXY"/>
@@ -133,7 +135,7 @@
             <ImageView
                 android:id="@+id/btnLoginGoogle_login"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/fb_google_btn_height"
                 android:layout_weight="1.70"
                 android:src="@drawable/google_login_btn_new"
                 android:scaleType="fitXY"
@@ -185,7 +187,7 @@
                 android:text="Sign up now"
                 android:fontFamily="@font/branding_bold"
                 android:textColor="#fff"
-                android:textSize="18dp" />
+                android:textSize="@dimen/txt_signup_size" />
 
         </LinearLayout>
 

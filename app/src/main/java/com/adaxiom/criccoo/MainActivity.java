@@ -168,11 +168,11 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivPrediction_Dashboard:
-                int blockId = Prefs.getInt(PREF_BLOCK_ID, 6);
-                if (blockId != 6) {
+//                int blockId = Prefs.getInt(PREF_BLOCK_ID, 6);
+//                if (blockId != 6) {
                 SelectBlock.startActivity(MainActivity.this);
-                } else
-                    Toast.makeText(this, "Please wait until prediction will be enable", Toast.LENGTH_SHORT).show();
+//                } else
+//                    Toast.makeText(this, "Please wait until prediction will be enable", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.viewEarning_Dashboard:
                 TotalEarning.startActivity(this);
@@ -327,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
     public void AlertLogout() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Logout!");
-        builder.setMessage("Do you want to logout criccoo?");
+        builder.setMessage("Do you want to logout crico?");
         builder.setCancelable(false);
 
         builder.setPositiveButton(
@@ -397,6 +397,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         alertVoteTeam = dialogBuilder.create();
+        alertVoteTeam.setCancelable(false);
+        alertVoteTeam.setCanceledOnTouchOutside(false);
         alertVoteTeam.show();
     }
 

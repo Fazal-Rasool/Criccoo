@@ -36,12 +36,13 @@
         <EditText
             android:id="@+id/etName_Signup"
             android:layout_width="0dp"
-            android:layout_height="@dimen/et_height_signup"
+            android:layout_height="@dimen/et_height"
             android:layout_weight="3.5"
             android:background="@drawable/box_et"
             android:hint="Name"
             android:fontFamily="@font/branding_medium"
             android:inputType="text"
+            android:textSize="@dimen/et_text_size"
             android:paddingLeft="10dp"
             android:paddingRight="5dp"
             android:textColor="#fff"
@@ -60,12 +61,13 @@
         <EditText
             android:id="@+id/etEmail_Signup"
             android:layout_width="0dp"
-            android:layout_height="@dimen/et_height_signup"
+            android:layout_height="@dimen/et_height"
             android:layout_weight="3.5"
             android:background="@drawable/box_et"
             android:hint="Email"
             android:fontFamily="@font/branding_medium"
             android:inputType="textEmailAddress"
+            android:textSize="@dimen/et_text_size"
             android:imeOptions="actionNext"
             android:paddingLeft="10dp"
             android:paddingRight="5dp"
@@ -84,10 +86,11 @@
         <EditText
             android:id="@+id/etPassword_Signup"
             android:layout_width="0dp"
-            android:layout_height="@dimen/et_height_signup"
+            android:layout_height="@dimen/et_height"
             android:layout_weight="3.5"
             android:background="@drawable/box_et"
             android:imeOptions="actionNext"
+            android:textSize="@dimen/et_text_size"
             android:hint="Password"
             android:fontFamily="@font/branding_medium"
             android:inputType="textPassword"
@@ -108,11 +111,12 @@
         <EditText
             android:id="@+id/etConfirmPassword_Signup"
             android:layout_width="0dp"
-            android:layout_height="@dimen/et_height_signup"
+            android:layout_height="@dimen/et_height"
             android:layout_weight="3.5"
             android:background="@drawable/box_et"
             android:imeOptions="actionDone"
             android:hint="Confirm Password"
+            android:textSize="@dimen/et_text_size"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
             android:fontFamily="@font/branding_medium"
@@ -132,13 +136,13 @@
             android:id="@+id/btnLogin_Signup"
             android:layout_width="0dp"
             android:layout_weight="3.5"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/et_height"
             android:background="@drawable/login_bg"
             android:text="Signup"
             android:fontFamily="@font/branding_bold"
             android:textColor="#fff"
             android:textAllCaps="false"
-            android:textSize="16dp"/>
+            android:textSize="@dimen/btn_text_size"/>
     </LinearLayout>
 
     </LinearLayout>

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Prediction"
+    android:background="@drawable/main_bg">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tvSelectOver_SelectBlock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comic"
+                android:gravity="center"
+                android:text="Predict Now"
+                android:textColor="#fff"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingRight="40dp"
+                android:paddingLeft="40dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/predict_row_height"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_box"
+                    android:weightSum="10"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="@dimen/predict_ball_height"
+                        android:layout_height="@dimen/predict_ball_height"
+                        android:background="@drawable/ball_bg"
+                        android:text="1"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:gravity="center"
+                        android:textColor="@color/ball_color"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:src="@drawable/correct_ans"
+                        android:visibility="invisible"/>
+
+                    <TextView
+                        android:id="@+id/tvBallResult_1"
+                        android:layout_width="@dimen/predict_click_width"
+                        android:layout_height="@dimen/predict_click_height"
+                        android:layout_weight="0"
+                        android:background="@drawable/score_board"
+                        android:text="Click"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/predict_row_height"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_box"
+                    android:weightSum="10"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="@dimen/predict_ball_height"
+                        android:layout_height="@dimen/predict_ball_height"
+                        android:background="@drawable/ball_bg"
+                        android:text="2"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:gravity="center"
+                        android:textColor="@color/ball_color"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:src="@drawable/correct_ans"
+                        android:visibility="invisible"/>
+
+                    <TextView
+                        android:id="@+id/tvBallResult_2"
+                        android:layout_width="@dimen/predict_click_width"
+                        android:layout_height="@dimen/predict_click_height"
+                        android:layout_weight="0"
+                        android:background="@drawable/score_board"
+                        android:text="Click"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/predict_row_height"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_box"
+                    android:weightSum="10"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="@dimen/predict_ball_height"
+                        android:layout_height="@dimen/predict_ball_height"
+                        android:background="@drawable/ball_bg"
+                        android:text="3"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:gravity="center"
+                        android:textColor="@color/ball_color"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:src="@drawable/correct_ans"
+                        android:visibility="invisible"/>
+
+                    <TextView
+                        android:id="@+id/tvBallResult_3"
+                        android:layout_width="@dimen/predict_click_width"
+                        android:layout_height="@dimen/predict_click_height"
+                        android:layout_weight="0"
+                        android:background="@drawable/score_board"
+                        android:text="Click"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/predict_row_height"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_box"
+                    android:weightSum="10"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="@dimen/predict_ball_height"
+                        android:layout_height="@dimen/predict_ball_height"
+                        android:background="@drawable/ball_bg"
+                        android:text="4"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:gravity="center"
+                        android:textColor="@color/ball_color"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:src="@drawable/correct_ans"
+                        android:visibility="invisible"/>
+
+                    <TextView
+                        android:id="@+id/tvBallResult_4"
+                        android:layout_width="@dimen/predict_click_width"
+                        android:layout_height="@dimen/predict_click_height"
+                        android:layout_weight="0"
+                        android:background="@drawable/score_board"
+                        android:text="Click"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/predict_row_height"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_box"
+                    android:weightSum="10"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="@dimen/predict_ball_height"
+                        android:layout_height="@dimen/predict_ball_height"
+                        android:background="@drawable/ball_bg"
+                        android:text="5"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:gravity="center"
+                        android:textColor="@color/ball_color"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:src="@drawable/correct_ans"
+                        android:visibility="invisible"/>
+
+                    <TextView
+                        android:id="@+id/tvBallResult_5"
+                        android:layout_width="@dimen/predict_click_width"
+                        android:layout_height="@dimen/predict_click_height"
+                        android:layout_weight="0"
+                        android:background="@drawable/score_board"
+                        android:text="Click"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/predict_row_height"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_box"
+                    android:weightSum="10"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="@dimen/predict_ball_height"
+                        android:layout_height="@dimen/predict_ball_height"
+                        android:background="@drawable/ball_bg"
+                        android:text="6"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:paddingLeft="5dp"
+                        android:gravity="center"
+                        android:textColor="@color/ball_color"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:src="@drawable/correct_ans"
+                        android:visibility="invisible"/>
+
+                    <TextView
+                        android:id="@+id/tvBallResult_6"
+                        android:layout_width="@dimen/predict_click_width"
+                        android:layout_height="@dimen/predict_click_height"
+                        android:layout_weight="0"
+                        android:background="@drawable/score_board"
+                        android:text="Click"
+                        android:fontFamily="@font/comic"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:textSize="@dimen/predict_ball_text"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvBallResult_Submit"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_weight="0"
+                android:background="@drawable/score_board"
+                android:text="Submit"
+                android:fontFamily="@font/comic"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="@dimen/predict_ball_text"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/layout_loader"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

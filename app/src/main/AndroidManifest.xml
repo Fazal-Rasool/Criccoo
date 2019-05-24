@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_neww"
         android:icon="@mipmap/ic_launcher_neww"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
         <activity android:name=".MyProfile"
             android:theme="@style/AppThemeNoActionBar"
             android:screenOrientation="portrait"/>

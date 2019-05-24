@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="30dp"
+    tools:context=".SelectBlock">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/alert_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/tvScoreAlert_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="0"
+            android:fontFamily="@font/comic"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="28dp"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvScoreAlert_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="1"
+            android:fontFamily="@font/comic"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="28dp"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:layout_marginTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/tvScoreAlert_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="2"
+            android:fontFamily="@font/comic"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="28dp"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:layout_marginTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/tvScoreAlert_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="3"
+            android:fontFamily="@font/comic"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="28dp"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:layout_marginTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/tvScoreAlert_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="4"
+            android:fontFamily="@font/comic"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="28dp"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:layout_marginTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/tvScoreAlert_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="5"
+            android:fontFamily="@font/comic"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="28dp"
+            android:gravity="center"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:layout_marginTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/tvScoreAlert_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="6"
+            android:fontFamily="@font/comic"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="28dp"
+            android:gravity="center"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvScoreAlert_w"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="W"
+            android:fontFamily="@font/comic"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="28dp"
+            android:gravity="center"/>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

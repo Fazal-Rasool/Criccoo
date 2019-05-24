@@ -88,7 +88,7 @@ public class MyProfile extends BaseActivity {
         String name = Prefs.getString(PREF_USER_NAME,"User");
 
         tvMyProfileName.setText(name);
-        tvMyProfileTotalPoints.setText(myTotalPoints);
+        tvMyProfileTotalPoints.setText("Points : "+myTotalPoints);
 
         String imageUrl=Prefs.getString(PREF_PROFILE_IMAGE, "https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png");
         Log.e("Image:",imageUrl);

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg"
+    tools:context=".MainActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.5"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/highlights"
+                    android:visibility="visible"
+                    android:scaleType="fitXY"/>
+
+                <VideoView
+                    android:id="@+id/videoViewDashboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
+
+                <include
+                    layout="@layout/layout_team_selection"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:weightSum="10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_box">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:orientation="vertical"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/tvTotalScore_Dashboard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dashboard_score"
+                            android:text="Pak: 217/5 in 34.5 overs"
+                            android:textColor="#fff"
+                            android:maxLines="1"
+                            android:textSize="@dimen/txt_dashboard_large" />
+
+                        <TextView
+                            android:id="@+id/tvRunRate_Dashboard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dashboard_score"
+                            android:text="R/R 4.5 Target : 298"
+                            android:textColor="#fff"
+                            android:maxLines="1"
+                            android:textSize="@dimen/txt_dashboard_large" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="bottom|center"
+                        android:orientation="vertical"
+                        android:weightSum="2">
+
+                        <!--<View-->
+                        <!--android:layout_width="1dp"-->
+                        <!--android:layout_height="0dp"-->
+                        <!--android:layout_weight="1"/>-->
+
+                        <TextView
+                            android:id="@+id/tvPlayerOneScore_Dashboard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dashboard_score"
+                            android:text="Misbah ul haq 68(47)"
+                            android:maxLines="1"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/txt_dashboard_small" />
+
+                        <TextView
+                            android:id="@+id/tvPlayerSecondScore_Dashboard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dashboard_score"
+                            android:maxLines="1"
+                            android:text="Shahid Afridi 50(15)"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/txt_dashboard_small" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/ivPrediction_Dashboard"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/predict_now"
+                    android:scaleType="centerCrop"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.7"
+                android:weightSum="3"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp">
+
+                <LinearLayout
+                    android:id="@+id/viewEarning_Dashboard"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|bottom"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dp"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="bottom"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/earning" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/comic"
+                        android:text="    Earning\n "
+                        android:textColor="#fff"
+                        android:textSize="@dimen/txt_dashboard_normal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/viewLeaderBoard_Dashboard"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|bottom"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dp"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/leaderboard"
+                        android:scaleType="fitCenter"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/comic"
+                        android:text="Board\n "
+                        android:textColor="#fff"
+                        android:textSize="@dimen/txt_dashboard_normal"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/viewChat_Dashboard"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|bottom"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/chat"
+                        android:scaleType="fitXY"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/comic"
+                        android:text="Chat    \n"
+                        android:textColor="#fff"
+                        android:maxLines="2"
+                        android:textSize="@dimen/txt_dashboard_normal" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/ivLogout"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:src="@drawable/ic_logout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"/>
+
+
+    <include layout="@layout/layout_loader"/>
+
+</RelativeLayout>
