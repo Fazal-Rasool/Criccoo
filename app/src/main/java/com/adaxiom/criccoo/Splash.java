@@ -1,6 +1,8 @@
 package com.adaxiom.criccoo;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,6 +38,10 @@ public class Splash extends AppCompatActivity {
 
     AlertDialog alertLogout;
 
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, Splash.class);
+        context.startActivity(intent);
+    }
 
 
     @Override

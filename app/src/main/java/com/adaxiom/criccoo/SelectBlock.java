@@ -87,34 +87,54 @@ public class SelectBlock extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvOver_1:
-                Prediction.startActivity(this,1);
+                String strOver = tvOver1.getText().toString().trim();
+                int overId = Integer.parseInt(strOver);
+                Prediction.startActivity(this,overId);
                 break;
             case R.id.tvOver_2:
-                Prediction.startActivity(this,2);
+                String strOver2 = tvOver2.getText().toString().trim();
+                int overId2 = Integer.parseInt(strOver2);
+                Prediction.startActivity(this,overId2);
                 break;
             case R.id.tvOver_3:
-                Prediction.startActivity(this,3);
+                String strOver3 = tvOver3.getText().toString().trim();
+                int overId3 = Integer.parseInt(strOver3);
+                Prediction.startActivity(this,overId3);
                 break;
             case R.id.tvOver_4:
-                Prediction.startActivity(this,4);
+                String strOver4 = tvOver4.getText().toString().trim();
+                int overId4 = Integer.parseInt(strOver4);
+                Prediction.startActivity(this,overId4);
                 break;
             case R.id.tvOver_5:
-                Prediction.startActivity(this,5);
+                String strOver5 = tvOver5.getText().toString().trim();
+                int overId5 = Integer.parseInt(strOver5);
+                Prediction.startActivity(this,overId5);
                 break;
             case R.id.tvOver_6:
-                Prediction.startActivity(this,6);
+                String strOver6 = tvOver6.getText().toString().trim();
+                int overId6 = Integer.parseInt(strOver6);
+                Prediction.startActivity(this,overId6);
                 break;
             case R.id.tvOver_7:
-                Prediction.startActivity(this,7);
+                String strOver7 = tvOver7.getText().toString().trim();
+                int overId7 = Integer.parseInt(strOver7);
+                Prediction.startActivity(this,overId7);
                 break;
             case R.id.tvOver_8:
-                Prediction.startActivity(this,8);
+                String strOver8 = tvOver8.getText().toString().trim();
+                int overId8 = Integer.parseInt(strOver8);
+                Prediction.startActivity(this,overId8);
                 break;
             case R.id.tvOver_9:
-                Prediction.startActivity(this,9);
+                String strOver9 = tvOver9.getText().toString().trim();
+                int overId9 = Integer.parseInt(strOver9);
+                Prediction.startActivity(this,overId9);
                 break;
             case R.id.tvOver_10:
-                Prediction.startActivity(this,10);
+                String strOver10 = tvOver10.getText().toString().trim();
+                int overId10 = Integer.parseInt(strOver10);
+                Prediction.startActivity(this,overId10);
                 break;
             case R.id.ivBlockOne:
                 break;

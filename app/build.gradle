@@ -31,9 +31,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     /*For Retrofit */
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
-    implementation 'com.squareup.retrofit:retrofit:1.9.0'
-    implementation 'com.squareup.okhttp:okhttp:2.2.0'
+//    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+//    implementation 'com.squareup.retrofit:retrofit:1.9.0'
+//    implementation 'com.squareup.okhttp:okhttp:2.2.0'
+    def retrofitVersion = "2.5.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+
 
     //RX
     implementation 'io.reactivex:rxandroid:1.2.1'
@@ -81,5 +87,12 @@ dependencies {
     //Crashlytics
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.0'
 
+//    Stetho debugging tool
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+
+
+    //EditText For Cnic and Phone
+    implementation 'ru.egslava:MaskedEditText:1.0.5'
 
 }

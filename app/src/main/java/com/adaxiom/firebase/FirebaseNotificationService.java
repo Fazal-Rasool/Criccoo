@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.adaxiom.criccoo.MainActivity;
 import com.adaxiom.criccoo.R;
+import com.adaxiom.criccoo.Splash;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -61,7 +62,7 @@ public class FirebaseNotificationService extends FirebaseMessagingService {
 
     private void notificationFunction(String title, String body) {
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Splash.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder b = new NotificationCompat.Builder(this);

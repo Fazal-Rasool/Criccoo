@@ -3,8 +3,8 @@ package com.adaxiom.utils;
 public interface Constants {
 
     //URLs
-    String URL_LIVE = "http://cricoo.adaxiomdemo.com/cricoo_apis/device";
-    String URL_STAGING = "http://cricoo.adaxiomdemo.com/cricoo_apis/device";
+    String URL_LIVE = "http://cricoo.adaxiomdemo.com/cricoo_apis/device/";
+    String URL_STAGING = "http://cricoo.adaxiomdemo.com/cricoo_apis/device/";
 
 //    String URL_LIVE = "http://192.168.0.109/cricoo/cricoo_apis/device";
 //    String URL_STAGING = "http://192.168.0.109/cricoo/cricoo_apis/device";
@@ -14,18 +14,21 @@ public interface Constants {
 
 
     //API Method Name
-    String API_GET_ALL_JOBS="/warranty/{user_id}";
-    String API_SIGN_UP="/signup";
-    String API_SIGNUP_OTHER="/signup_other";
-    String API_LOGIN="/login";
-    String API_MATCH_ACTIVE="/match_active";
-    String API_BLOCK_LIST="/block_list";
-    String API_CITY_LIST="/city_list";
-    String API_MATCH_PREDICTION="/user_match_prediction";
-    String API_GET_COMMENTRY="/get_full_commentry/{match_id}";
-    String API_LEADERBOARD="/leaderboards/{user_id}";
-    String API_WINNER_PREDICTION="/winner_prediction";
-    String API_USER_RESULTS="/user_result/{user_id}";
+    String API_GET_ALL_JOBS="warranty/{user_id}";
+    String API_SIGN_UP="signup";
+    String API_SIGNUP_OTHER="signup_other";
+    String API_LOGIN="login";
+    String API_MATCH_ACTIVE="match_active";
+    String API_BLOCK_LIST="block_list";
+    String API_CITY_LIST="city_list";
+    String API_MATCH_PREDICTION="user_match_prediction";
+    String API_GET_COMMENTRY="get_full_commentry/{match_id}";
+    String API_LEADERBOARD="leaderboards/{user_id}";
+    String API_WINNER_PREDICTION="winner_prediction";
+    String API_USER_RESULTS="user_result/{user_id}";
+    String API_USER_VOTER="is_user_predict/{user_id}/{match_id}";
+    String API_GET_VOTE="get_winner_prediction/{match_id}";
+    String API_GET_YOUR_CASH="update_user_info";
 
 
     //Prefrence
@@ -45,5 +48,6 @@ public interface Constants {
     String PREF_IS_VOTE="is_vote";
     String PREF_TEAM_ONE_VOTE="team_one_vote";
     String PREF_TEAM_TWO_VOTE="team_two_vote";
+    String PREF_IS_VOTED="is_voted";
 
 }

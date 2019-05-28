@@ -1,9 +1,12 @@
 package com.adaxiom.network;
 
 
+import com.adaxiom.model.response.RM_GetYourCash;
+import com.adaxiom.model.response.IsVoted;
 import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
 import com.adaxiom.model.response.RM_Commentry;
+import com.adaxiom.model.response.RM_GetAllVote;
 import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
@@ -15,7 +18,6 @@ import com.adaxiom.model.response.RM_WinnerPrediction;
 
 import java.util.List;
 
-import retrofit.http.Field;
 import rx.Observable;
 
 
@@ -64,6 +66,12 @@ public interface BackendConnector {
         Observable<RM_WinnerPrediction> WinnerPrediction(int userid, String matchid, String prediction);
 
         Observable<List<RM_UserResult>> UserResult(int match_id);
+
+        Observable<IsVoted> IsUserVoted(int userid, String matchId);
+
+        Observable<List<RM_GetAllVote>> GetAllVote(String match_id);
+
+        Observable<RM_GetYourCash> GetYourCash(int userid, String phone, String cnic);
 
     }
 }

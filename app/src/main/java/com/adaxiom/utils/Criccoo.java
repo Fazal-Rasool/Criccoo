@@ -7,8 +7,11 @@ import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.network.BackendConnector;
 import com.adaxiom.network.RetrofitConnector;
 import com.crashlytics.android.Crashlytics;
+import com.facebook.stetho.Stetho;
 import com.pixplicity.easyprefs.library.Prefs;
 
+
+import java.io.IOException;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -26,6 +29,8 @@ public class Criccoo extends Application {
 
         Fabric.with(this, new Crashlytics());
 //        Crashlytics.getInstance().crash();
+
+        Stetho.initializeWithDefaults(this);
 
         //EasyPreferences Library
         new Prefs.Builder()

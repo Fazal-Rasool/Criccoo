@@ -48,10 +48,11 @@
 
             <TextView
                 android:id="@+id/tvMyProfileName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/branding_bold"
                 android:text="User"
+                android:maxLines="1"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="@color/colorWhite" />
 

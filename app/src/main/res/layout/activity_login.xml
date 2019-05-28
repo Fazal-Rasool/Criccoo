@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="@drawable/login_background"
-    android:orientation="vertical"
-    tools:context=".Login">
+    tools:context=".Login"
+    android:fillViewport="true">
 
 
     <!--<include-->
@@ -16,10 +16,10 @@
     <!--android:layout_alignParentTop="true"/>-->
 
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,6 +40,12 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/logo_white" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:orientation="vertical">
 
 
         <LinearLayout
@@ -191,11 +197,13 @@
 
         </LinearLayout>
 
+        </LinearLayout>
+
 
     </LinearLayout>
 
 
-    </ScrollView>
+    <!--</ScrollView>-->
 
 
     <com.facebook.login.widget.LoginButton
@@ -217,4 +225,6 @@
         layout="@layout/layout_loader"
         />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

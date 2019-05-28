@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
     tools:context=".TotalEarning">
 
     <LinearLayout
@@ -17,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:gravity="bottom|center">
 
         <ImageView
@@ -91,12 +92,137 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/branding_bold"
+                android:text="CNIC"
+                android:gravity="center_vertical"
+                android:textSize="22dp"
+                android:textColor="#fff"
+                />
+
+
+
+            <br.com.sapereaude.maskedEditText.MaskedEditText
+                android:id="@+id/etCnicTotalEarning"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/box_et"
+                android:inputType="number"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:textColorHint="#fff"
+                android:typeface="monospace"
+                mask:allowed_chars="1234567890"
+                mask:mask="#####-#######-#"
+                android:hint="0000000000000"
+                app:keep_hint="false"
+                />
+
+            <!--<br.com.sapereaude.maskedEditText.MaskedEditText-->
+                <!--android:id="@+id/etCnicTotalEarning"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:background="@drawable/box_et"-->
+                <!--android:gravity="center"-->
+                <!--android:fontFamily="@font/branding_medium"-->
+                <!--android:hint="00000-0000000-0"-->
+                <!--android:textSize="@dimen/et_text_size"-->
+                <!--android:inputType="numberDecimal"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingRight="10dp"-->
+                <!--android:textColor="#fff"-->
+                <!--android:textColorHint="#fff"-->
+                <!--android:maxLength="15"-->
+                <!--mask:allowed_chars="1234567890"-->
+                <!--mask:mask="#####-#######-#"-->
+                <!--app:keep_hint="true"-->
+                <!--/>-->
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/branding_bold"
+                android:text="Phone"
+                android:gravity="center_vertical"
+                android:textSize="22dp"
+                android:textColor="#fff"
+                />
+
+            <br.com.sapereaude.maskedEditText.MaskedEditText
+                android:id="@+id/etPhoneTotalEarning"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/box_et"
+                android:inputType="number"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:textColorHint="#fff"
+                android:typeface="monospace"
+                mask:allowed_chars="1234567890"
+                mask:mask="####-#######"
+                android:hint="00000000000"
+                app:keep_hint="false"
+                />
+
+
+
+            <!--<EditText-->
+                <!--android:id="@+id/etPhoneTotalEarning"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:background="@drawable/box_et"-->
+                <!--android:gravity="center"-->
+                <!--android:fontFamily="@font/branding_medium"-->
+                <!--android:hint="0000-0000000"-->
+                <!--android:textSize="@dimen/et_text_size"-->
+                <!--android:inputType="phone"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingRight="10dp"-->
+                <!--android:textColor="#fff"-->
+                <!--android:textColorHint="#fff"-->
+                <!--android:maxLength="12"/>-->
+
+        </LinearLayout>
+
+        </LinearLayout>
 
 
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_weight="0.2"/>
+            android:layout_weight="0.8"/>
 
         <LinearLayout
             android:layout_width="match_parent"

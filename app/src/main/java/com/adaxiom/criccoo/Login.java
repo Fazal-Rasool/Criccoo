@@ -13,6 +13,7 @@ import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -115,9 +116,10 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+
+
         context = this;
-
-
+        Utils.hideSoftKeyboard(this);
         initialization();
 
     }
@@ -233,7 +235,7 @@ public class Login extends AppCompatActivity {
 //                tvName.setText("");
 //                tvEmail.setText("");
 //                ivProfile.setImageResource(0);
-                Toast.makeText(Login.this, "User Logged out", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, "User Logged out", Toast.LENGTH_SHORT).show();
             } else
                 displayFacebookSignInData(currentAccessToken);
         }
@@ -387,7 +389,7 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Utils.showHideLoaderView(avLoading, false);
-                                Toast.makeText(Login.this, e.toString(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(Login.this, e.toString(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -399,7 +401,7 @@ public class Login extends AppCompatActivity {
                             public void run() {
                                 Utils.showHideLoaderView(avLoading, false);
                                 if (model.error != true) {
-                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_SHORT).show();
                                     callNewActivity(model.userid, name, "");
                                 } else
                                     Toast.makeText(Login.this, model.message,
@@ -437,7 +439,7 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Utils.showHideLoaderView(avLoading, false);
-                                Toast.makeText(Login.this, e.toString(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(Login.this, e.toString(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -449,7 +451,7 @@ public class Login extends AppCompatActivity {
                             public void run() {
                                 Utils.showHideLoaderView(avLoading, false);
                                 if (model.error != true) {
-                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Login.this, model.message, Toast.LENGTH_SHORT).show();
                                     callNewActivity(model.userid, model.username, model.email);
                                 } else
                                     Toast.makeText(Login.this, model.message,
@@ -474,6 +476,14 @@ public class Login extends AppCompatActivity {
 //        mGoogleSigninClient.signOut();
 
     }
+
+
+//    public void hideSoftKeyboard() {
+//        if(getCurrentFocus()!=null) {
+//            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+//            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+//        }
+//    }
 
 
 }

@@ -1,9 +1,12 @@
 package com.adaxiom.network;
 
 import com.adaxiom.criccoo.BuildConfig;
+import com.adaxiom.model.response.IsVoted;
 import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
 import com.adaxiom.model.response.RM_Commentry;
+import com.adaxiom.model.response.RM_GetAllVote;
+import com.adaxiom.model.response.RM_GetYourCash;
 import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
@@ -12,23 +15,26 @@ import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.model.response.RM_SignUpOther;
 import com.adaxiom.model.response.RM_UserResult;
 import com.adaxiom.model.response.RM_WinnerPrediction;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import retrofit.RequestInterceptor;
-import retrofit.RestAdapter;
-import retrofit.http.Field;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
 public class RetrofitConnector implements BackendConnector, BackendConnector.GeneralApis {
 
-    private RestAdapter restAdapter;
+//    private RestAdapter restAdapter;
 
     private String apiEndPoint_Staging, apiEndPoint_Live;
     private ApiCalls calls;
-//    private Retrofit retrofit;
+    private OkHttpClient client;
+    private Retrofit retrofit;
 
 //    RequestInterceptor requestInterceptor = new RequestInterceptor() {
 //        @Override
@@ -43,41 +49,59 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
         this.apiEndPoint_Live = live;
         this.apiEndPoint_Staging = staging;
 
-        if (BuildConfig.DEBUG)
+        if (BuildConfig.DEBUG) {
 
 //            restAdapter = new RestAdapter.Builder().setEndpoint(apiEndPoint_Live).
 //                    setRequestInterceptor(requestInterceptor).setLogLevel(RestAdapter.LogLevel.FULL)
 //                    .build();
 
-            restAdapter = new RestAdapter
-                    .Builder()
-                    .setEndpoint(apiEndPoint_Live)
-//                    .setLogLevel(RestAdapter.LogLevel.FULL)
-                    .build();
 
-//            retrofit = new Retrofit.Builder()
-//                    .baseUrl(apiEndPoint_Live)
-//                    .addConverterFactory(GsonConverterFactory.create())
+            client = new OkHttpClient.Builder()
+                    .addNetworkInterceptor(new StethoInterceptor()).build();
+
+//            restAdapter = new RestAdapter
+//                    .Builder()
+//                    .setEndpoint(apiEndPoint_Live)
+////                    .setClient((Client) client)
+////                    .setLogLevel(RestAdapter.LogLevel.FULL)
 //                    .build();
 
-        else
-//            retrofit = new Retrofit.Builder()
-//                    .baseUrl(apiEndPoint_Live)
-//                    .addConverterFactory(GsonConverterFactory.create())
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(apiEndPoint_Live)
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
+                    .build();
+
+
+
+        }else {
+
+            client = new OkHttpClient.Builder()
+                    .addNetworkInterceptor(new StethoInterceptor()).build();
+
+//            restAdapter = new RestAdapter
+//                    .Builder()
+//                    .setEndpoint(apiEndPoint_Staging)
+////                    .setClient((Client) client)
+////                    .setLogLevel(RestAdapter.LogLevel.FULL)
 //                    .build();
 
-            restAdapter = new RestAdapter
-                    .Builder()
-                    .setEndpoint(apiEndPoint_Staging)
-//                    .setLogLevel(RestAdapter.LogLevel.FULL)
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(apiEndPoint_Staging)
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
                     .build();
+
+        }
 
 //            restAdapter = new RestAdapter.Builder().setEndpoint(apiEndPoint_Staging)
 //                    .setRequestInterceptor(requestInterceptor).setLogLevel(RestAdapter.LogLevel.NONE)
 //                    .build();
-        calls = restAdapter.create(ApiCalls.class);
+//        calls = restAdapter.create(ApiCalls.class);
 
-//         calls = retrofit.create(ApiCalls.class);
+         calls = retrofit.create(ApiCalls.class);
 
     }
 
@@ -183,6 +207,25 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
         return calls.UserResult(userId);
     }
 
+
+    @Override
+    public Observable<IsVoted> IsUserVoted(int userId, String matchId) {
+        return calls.IsUserVoted(userId, matchId);
+    }
+
+
+    @Override
+    public Observable<List<RM_GetAllVote>> GetAllVote(String userId) {
+        return calls.GetAllVote(userId);
+    }
+
+
+
+
+    @Override
+    public Observable<RM_GetYourCash> GetYourCash(int userId, String phone, String cnic) {
+        return calls.GetYourCash(userId, phone, cnic);
+    }
 
 
     //    @Override

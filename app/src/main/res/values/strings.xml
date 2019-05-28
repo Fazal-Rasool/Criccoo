@@ -10,4 +10,6 @@
 
     <string name="internet_connectivity_msg">Please connect to internet first</string>
 
+    <string name="urdu_confirmation_text">آپکی درخواست پر عمل کیا جا رہا ہے- 24 گھنٹوں میں رقم آپکو منتقل کر دی جائے گی-</string>
+
 </resources>

@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/dashboard_score"
-                android:text="36  |  45"
+                android:text="0  |  0"
                 android:textColor="#fff"
                 android:textSize="@dimen/txt_dashboard_small" />
 

@@ -198,8 +198,8 @@
                 android:weightSum="2">
 
                 <ImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="bottom"
                     android:scaleType="fitXY"
                     android:src="@drawable/earning" />
@@ -208,7 +208,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/comic"
-                    android:text="  Earning"
+                    android:text=" Earning"
                     android:textColor="#fff"
                     android:textSize="@dimen/txt_dashboard_normal" />
 
@@ -225,8 +225,8 @@
                 android:weightSum="2">
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="75dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/leaderboard"
                     android:scaleType="fitCenter"/>
 
@@ -253,8 +253,8 @@
                 android:weightSum="2">
 
                 <ImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/chat"
                     android:scaleType="fitXY"/>
 
@@ -262,7 +262,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/comic"
-                    android:text="Chat   "
+                    android:text="Chat  "
                     android:textColor="#fff"
                     android:maxLines="1"
                     android:textSize="@dimen/txt_dashboard_normal" />

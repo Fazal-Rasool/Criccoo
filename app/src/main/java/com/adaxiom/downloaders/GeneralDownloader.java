@@ -3,9 +3,12 @@ package com.adaxiom.downloaders;
 import android.widget.Toast;
 
 import com.adaxiom.criccoo.Signup;
+import com.adaxiom.model.response.IsVoted;
 import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
 import com.adaxiom.model.response.RM_Commentry;
+import com.adaxiom.model.response.RM_GetAllVote;
+import com.adaxiom.model.response.RM_GetYourCash;
 import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.model.response.RM_Login;
 import com.adaxiom.model.response.RM_MatchActive;
@@ -441,6 +444,97 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
             }
         });
     }
+
+
+
+    public Observable<IsVoted> API_IsVoted(final int userid, final String matchid) {
+
+        return Observable.create(new Observable.OnSubscribe<IsVoted>() {
+            @Override
+            public void call(final Subscriber<? super IsVoted> subscriber) {
+                beConnector.IsUserVoted(userid,matchid)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(Schedulers.newThread())
+                        .subscribe(new Subscriber<IsVoted>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(IsVoted authResponse) {
+                                subscriber.onNext(authResponse);
+                            }
+                        });
+            }
+        });
+    }
+
+
+
+    public Observable<List<RM_GetAllVote>> API_GetAllVote(final String matchid) {
+
+        return Observable.create(new Observable.OnSubscribe<List<RM_GetAllVote>>() {
+            @Override
+            public void call(final Subscriber<? super List<RM_GetAllVote>> subscriber) {
+                beConnector.GetAllVote(matchid)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(Schedulers.newThread())
+                        .subscribe(new Subscriber<List<RM_GetAllVote>>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(List<RM_GetAllVote> authResponse) {
+                                subscriber.onNext(authResponse);
+                            }
+                        });
+            }
+        });
+    }
+
+
+
+    public Observable<RM_GetYourCash> API_GetYourCash(final int userid, final String phone, final String cnic) {
+
+        return Observable.create(new Observable.OnSubscribe<RM_GetYourCash>() {
+            @Override
+            public void call(final Subscriber<? super RM_GetYourCash> subscriber) {
+                beConnector.GetYourCash(userid,phone, cnic)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(Schedulers.newThread())
+                        .subscribe(new Subscriber<RM_GetYourCash>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(RM_GetYourCash authResponse) {
+                                subscriber.onNext(authResponse);
+                            }
+                        });
+            }
+        });
+    }
+
 
 
 

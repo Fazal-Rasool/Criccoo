@@ -69,6 +69,7 @@ public class Prediction extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_prediction);
         ButterKnife.bind(this);
+
     }
 
 
