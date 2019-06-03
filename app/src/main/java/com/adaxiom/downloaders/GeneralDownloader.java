@@ -8,6 +8,7 @@ import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
 import com.adaxiom.model.response.RM_Commentry;
 import com.adaxiom.model.response.RM_GetAllVote;
+import com.adaxiom.model.response.RM_GetEarning;
 import com.adaxiom.model.response.RM_GetYourCash;
 import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.model.response.RM_Login;
@@ -17,6 +18,7 @@ import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.model.response.RM_SignUpOther;
 import com.adaxiom.model.response.RM_UserResult;
 import com.adaxiom.model.response.RM_WinnerPrediction;
+import com.adaxiom.model.response.RM_WinnerPredictionNew;
 import com.adaxiom.network.BackendConnector;
 
 import java.util.List;
@@ -326,12 +328,12 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
 
 
 
-    public Observable<RM_LeaderBoard> API_LeaderBoard(final int user_id) {
+    public Observable<RM_LeaderBoard> API_LeaderBoard(final int user_id, final String matchid) {
 
         return Observable.create(new Observable.OnSubscribe<RM_LeaderBoard>() {
             @Override
             public void call(final Subscriber<? super RM_LeaderBoard> subscriber) {
-                beConnector.LeaderBoard(user_id)
+                beConnector.LeaderBoard(user_id, matchid)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(Schedulers.newThread())
                         .subscribe(new Subscriber<RM_LeaderBoard>() {
@@ -386,15 +388,15 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
 
 
 
-    public Observable<RM_WinnerPrediction> API_WinnerPrediction(final int userid, final String matchid, final String prediction) {
+    public Observable<RM_WinnerPredictionNew> API_WinnerPrediction(final int userid, final String matchid, final String prediction) {
 
-        return Observable.create(new Observable.OnSubscribe<RM_WinnerPrediction>() {
+        return Observable.create(new Observable.OnSubscribe<RM_WinnerPredictionNew>() {
             @Override
-            public void call(final Subscriber<? super RM_WinnerPrediction> subscriber) {
+            public void call(final Subscriber<? super RM_WinnerPredictionNew> subscriber) {
                 beConnector.WinnerPrediction(userid,matchid,prediction)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(Schedulers.newThread())
-                        .subscribe(new Subscriber<RM_WinnerPrediction>() {
+                        .subscribe(new Subscriber<RM_WinnerPredictionNew>() {
                             @Override
                             public void onCompleted() {
                                 subscriber.onCompleted();
@@ -406,7 +408,7 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
                             }
 
                             @Override
-                            public void onNext(RM_WinnerPrediction authResponse) {
+                            public void onNext(RM_WinnerPredictionNew authResponse) {
                                 subscriber.onNext(authResponse);
                             }
                         });
@@ -535,6 +537,36 @@ public class GeneralDownloader extends BaseContentDownloader<BackendConnector.Ge
         });
     }
 
+
+
+
+    public Observable<RM_GetEarning> API_GetEarning(final int user_id) {
+
+        return Observable.create(new Observable.OnSubscribe<RM_GetEarning>() {
+            @Override
+            public void call(final Subscriber<? super RM_GetEarning> subscriber) {
+                beConnector.GetEarning(user_id)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(Schedulers.newThread())
+                        .subscribe(new Subscriber<RM_GetEarning>() {
+                            @Override
+                            public void onCompleted() {
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                subscriber.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(RM_GetEarning authResponse) {
+                                subscriber.onNext(authResponse);
+                            }
+                        });
+            }
+        });
+    }
 
 
 

@@ -7,5 +7,4 @@ public class RM_UserResult {
     public String innings="";
     public String match_over="";
     public String score="";
-
 }

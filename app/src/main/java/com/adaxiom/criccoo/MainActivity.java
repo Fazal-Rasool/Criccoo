@@ -10,10 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,13 +21,12 @@ import com.adaxiom.manager.DownloaderManager;
 import com.adaxiom.model.response.IsVoted;
 import com.adaxiom.model.response.RM_Commentry;
 import com.adaxiom.model.response.RM_GetAllVote;
-import com.adaxiom.model.response.RM_WinnerPrediction;
+import com.adaxiom.model.response.RM_WinnerPredictionNew;
 import com.adaxiom.utils.Utils;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -89,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tvNameTeamSecond;
     @BindView(R.id.videoViewDashboard)
     VideoView videoViewDashboard;
+    @BindView(R.id.ivRefresh)
+    ImageView ivRefresh;
 
 
     private Subscription getSubscription;
@@ -176,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.ivPrediction_Dashboard, R.id.viewEarning_Dashboard, R.id.viewLeaderBoard_Dashboard,
-            R.id.viewChat_Dashboard, R.id.ivLogout})
+            R.id.viewChat_Dashboard, R.id.ivLogout, R.id.ivRefresh})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivPrediction_Dashboard:
@@ -197,6 +196,13 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.ivLogout:
                 AlertLogout();
+                break;
+            case R.id.ivRefresh:
+                if (Utils.isNetworkAvailable(this)) {
+                    API_LiveScore();
+                    API_GetAllVote();
+                } else
+                    Toast.makeText(this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -223,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 avLoading.setVisibility(View.GONE);
-                                Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -254,7 +260,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String calculateRunrate(String run, String over) {
-        if (run.equalsIgnoreCase("") || over.equalsIgnoreCase(""))
+        if (run.equalsIgnoreCase("") || over.equalsIgnoreCase("")
+        || over == null || run == null)
             return "";
         Double Over = Double.parseDouble(over);
         int Run = Integer.parseInt(run);
@@ -434,7 +441,7 @@ public class MainActivity extends AppCompatActivity {
                 API_WinnerPrediction(userid, matchId, yourSelectedTeam)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
-                .subscribe(new Subscriber<RM_WinnerPrediction>() {
+                .subscribe(new Subscriber<RM_WinnerPredictionNew>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -451,34 +458,57 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onNext(final RM_WinnerPrediction model) {
+                    public void onNext(final RM_WinnerPredictionNew model) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 avLoading.setVisibility(View.GONE);
                                 alertVoteTeam.dismiss();
-//                                setIsVoteFlag();
-                                if (!model.error) {
-                                    String teamOneVote = "", teamTwoVote = "";
-                                    if (compareTeamForVote(teamOne, model.team_1.prediction)) {
-                                            teamOneVote = model.team_1.total_count;
-                                            teamTwoVote = model.team_2.total_count;
-                                    } else {
-                                            teamOneVote = model.team_2.total_count;
-                                            teamTwoVote = model.team_1.total_count;
-                                    }
-                                    Prefs.putString(PREF_TEAM_ONE_VOTE, teamOneVote);
-                                    Prefs.putString(PREF_TEAM_TWO_VOTE, teamTwoVote);
-                                    setValues();
-                                } else
-//                                if (!model.get(0).prediction) {
-                                    Toast.makeText(MainActivity.this, model.message, Toast.LENGTH_SHORT).show();
+                                newUpdateUI(model);
+////                                setIsVoteFlag();
+//                                if (!model.error) {
+//                                    String teamOneVote = "", teamTwoVote = "";
+//                                    if (compareTeamForVote(teamOne, model.team_1.prediction)) {
+//                                            teamOneVote = model.team_1.total_count;
+//                                            teamTwoVote = model.team_2.total_count;
+//                                    } else {
+//                                            teamOneVote = model.team_2.total_count;
+//                                            teamTwoVote = model.team_1.total_count;
+//                                    }
+//                                    Prefs.putString(PREF_TEAM_ONE_VOTE, teamOneVote);
+//                                    Prefs.putString(PREF_TEAM_TWO_VOTE, teamTwoVote);
+//                                    setValues();
 //                                } else
+////                                if (!model.get(0).prediction) {
 //                                    Toast.makeText(MainActivity.this, model.message, Toast.LENGTH_SHORT).show();
+////                                } else
+////                                    Toast.makeText(MainActivity.this, model.message, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                 });
+    }
+
+
+    public void newUpdateUI(RM_WinnerPredictionNew model) {
+//        setIsVoteFlag();
+        if (!model.isError()) {
+            String teamOneVote = "", teamTwoVote = "";
+            if (compareTeamForVote(teamOne, model.getTeam_1().getPrediction())) {
+                teamOneVote = model.getTeam_1().getTotal_count() + "";
+                teamTwoVote = model.getTeam_2().getTotal_count() + "";
+            } else {
+                teamOneVote = model.getTeam_2().getTotal_count() + "";
+                teamTwoVote = model.getTeam_1().getTotal_count() + "";
+            }
+            Prefs.putString(PREF_TEAM_ONE_VOTE, teamOneVote);
+            Prefs.putString(PREF_TEAM_TWO_VOTE, teamTwoVote);
+            setValues();
+        } else
+//                                if (!model.get(0).prediction) {
+            Toast.makeText(MainActivity.this, model.getMessage(), Toast.LENGTH_SHORT).show();
+//                                } else
+//                                    Toast
     }
 
 

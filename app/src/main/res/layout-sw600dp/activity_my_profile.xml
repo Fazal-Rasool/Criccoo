@@ -38,24 +38,27 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:weightSum="2"
                     android:layout_margin="15dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.9"
+                        android:layout_weight="1"
                         android:fontFamily="@font/branding_medium"
                         android:text="Match"
+                        android:gravity="left"
                         android:textColor="#000"
                         android:textSize="@dimen/txt_leaderboard_header" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
+                        android:layout_weight="0.5"
                         android:fontFamily="@font/branding_medium"
                         android:text="Over"
+                        android:gravity="center"
                         android:textColor="#000"
                         android:textSize="@dimen/txt_leaderboard_header" />
 

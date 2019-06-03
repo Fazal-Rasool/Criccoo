@@ -124,30 +124,56 @@
                         android:orientation="vertical"
                         android:weightSum="2">
 
-                        <!--<View-->
-                        <!--android:layout_width="1dp"-->
-                        <!--android:layout_height="0dp"-->
-                        <!--android:layout_weight="1"/>-->
-
-                        <TextView
-                            android:id="@+id/tvPlayerOneScore_Dashboard"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dashboard_score"
-                            android:text="Misbah ul haq 68(47)"
-                            android:maxLines="1"
-                            android:textColor="#fff"
-                            android:textSize="@dimen/txt_dashboard_small" />
+                            android:orientation="horizontal"
+                            android:gravity="center|left">
 
-                        <TextView
-                            android:id="@+id/tvPlayerSecondScore_Dashboard"
-                            android:layout_width="wrap_content"
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_bat"
+                                android:layout_marginRight="10dp"/>
+
+
+
+                            <TextView
+                                android:id="@+id/tvPlayerOneScore_Dashboard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/dashboard_score"
+                                android:text=""
+                                android:maxLines="1"
+                                android:textColor="#fff"
+                                android:textSize="@dimen/txt_dashboard_small" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dashboard_score"
-                            android:maxLines="1"
-                            android:text="Shahid Afridi 50(15)"
-                            android:textColor="#fff"
-                            android:textSize="@dimen/txt_dashboard_small" />
+                            android:orientation="horizontal"
+                            android:gravity="center|left">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_bowler"
+                                android:layout_marginRight="10dp"/>
+
+
+                            <TextView
+                                android:id="@+id/tvPlayerSecondScore_Dashboard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/dashboard_score"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="#fff"
+                                android:textSize="@dimen/txt_dashboard_small" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -173,7 +199,8 @@
                     android:id="@+id/ivPrediction_Dashboard"
                     android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:src="@drawable/predict_now" />
+                    android:src="@drawable/predict_now"
+                    android:layout_marginRight="15dp"/>
 
 
             </LinearLayout>
@@ -282,6 +309,17 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"/>
+
+
+    <ImageView
+        android:id="@+id/ivRefresh"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_refresh"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"/>
 
 
     <include layout="@layout/layout_loader"/>

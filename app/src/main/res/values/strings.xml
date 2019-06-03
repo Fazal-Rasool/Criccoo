@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Crico</string>
+    <string name="app_name">Cricoo</string>
 
 
     <string name="facebook_app_id">584250195406295</string>
@@ -11,5 +11,8 @@
     <string name="internet_connectivity_msg">Please connect to internet first</string>
 
     <string name="urdu_confirmation_text">آپکی درخواست پر عمل کیا جا رہا ہے- 24 گھنٹوں میں رقم آپکو منتقل کر دی جائے گی-</string>
+
+    <string name="urdu_alert_text">ہم معذرت خواہ ہیں کے آپ پہلے 20 صارف کی فہرست میں شامل نہیں ہیں.</string>
+
 
 </resources>

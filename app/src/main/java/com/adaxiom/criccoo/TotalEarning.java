@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adaxiom.manager.DownloaderManager;
+import com.adaxiom.model.response.RM_GetEarning;
 import com.adaxiom.model.response.RM_GetYourCash;
 import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.utils.Utils;
@@ -45,8 +46,9 @@ public class TotalEarning extends AppCompatActivity {
     @BindView(R.id.etPhoneTotalEarning)
     EditText etPhoneTotalEarning;
 
-    private int totalCash=0;
+//    private int totalCash = 0;
     private AlertDialog alert;
+    private int myRupee = 0;
 
 
     public static void startActivity(Context context) {
@@ -71,13 +73,15 @@ public class TotalEarning extends AppCompatActivity {
 
     @OnClick(R.id.ivGetYourCash)
     public void onViewClicked() {
-        if(Utils.isNetworkAvailable(this)){
-            if(validUserData())
-                API_PostUserInfo();
-            else
-                Toast.makeText(this, "Your Cash must be 1000/-", Toast.LENGTH_LONG).show();
-        }else
-            Toast.makeText(this,R.string.internet_connectivity_msg,Toast.LENGTH_SHORT).show();
+        if (Utils.isNetworkAvailable(this)) {
+//            if (myRank <= 20 && myRank > 0) {
+                if (validUserData())
+                    API_PostUserInfo();
+//            } else {
+//                AlertUserInfo(2);
+//            }
+        } else
+            Toast.makeText(this, R.string.internet_connectivity_msg, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -87,10 +91,10 @@ public class TotalEarning extends AppCompatActivity {
         avLoading.setVisibility(View.VISIBLE);
 
         DownloaderManager.getGeneralDownloader().
-                API_LeaderBoard(user_id)
+                API_GetEarning(user_id)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
-                .subscribe(new Subscriber<RM_LeaderBoard>() {
+                .subscribe(new Subscriber<RM_GetEarning>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -107,31 +111,31 @@ public class TotalEarning extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onNext(RM_LeaderBoard list) {
+                    public void onNext(RM_GetEarning list) {
                         updateUi(list);
                     }
                 });
     }
 
 
-    public void updateUi(final RM_LeaderBoard mList) {
+    public void updateUi(final RM_GetEarning model) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 avLoading.setVisibility(View.GONE);
-                if (mList.user.size() != 0) {
-                    String total_score = mList.user.get(0).total_score;
-                    if (total_score != null || !total_score.equalsIgnoreCase("")) {
-                        tvTotalCash.setText(total_score + "/-");
-                        totalCash = Integer.parseInt(total_score);
-                    }
-                    else tvTotalCash.setText("0.0/-");
-                }
+                if (!model.error) {
+                    String rupee = model.rupees;
+                    myRupee = Integer.parseInt(rupee);
+//                    String total_score = mList.user.get(0).total_score;
+//                    if (total_score != null || !total_score.equalsIgnoreCase("")) {
+                        tvTotalCash.setText(rupee + "/-");
+//                        totalCash = Integer.parseInt(total_score);
+                    } else tvTotalCash.setText("0.0/-");
+//                }
 
             }
         });
     }
-
 
 
     public void API_PostUserInfo() {
@@ -167,10 +171,10 @@ public class TotalEarning extends AppCompatActivity {
                             @Override
                             public void run() {
                                 avLoading.setVisibility(View.GONE);
-                                if(!model.error){
-                                    AlertUserInfo();
-                                }else{
-                                    Toast.makeText(TotalEarning.this,model.message,Toast.LENGTH_SHORT).show();
+                                if (!model.error) {
+                                    AlertUserInfo(1);
+                                } else {
+                                    Toast.makeText(TotalEarning.this, model.message, Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -179,46 +183,47 @@ public class TotalEarning extends AppCompatActivity {
     }
 
 
-
-
-
-    public boolean validUserData(){
+    public boolean validUserData() {
         String cnic = etCnicTotalEarning.getText().toString();
         String phone = etPhoneTotalEarning.getText().toString();
-        boolean flagCnic=false, flagPhone=false;
+        boolean flagCnic = false, flagPhone = false;
 
-        if(!cnic.equalsIgnoreCase("00000-0000000-0")){
-            if(cnic.length() == 15){
-                flagCnic=true;
-            }else{
-                flagCnic=false;
+        if (!cnic.equalsIgnoreCase("00000-0000000-0")) {
+            if (cnic.length() == 15) {
+                flagCnic = true;
+            } else {
+                flagCnic = false;
                 Toast.makeText(this, "Invalid CNIC number", Toast.LENGTH_SHORT).show();
+                return false;
             }
-        }else{
-            flagCnic=false;
-            Toast.makeText(this, "Invalid CNIC number", Toast.LENGTH_SHORT).show();
-        }
-
-        if(!phone.equalsIgnoreCase("0000-0000000")){
-            if(phone.length() == 12){
-                flagPhone=true;
-            }else{
-                flagPhone=false;
-                Toast.makeText(this, "Invalid Phone number", Toast.LENGTH_SHORT).show();
-            }
-        }else{
-            flagPhone=false;
-            Toast.makeText(this, "Invalid Phone number", Toast.LENGTH_SHORT).show();
-        }
-
-
-
-        if(totalCash >= 1000){
-        if(flagCnic && flagPhone)
-            return true;
-        else
+        } else {
+            flagCnic = false;
+            Toast.makeText(this, "Please enter CNIC", Toast.LENGTH_SHORT).show();
             return false;
-        }else{
+        }
+
+        if (!phone.equalsIgnoreCase("0000-0000000")) {
+            if (phone.length() == 12) {
+                flagPhone = true;
+            } else {
+                flagPhone = false;
+                Toast.makeText(this, "Invalid Phone number", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        } else {
+            flagPhone = false;
+            Toast.makeText(this, "Please enter Phone number", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        if (myRupee >= 1000) {
+            if (flagCnic && flagPhone)
+                return true;
+            else
+                return false;
+        } else {
+            Toast.makeText(this, "Your Cash must be 1000/-", Toast.LENGTH_LONG).show();
             return false;
         }
 
@@ -226,11 +231,14 @@ public class TotalEarning extends AppCompatActivity {
     }
 
 
-
-    public void AlertUserInfo() {
+    public void AlertUserInfo(int flag) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 //        builder.setTitle("Logout!");
-        builder.setMessage(R.string.urdu_confirmation_text);
+        if (flag == 1) {
+            builder.setMessage(R.string.urdu_confirmation_text);
+        } else
+            builder.setMessage(R.string.urdu_alert_text);
+
         builder.setCancelable(false);
 
         builder.setPositiveButton(
@@ -243,11 +251,9 @@ public class TotalEarning extends AppCompatActivity {
                 });
 
 
-
         alert = builder.create();
         alert.show();
     }
-
 
 
 }

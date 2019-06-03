@@ -19,10 +19,21 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 public class Utils{
 
     public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager
-                .getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+//        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo activeNetworkInfo = connectivityManager
+//                .getActiveNetworkInfo();
+//        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+
+        ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mobile = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE) ;
+
+        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI) ;
+        if (mWifi.isConnected()||mobile.isConnected()) {
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
 

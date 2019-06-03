@@ -1,6 +1,7 @@
 package com.adaxiom.network;
 
 
+import com.adaxiom.model.response.RM_GetEarning;
 import com.adaxiom.model.response.RM_GetYourCash;
 import com.adaxiom.model.response.IsVoted;
 import com.adaxiom.model.response.RM_BlockList;
@@ -15,6 +16,7 @@ import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.model.response.RM_SignUpOther;
 import com.adaxiom.model.response.RM_UserResult;
 import com.adaxiom.model.response.RM_WinnerPrediction;
+import com.adaxiom.model.response.RM_WinnerPredictionNew;
 
 import java.util.List;
 
@@ -59,11 +61,11 @@ public interface BackendConnector {
                 String ball_6
         );
 
-        Observable<RM_LeaderBoard> LeaderBoard(int userId);
+        Observable<RM_LeaderBoard> LeaderBoard(int userId, String matchId);
 
         Observable<RM_Commentry> Commentary(String match_id);
 
-        Observable<RM_WinnerPrediction> WinnerPrediction(int userid, String matchid, String prediction);
+        Observable<RM_WinnerPredictionNew> WinnerPrediction(int userid, String matchid, String prediction);
 
         Observable<List<RM_UserResult>> UserResult(int match_id);
 
@@ -72,6 +74,8 @@ public interface BackendConnector {
         Observable<List<RM_GetAllVote>> GetAllVote(String match_id);
 
         Observable<RM_GetYourCash> GetYourCash(int userid, String phone, String cnic);
+
+        Observable<RM_GetEarning> GetEarning(int userid);
 
     }
 }

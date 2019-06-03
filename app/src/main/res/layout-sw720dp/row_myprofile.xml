@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:weightSum="2"
         android:orientation="horizontal"
         android:paddingTop="5sp"
         android:paddingBottom="5sp">
@@ -17,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/branding_semilight"
-            android:paddingLeft="20sp"
+            android:paddingLeft="0sp"
+            android:gravity="left"
             android:textColor="@android:color/black"
             android:textSize="@dimen/row_leaderboard_normal" />
 
@@ -28,6 +30,7 @@
             android:layout_weight="0.5"
             android:fontFamily="@font/branding_semilight"
             android:textColor="@android:color/black"
+            android:gravity="center"
             android:textSize="@dimen/row_leaderboard_normal" />
 
         <TextView

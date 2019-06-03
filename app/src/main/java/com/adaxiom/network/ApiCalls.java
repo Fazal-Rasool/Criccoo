@@ -1,5 +1,6 @@
 package com.adaxiom.network;
 
+import com.adaxiom.model.response.RM_GetEarning;
 import com.adaxiom.model.response.RM_GetYourCash;
 import com.adaxiom.model.response.IsVoted;
 import com.adaxiom.model.response.RM_BlockList;
@@ -14,6 +15,7 @@ import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.model.response.RM_SignUpOther;
 import com.adaxiom.model.response.RM_UserResult;
 import com.adaxiom.model.response.RM_WinnerPrediction;
+import com.adaxiom.model.response.RM_WinnerPredictionNew;
 
 import java.util.List;
 import java.util.Map;
@@ -29,6 +31,7 @@ import rx.Observable;
 import static com.adaxiom.utils.Constants.API_BLOCK_LIST;
 import static com.adaxiom.utils.Constants.API_CITY_LIST;
 import static com.adaxiom.utils.Constants.API_GET_COMMENTRY;
+import static com.adaxiom.utils.Constants.API_GET_EARNING;
 import static com.adaxiom.utils.Constants.API_GET_VOTE;
 import static com.adaxiom.utils.Constants.API_GET_YOUR_CASH;
 import static com.adaxiom.utils.Constants.API_LEADERBOARD;
@@ -116,7 +119,7 @@ public interface ApiCalls {
 
 
     @GET(API_LEADERBOARD)
-    Observable<RM_LeaderBoard> LeaderBoard(@Path("user_id") int userId);
+    Observable<RM_LeaderBoard> LeaderBoard(@Path("user_id") int userId, @Path("match_id") String matchid);
 
     @GET(API_GET_COMMENTRY)
     Observable<RM_Commentry> Commentary(@Path("match_id") String match_id);
@@ -124,7 +127,7 @@ public interface ApiCalls {
 
     @FormUrlEncoded
     @POST(API_WINNER_PREDICTION)
-    Observable<RM_WinnerPrediction> WinnerPrediction(
+    Observable<RM_WinnerPredictionNew> WinnerPrediction(
             @Field("user_id") int userId
             ,@Field("match_id") String matchId
             ,@Field("prediction") String prediction
@@ -151,6 +154,11 @@ public interface ApiCalls {
             ,@Field("phone_no") String matchId
             ,@Field("cnic") String prediction
     );
+
+
+    @GET(API_GET_EARNING)
+    Observable<RM_GetEarning> GetEarning(@Path("user_id") int userId);
+
 
 
 }

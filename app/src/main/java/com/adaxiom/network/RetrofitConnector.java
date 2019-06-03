@@ -6,6 +6,7 @@ import com.adaxiom.model.response.RM_BlockList;
 import com.adaxiom.model.response.RM_CityList;
 import com.adaxiom.model.response.RM_Commentry;
 import com.adaxiom.model.response.RM_GetAllVote;
+import com.adaxiom.model.response.RM_GetEarning;
 import com.adaxiom.model.response.RM_GetYourCash;
 import com.adaxiom.model.response.RM_LeaderBoard;
 import com.adaxiom.model.response.RM_Login;
@@ -15,6 +16,7 @@ import com.adaxiom.model.response.RM_SignUp;
 import com.adaxiom.model.response.RM_SignUpOther;
 import com.adaxiom.model.response.RM_UserResult;
 import com.adaxiom.model.response.RM_WinnerPrediction;
+import com.adaxiom.model.response.RM_WinnerPredictionNew;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.util.HashMap;
@@ -184,8 +186,8 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
 
 
     @Override
-    public Observable<RM_LeaderBoard> LeaderBoard(int userId) {
-        return calls.LeaderBoard(userId);
+    public Observable<RM_LeaderBoard> LeaderBoard(int userId, String matchId) {
+        return calls.LeaderBoard(userId, matchId);
     }
 
 
@@ -197,7 +199,7 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
 
 
     @Override
-    public Observable<RM_WinnerPrediction> WinnerPrediction(int userid, String match_id, String prediction) {
+    public Observable<RM_WinnerPredictionNew> WinnerPrediction(int userid, String match_id, String prediction) {
         return calls.WinnerPrediction(userid, match_id, prediction);
     }
 
@@ -226,6 +228,15 @@ public class RetrofitConnector implements BackendConnector, BackendConnector.Gen
     public Observable<RM_GetYourCash> GetYourCash(int userId, String phone, String cnic) {
         return calls.GetYourCash(userId, phone, cnic);
     }
+
+
+
+    @Override
+    public Observable<RM_GetEarning> GetEarning(int userid) {
+        return calls.GetEarning(userid);
+    }
+
+
 
 
     //    @Override

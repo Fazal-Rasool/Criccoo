@@ -28,6 +28,7 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
 
+import static com.adaxiom.utils.Constants.PREF_MATCH_ID;
 import static com.adaxiom.utils.Constants.PREF_USER_ID;
 
 public class LeaderBoard extends BaseActivity {
@@ -111,11 +112,12 @@ public class LeaderBoard extends BaseActivity {
     public void API_GetLeaderBoardData() {
 
         int user_id = Prefs.getInt(PREF_USER_ID, 0);
+        String matchid = Prefs.getString(PREF_MATCH_ID, "");
 
         avLoading.setVisibility(View.VISIBLE);
 
         getSubscription = DownloaderManager.getGeneralDownloader().
-                API_LeaderBoard(user_id)
+                API_LeaderBoard(user_id, matchid)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<RM_LeaderBoard>() {

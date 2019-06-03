@@ -185,6 +185,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/box_et"
                 android:inputType="number"
+
                 android:textColor="#fff"
                 android:gravity="center"
                 android:textColorHint="#fff"

@@ -23,12 +23,13 @@ public interface Constants {
     String API_CITY_LIST="city_list";
     String API_MATCH_PREDICTION="user_match_prediction";
     String API_GET_COMMENTRY="get_full_commentry/{match_id}";
-    String API_LEADERBOARD="leaderboards/{user_id}";
+    String API_LEADERBOARD="leaderboards/{user_id}/{match_id}";
     String API_WINNER_PREDICTION="winner_prediction";
     String API_USER_RESULTS="user_result/{user_id}";
     String API_USER_VOTER="is_user_predict/{user_id}/{match_id}";
     String API_GET_VOTE="get_winner_prediction/{match_id}";
     String API_GET_YOUR_CASH="update_user_info";
+    String API_GET_EARNING="get_earnings/{user_id}";
 
 
     //Prefrence
