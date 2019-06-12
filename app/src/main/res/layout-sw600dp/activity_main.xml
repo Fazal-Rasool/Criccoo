@@ -82,6 +82,7 @@
                 android:weightSum="10">
 
                 <LinearLayout
+                    android:id="@+id/viewScoreTable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_box">
@@ -89,7 +90,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="6"
+                        android:layout_weight="5"
                         android:orientation="vertical"
                         android:weightSum="2">
 
@@ -108,9 +109,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/dashboard_score"
-                            android:text="R/R 4.5 Target : 298"
+                            android:text="Start Time:"
                             android:textColor="#fff"
                             android:maxLines="1"
+                            android:visibility="visible"
                             android:textSize="@dimen/txt_dashboard_large" />
 
                     </LinearLayout>
@@ -119,20 +121,44 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:gravity="bottom|center"
+                        android:layout_weight="5"
+                        android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/tvTotalScoreTeamTwo_Dashboard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dashboard_score"
+                            android:text="352/5 in 50.0"
+                            android:textColor="#fff"
+                            android:maxLines="1"
+                            android:gravity="right"
+                            android:textSize="@dimen/txt_dashboard_large" />
+
+                        <pl.kitek.timertextview.TimerTextView
+                            android:id="@+id/timerText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textColor="#fff"
+                            android:drawablePadding="4dp"
+                            android:gravity="right"
+                            android:textSize="28sp"/>
+
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center|left">
+                            android:gravity="center|left"
+                            android:visibility="gone">
 
                             <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
                                 android:src="@drawable/ic_bat"
                                 android:layout_marginRight="10dp"/>
 
@@ -154,11 +180,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center|left">
+                            android:gravity="center|left"
+                            android:visibility="gone">
 
                             <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
                                 android:src="@drawable/ic_bowler"
                                 android:layout_marginRight="10dp"/>
 

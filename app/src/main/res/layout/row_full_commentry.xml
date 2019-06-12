@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+   >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        >
+
+        <TextView
+            android:id="@+id/tvOverBall"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:text="46.2"
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/branding_semilight"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:gravity="center"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorDivider"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/tvScore"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/branding_semilight"
+            android:textColor="@android:color/black"
+            android:text="W"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:textSize="@dimen/row_leaderboard_normal" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorDivider"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/tvCommentry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:fontFamily="@font/branding_semilight"
+            android:gravity="left|center"
+            android:text="Commentry"
+            android:layout_marginLeft="5dp"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/row_leaderboard_normal"
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider" />
+
+</LinearLayout>

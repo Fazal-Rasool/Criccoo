@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "840778258356",
-    "firebase_url": "https://criccoo-1556092588669.firebaseio.com",
-    "project_id": "criccoo-1556092588669",
-    "storage_bucket": "criccoo-1556092588669.appspot.com"
+    "project_number": "1099036993092",
+    "firebase_url": "https://criccoo-fb716.firebaseio.com",
+    "project_id": "criccoo-fb716",
+    "storage_bucket": "criccoo-fb716.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:840778258356:android:0ecd44600dea803c",
+        "mobilesdk_app_id": "1:1099036993092:android:1c34f958631711f2",
         "android_client_info": {
-          "package_name": "com.adaxiom.criccoo"
+          "package_name": "com.salamlahore.criccoo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "840778258356-rq3dk2bg9n0n884p7dr1aeepukff5shk.apps.googleusercontent.com",
+          "client_id": "1099036993092-k7pbgak8t5qr31p7vl7qeu9njtq1nd0i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.adaxiom.criccoo",
-            "certificate_hash": "71f01b57a8ef305e353e9c066d29019e4a00f038"
+            "package_name": "com.salamlahore.criccoo",
+            "certificate_hash": "9d61db991fd01b56831b9e97a7a0bda31b63442d"
           }
         },
         {
-          "client_id": "840778258356-qrrh19qdulj8piboac5pfu1fe0tcrb0u.apps.googleusercontent.com",
+          "client_id": "1099036993092-4u1hsmkqi8biidd3aqlq2e5lk37717jo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDQ97ygqOW4etLekcfajbt8Pjn2Q1uo194"
+          "current_key": "AIzaSyAQp_tffe1vMJDwrsxAE5cf4S421XModw0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "840778258356-qrrh19qdulj8piboac5pfu1fe0tcrb0u.apps.googleusercontent.com",
+              "client_id": "1099036993092-iv856f43c9r7ocbecggsl9ni9sk0r8m4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

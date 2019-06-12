@@ -6,11 +6,11 @@ apply plugin: 'io.fabric'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.adaxiom.criccoo"
+        applicationId "com.salamlahore.criccoo"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.1.1"
+        versionCode 1
+        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -94,5 +94,8 @@ dependencies {
 
     //EditText For Cnic and Phone
     implementation 'ru.egslava:MaskedEditText:1.0.5'
+
+    //Timer
+    implementation 'pl.kitek:timertextview:0.0.2'
 
 }
