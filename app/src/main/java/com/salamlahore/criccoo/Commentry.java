@@ -141,7 +141,12 @@ public class Commentry extends AppCompatActivity {
                             @Override
                             public void run() {
                                 swipeContainer.setRefreshing(false);
+                                if(!list.get(0).error)
                                 setAdapter(list);
+                                else{
+                                    Toast.makeText(Commentry.this,"Commentary will be available after starting match", Toast.LENGTH_SHORT).show();
+                                    Commentry.this.finish();
+                                }
                             }
                         });
                     }

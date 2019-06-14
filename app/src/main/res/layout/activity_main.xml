@@ -14,320 +14,341 @@
         android:fillViewport="true">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="10">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.5"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="10dp"
-            android:paddingBottom="5dp">
-
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/highlights"
-                android:visibility="visible"
-                android:scaleType="fitXY"/>
-
-            <VideoView
-                android:id="@+id/videoViewDashboard"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentTop="true"
-                android:visibility="gone"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            >
-
-            <include
-                layout="@layout/layout_team_selection"
-                />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:weightSum="10">
 
             <LinearLayout
-                android:id="@+id/viewScoreTable"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_box">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:orientation="vertical"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:id="@+id/tvTotalScore_Dashboard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/dashboard_score"
-                        android:gravity="center_vertical"
-                        android:text="352/5 in 50.0"
-                        android:textColor="#fff"
-                        android:maxLines="1"
-                        android:textSize="@dimen/txt_dashboard_large" />
-
-                    <TextView
-                        android:id="@+id/tvRunRate_Dashboard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/dashboard_score"
-                        android:text="Start Time:"
-                        android:textColor="#fff"
-                        android:maxLines="1"
-                        android:visibility="visible"
-                        android:textSize="@dimen/txt_dashboard_large" />
-
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:id="@+id/tvTotalScoreTeamTwo_Dashboard"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/dashboard_score"
-                        android:text="352/5 in 50.0"
-                        android:textColor="#fff"
-                        android:maxLines="1"
-                        android:gravity="right"
-                        android:textSize="@dimen/txt_dashboard_large" />
-
-                    <pl.kitek.timertextview.TimerTextView
-                        android:id="@+id/timerText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:drawablePadding="4dp"
-                        android:textColor="#fff"
-                        android:gravity="right"
-                        android:textSize="24sp"/>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center|left"
-                        android:visibility="gone">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_bat"
-                            android:layout_marginRight="10dp"/>
-
-
-
-                        <TextView
-                        android:id="@+id/tvPlayerOneScore_Dashboard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/dashboard_score"
-                        android:text=""
-                        android:maxLines="1"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/txt_dashboard_small" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center|left"
-                        android:visibility="gone">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_bowler"
-                            android:layout_marginRight="10dp"/>
-
-
-                        <TextView
-                        android:id="@+id/tvPlayerSecondScore_Dashboard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/dashboard_score"
-                        android:maxLines="1"
-                        android:text=""
-                        android:textColor="#fff"
-                        android:textSize="@dimen/txt_dashboard_small" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.25"/>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/ivPrediction_Dashboard"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/predict_now"
-                android:layout_marginRight="10dp"/>
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.7"
-            android:weightSum="3"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp">
-
-            <LinearLayout
-                android:id="@+id/viewEarning_Dashboard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="left|bottom"
+                android:layout_height="0dp"
+                android:layout_weight="2.5"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
-                android:weightSum="2">
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp">
+
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/earning" />
+                    android:src="@drawable/highlights"
+                    android:visibility="visible" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/comic"
-                    android:text=" Earning"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/txt_dashboard_normal" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/viewLeaderBoard_Dashboard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center|bottom"
-                android:orientation="vertical"
-                android:paddingBottom="5dp"
-                android:weightSum="2">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/leaderboard"
-                    android:scaleType="fitCenter"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/comic"
-                    android:text="Board"
-                    android:textColor="#fff"
-                    android:maxLines="1"
-                    android:textSize="@dimen/txt_dashboard_normal"/>
-
+                <VideoView
+                    android:id="@+id/videoViewDashboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
+
             <LinearLayout
-                android:id="@+id/viewChat_Dashboard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="right|bottom"
-                android:orientation="vertical"
-                android:paddingBottom="5dp"
-                android:weightSum="2">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <include layout="@layout/layout_team_selection" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/viewScoreTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_box"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="10">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:orientation="vertical"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:id="@+id/tvTotalScore_Dashboard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/dashboard_score"
+                                android:gravity="center_vertical"
+                                android:maxLines="1"
+                                android:text="352/5 in 50.0"
+                                android:textColor="#fff"
+                                android:textSize="@dimen/txt_dashboard_large" />
+
+                            <TextView
+                                android:id="@+id/tvRunRate_Dashboard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/dashboard_score"
+                                android:text="Start Time:"
+                                android:textColor="#fff"
+                                android:textSize="@dimen/txt_dashboard_small"
+                                android:visibility="visible" />
+
+
+                        </LinearLayout>
+
+
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:id="@+id/tvTotalScoreTeamTwo_Dashboard"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/dashboard_score"
+                                android:gravity="right"
+                                android:maxLines="1"
+                                android:text="352/5 in 50.0"
+                                android:textColor="#fff"
+                                android:textSize="@dimen/txt_dashboard_large" />
+
+                            <TextView
+                                android:id="@+id/timerText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="00:00:00"
+                                android:textColor="#fff"
+                                android:textSize="@dimen/txt_dashboard_small" />
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center|left"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginRight="10dp"
+                                    android:src="@drawable/ic_bat" />
+
+
+                                <TextView
+                                    android:id="@+id/tvPlayerOneScore_Dashboard"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/dashboard_score"
+                                    android:maxLines="1"
+                                    android:text=""
+                                    android:textColor="#fff"
+                                    android:textSize="@dimen/txt_dashboard_small" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center|left"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginRight="10dp"
+                                    android:src="@drawable/ic_bowler" />
+
+
+                                <TextView
+                                    android:id="@+id/tvPlayerSecondScore_Dashboard"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/dashboard_score"
+                                    android:maxLines="1"
+                                    android:text=""
+                                    android:textColor="#fff"
+                                    android:textSize="@dimen/txt_dashboard_small" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray"
+                        android:layout_marginTop="10dp"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dashboard_score"
+                        android:text="Commentary"
+                        android:layout_gravity="bottom|center"
+                        android:textStyle="bold"
+                        android:textColor="#fff"
+                        android:gravity="bottom"
+                        android:layout_marginTop="10dp"
+                        android:textSize="@dimen/txt_dashboard_normal" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:gravity="center">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/chat"
-                    android:scaleType="fitXY"/>
+                    android:id="@+id/ivPrediction_Dashboard"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/predict_now" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/comic"
-                    android:text="Chat  "
-                    android:textColor="#fff"
-                    android:maxLines="1"
-                    android:textSize="@dimen/txt_dashboard_normal" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.7"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:id="@+id/viewEarning_Dashboard"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|bottom"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dp"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="bottom"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/earning" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/comic"
+                        android:text=" Earning"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/txt_dashboard_normal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/viewLeaderBoard_Dashboard"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|bottom"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dp"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/leaderboard" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/comic"
+                        android:maxLines="1"
+                        android:text="Board"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/txt_dashboard_normal" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/viewChat_Dashboard"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|bottom"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dp"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/chat" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/comic"
+                        android:maxLines="1"
+                        android:text="Chat  "
+                        android:textColor="#fff"
+                        android:textSize="@dimen/txt_dashboard_normal" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
 
     </ScrollView>
 
@@ -335,25 +356,24 @@
         android:id="@+id/ivLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_logout"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_logout" />
 
 
     <ImageView
         android:id="@+id/ivRefresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_refresh"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"/>
+        android:src="@drawable/ic_refresh" />
 
 
-
-    <include layout="@layout/layout_loader"/>
+    <include layout="@layout/layout_loader" />
 
 </RelativeLayout>

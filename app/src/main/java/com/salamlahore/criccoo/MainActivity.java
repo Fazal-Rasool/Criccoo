@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.Time;
@@ -34,11 +35,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import pl.kitek.timertextview.TimerTextView;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tvTotalScoreTeamTwo_Dashboard)
     TextView tvTotalScoreTeamTwoDashboard;
     @BindView(R.id.timerText)
-    TimerTextView timerText;
+    TextView timerText;
 
 
     private Subscription getSubscription;
@@ -112,6 +113,11 @@ public class MainActivity extends AppCompatActivity {
 
     String teamOne, teamTwo, yourSelectedTeam;
     String startTime;
+
+
+    private static final String FORMAT = "%02d:%02d:%02d";
+
+    int seconds , minutes;
 
 
     public static void startActivity(Context context) {
@@ -153,12 +159,23 @@ public class MainActivity extends AppCompatActivity {
         String teamOneVote = Prefs.getString(PREF_TEAM_ONE_VOTE, "0");
         String teamTwoVote = Prefs.getString(PREF_TEAM_TWO_VOTE, "0");
 
-        tvRunRateDashboard.setText("Start Time:"+startTime);
+        tvRunRateDashboard.setText("Start Time : "+startTime);
 
 
-        timerText.setEndTime( getMiliSecondStartTime(startTime));
+        new CountDownTimer(getMiliSecondStartTime(startTime), 1000) {
+            public void onTick(long millisUntilFinished) {
+                timerText.setText("Time Left : "+String.format(FORMAT,
+                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                                TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+            }
+            public void onFinish() {
+                timerText.setText("00:00:00");
+            }
+        }.start();
 
-//        timerText.setEndTime(System.currentTimeMillis() + 60 * 1000);
 
 
         tvTeamVoteDashboard.setText(teamOneVote + " | " + teamTwoVote);
@@ -176,12 +193,12 @@ public class MainActivity extends AppCompatActivity {
 
     public long getMiliSecondStartTime(String startTime){
 
-        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         Date date1 = null, date2=null;
         try {
             date1 = format.parse(startTime);
 
-            DateFormat df = new SimpleDateFormat("hh:mm:ss");
+            DateFormat df = new SimpleDateFormat("HH:mm:ss");
             String date = df.format(Calendar.getInstance().getTime());
             date2 = format.parse(date);
 
@@ -189,7 +206,9 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        return date1.getTime() - date2.getTime();
+        long miliSecond = date1.getTime() - date2.getTime();
+
+        return miliSecond;
 
 
 //        String timme = startTime;
