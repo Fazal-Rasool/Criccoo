@@ -344,10 +344,15 @@ public class MainActivity extends AppCompatActivity {
 //                    String runRate = calculateRunrate(model.total_score, model.overs);
 //                    tvTotalScoreDashboard.setText("Score : " + model.total_score + " in " + model.overs + " Overs");
 //                    tvRunRateDashboard.setText("R/R : " + runRate + " per over");
-                    tvTotalScoreDashboard.setText(model.total_score_1);
-                    tvTotalScoreTeamTwoDashboard.setText(model.total_score_2);
-                    tvPlayerOneScoreDashboard.setText(model.player_1);
-                    tvPlayerSecondScoreDashboard.setText(model.player_2);
+                    if(model.team_1.equalsIgnoreCase(teamOne)) {
+                        tvTotalScoreDashboard.setText(model.total_score_1);
+                        tvTotalScoreTeamTwoDashboard.setText(model.total_score_2);
+                    }else{
+                        tvTotalScoreDashboard.setText(model.total_score_2);
+                        tvTotalScoreTeamTwoDashboard.setText(model.total_score_1);
+                    }
+//                    tvPlayerOneScoreDashboard.setText(model.player_1);
+//                    tvPlayerSecondScoreDashboard.setText(model.player_2);
                 }
             }
         });
